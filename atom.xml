@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangykonne.github.io</id>
-    <title>wangykonne&apos;s pages</title>
-    <updated>2020-12-13T03:07:41.652Z</updated>
+    <title>wykonne</title>
+    <updated>2020-12-13T03:11:18.683Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangykonne.github.io"/>
     <link rel="self" href="https://wangykonne.github.io/atom.xml"/>
     <subtitle>日近长安远</subtitle>
     <logo>https://wangykonne.github.io/images/avatar.png</logo>
     <icon>https://wangykonne.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, wangykonne&apos;s pages</rights>
+    <rights>All rights reserved 2020, wykonne</rights>
     <entry>
         <title type="html"><![CDATA[关于]]></title>
         <id>https://wangykonne.github.io/post/about/</id>
