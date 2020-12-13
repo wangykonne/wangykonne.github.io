@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangykonne.github.io</id>
     <title>平平无奇上课族</title>
-    <updated>2020-12-13T10:22:02.892Z</updated>
+    <updated>2020-12-13T12:21:04.221Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangykonne.github.io"/>
     <link rel="self" href="https://wangykonne.github.io/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://wangykonne.github.io/images/avatar.png</logo>
     <icon>https://wangykonne.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 平平无奇上课族</rights>
+    <entry>
+        <title type="html"><![CDATA[12.9 实习面经]]></title>
+        <id>https://wangykonne.github.io/post/129-shi-xi-mian-jing/</id>
+        <link href="https://wangykonne.github.io/post/129-shi-xi-mian-jing/">
+        </link>
+        <updated>2020-12-13T11:39:56.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>面试公司：上海任意门科技有限公司  时长：约40分钟  结果：未知</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>面试公司：上海任意门科技有限公司  时长：约40分钟  结果：未知</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello World]]></title>
         <id>https://wangykonne.github.io/post/hello-world/</id>
