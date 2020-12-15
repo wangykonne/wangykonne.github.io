@@ -1,0 +1,416 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（一） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1608045357932">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1608045357932"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（一）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-12-15 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>今天开始搬运以前写过的SQL学习笔记，尽量一天一更吧~</p>
+</blockquote>
+<!-- more -->
+<blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<h1 id="第一章-数据库与sql">第一章  数据库与SQL</h1>
+<h2 id="11-sql概要">1.1 SQL概要</h2>
+<h3 id="111-sql语句及其种类">1.1.1 SQL语句及其种类</h3>
+<p>  SQL用关键字、表名、列名等组合而成的一条SQL语句来描述操作的内容。根据对RDBMS赋予的指令种类的不同，SQL语句可分为以下三类：<br>
+  DDL（数据定义语言）用来创建或者删除数据库、表等对象。例如：①CREATE，创建数据库和表等对象；②DROP，删除数据库和表等对象；③ALTER，修改数据库和表等对象的结构。<br>
+  DML（数据操纵语言）用来查询或者变更表中的记录。例如：①SELECT：查询表中的数据；②INSERT：向表中插入新的数据；③UPDATE：更新表中的数据；④DELETE：删除表中的数据。<br>
+  DCL（数据控制语言）用来确认或者取消对数据库中的数据进行的变更，以及设定RDBMS的用户是否有权限操作数据库中的对象。例如：①COMMIT：确认对数据库中的数据进行的变更；②ROLLBACK：取消对数据库中的数据进行的变更；③GRANT：赋予用户操作权限；④REVOKE：取消用户的操作权限。<br>
+  上述数据中，DML的使用率最高。</p>
+<h3 id="112-sql的基本书写规则">1.1.2 SQL的基本书写规则</h3>
+<p>  SQL的语句要以半角分号;结尾。<br>
+  SQL语句不区分关键字的大小写，例如SELECT和select的意义相同。但是，插入到表中的数据是区分大小写的，例如数据'computer'和'COMPUTER'是不一样的。<br>
+  字符串形式的数据要用单引号'括起来；数字直接书写即可。<br>
+  单词之间要使用半角空格或者换行符进行分割。</p>
+<h2 id="12-表的创建">1.2 表的创建</h2>
+<h3 id="121-数据库的创建">1.2.1 数据库的创建</h3>
+<p>  通过CREATE DATABASE 语句可以创建数据库，如下创建一个名为shop的数据库：</p>
+<p><code>CREATE DATABASE shop;</code></p>
+<h3 id="122-表的创建">1.2.2 表的创建</h3>
+<p>  创建好数据库后，使用CREATE TABLE 语句在其中创建表格，如下：</p>
+<p><code>CREATE DATABASE learning;</code></p>
+<p><code>CREATE TABLE Product</code><br>
+<code>(product_id CHAR(4) NOT NULL,</code><br>
+<code>product_name VARCHAR(100) NOT NULL,</code><br>
+<code>product_type VARCHAR(32) NOT NULL,</code><br>
+<code>sale_price INTEGER ,</code><br>
+<code>purchase_price INTEGER ,</code><br>
+<code>regist_date DATE ,</code><br>
+<code>PRIMARY KEY (product_id));</code></p>
+<p>  上面代码含义之后会讲解。</p>
+<h3 id="123-命名规则">1.2.3 命名规则</h3>
+<p>  只能使用半角英文字母、数字、下划线_作为数据库、表和列的名称；此外，名称必须用半角英文字母开头；最后不能创建相同名称的数据库或者表或者表中的列名。</p>
+<h3 id="124-数据类型的指定">1.2.4 数据类型的指定</h3>
+<p>  上面代码中，Product表所包含的列，定义在（）内。其中CHAR(4)，VARCHAR(100)等是用来声明列的数据类型的。注意，所有列都必须声明数据类型，且每一列都不能储存和该列数据类型不符合的数据。四种基本的数据类型为：<br>
+  INTEGER：用来指定储存的数据类型为整数，不能储存小数。<br>
+  CHAR：用来指定储存的数据类型为字符型，括号内的数字表示可储存的字符串的最大长度，且字符串会以定长的形式储存。例如在CHAR(8)中输入'abc'的时候会以'abc+五个半角空格'的形式保存起来。<br>
+  VARCHAR：同CHAR类型一样，VARCHAR也是用来储存字符型数据的，不同之处在于VARCHAR是用可变长的形式储存字符串，不会像CHAR一样进行半角空格的补长。<strong>注意：Oracle中使用VARCHAR2表示这种类型</strong><br>
+  DATE：用来储存日期（年月日）的列的数据类型。<strong>注意：Oracle中的DATE型还包括时分秒</strong></p>
+<h3 id="125-约束的设置">1.2.5 约束的设置</h3>
+<p>  除了数据类型外，在列中储存数据有时还要进行限制或者追加条件。在上面的代码中，product_id，product_name，product_type列都设置了NOT NULL的设置，表示这三列的数据不能输入空白，即必须输入数据。<br>
+  另外，在上面的代码的最后设置了PRIMARY KEY (product_id)，表示把product_id设置主键约束。通俗的理解就是：如果把product_id设置为主键，就可以通过该列的值唯一确定一行数据，即不同行数据的product_id必须是不一样的。</p>
+<h2 id="13-表的删除和更新">1.3 表的删除和更新</h2>
+<h3 id="131-表的删除">1.3.1 表的删除</h3>
+<p>  删除表的语句非常简单，只要DROP TABLE 即可：</p>
+<p><code>DROP TABLE Product;</code></p>
+<p>  需要注意的是，删除的表是无法恢复的，只能重新创建重新插入数据。所以要执行DROP TABLE 语句的时候要仔细确认。</p>
+<h3 id="132-表定义的更新">1.3.2 表定义的更新</h3>
+<p>  有时候创建表后如果想继续加入几列或者删除其中几列时，不需要删除表再重新创建，只需要使用ALTER TABLE 语句，例如在Product表中加入一列product_name_pinyin储存100位可变长的字符串：</p>
+<p><code>#在Product表中加入一列product_name_pinyin储存100位可变长的字符串</code></p>
+<p><code>#DB2,PostgreSQL,MySQL</code><br>
+<code>ALTER TABLE Product ADD COLUMN product_name_pinyin VARCHAR(100);</code></p>
+<p><code>#Oracle</code><br>
+<code>ALTER TABLE Product ADD (product_name_pinyin VARCHAR2(100));</code></p>
+<p><code>#SQL Server</code><br>
+<code>ALTER TABLE Product ADD product_name_pinyin VARCHAR(100);</code></p>
+<p>  特定的SQL中，Oracle和SQL Server中不需要写COLUMN，Oracle中需要使用括号且VARCHAR应改为VARCHAR2。另外，Oracle可以一次同时添加多列，如：</p>
+<p><code>ALTER TABLE &lt;表名&gt; ADD (&lt;列名1&gt; VARCHAR2(100), &lt;列名2&gt; VARCHAR2(100)...);</code></p>
+<p>  反之，删除表中某些列如下，例如删除之前添加的product_name_pinyin列：</p>
+<p><code>#在Product表中删除product_name_pinyin列</code></p>
+<p><code>#DB2,SQL Server,MySQL,Postgre SQL</code><br>
+<code>ALTER TABLE Product DROP COLUMN product_name_pinyin;</code></p>
+<p><code>#Oracle</code><br>
+<code>ALTER TABLE Product DROP (product_name_pinyin);</code></p>
+<p>  特定的SQL中，Oracle不需要写COLUMN，且可以通过上面一样的操作同时删除多列。</p>
+<h3 id="133-向product表中插入数据">1.3.3 向Product表中插入数据</h3>
+<p>  上面创建了数据库learning，表Product，但表内容是空的，下面来向表中插入数据：</p>
+<p><code>#向Product表中插入数据</code></p>
+<p><code>#SQL Server,Postgre SQL</code><br>
+<code>BEGIN TRANSACTION;</code><br>
+<code>INSERT INTO Product VALUES ('0001', 'T恤衫', '衣服', 1000, 500, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0002', '打孔器', '办公用品', 500, 320, '2009-09-11');</code><br>
+<code>INSERT INTO Product VALUES ('0003', '运动T恤', '衣服', 4000, 2800, NULL);</code><br>
+<code>INSERT INTO Product VALUES ('0004', '菜刀', '厨房用具', 3000, 2800, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');</code><br>
+<code>INSERT INTO Product VALUES ('0006', '叉子', '厨房用具', 500, NULL, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0007', '擦菜板', '厨房用具', 880, 790, '2008-04-28');</code><br>
+<code>INSERT INTO Product VALUES ('0008', '圆珠笔', '办公用品', 100, NULL, '2009-11-11');</code><br>
+<code>COMMIT;</code></p>
+<p><code>#MySQL</code><br>
+<code>START TRANSACTION;</code><br>
+<code>INSERT INTO Product VALUES ('0001', 'T恤衫', '衣服', 1000, 500, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0002', '打孔器', '办公用品', 500, 320, '2009-09-11');</code><br>
+<code>INSERT INTO Product VALUES ('0003', '运动T恤', '衣服', 4000, 2800, NULL);</code><br>
+<code>INSERT INTO Product VALUES ('0004', '菜刀', '厨房用具', 3000, 2800, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');</code><br>
+<code>INSERT INTO Product VALUES ('0006', '叉子', '厨房用具', 500, NULL, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0007', '擦菜板', '厨房用具', 880, 790, '2008-04-28');</code><br>
+<code>INSERT INTO Product VALUES ('0008', '圆珠笔', '办公用品', 100, NULL, '2009-11-11');</code><br>
+<code>COMMIT;</code></p>
+<p><code>#Oracle,DB2</code><br>
+<code>INSERT INTO Product VALUES ('0001', 'T恤衫', '衣服', 1000, 500, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0002', '打孔器', '办公用品', 500, 320, '2009-09-11');</code><br>
+<code>INSERT INTO Product VALUES ('0003', '运动T恤', '衣服', 4000, 2800, NULL);</code><br>
+<code>INSERT INTO Product VALUES ('0004', '菜刀', '厨房用具', 3000, 2800, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');</code><br>
+<code>INSERT INTO Product VALUES ('0006', '叉子', '厨房用具', 500, NULL, '2009-09-20');</code><br>
+<code>INSERT INTO Product VALUES ('0007', '擦菜板', '厨房用具', 880, 790, '2008-04-28');</code><br>
+<code>INSERT INTO Product VALUES ('0008', '圆珠笔', '办公用品', 100, NULL, '2009-11-11');</code><br>
+<code>COMMIT;</code></p>
+<p>  上面的代码对于不同的RDBMS会略有不同，例如SQL Server,Postgre SQL中开始指令为BEGIN TRANSACTION；MySQL中开始指令为START TRANSACTION；Oracle和DB2中不需要开始指令，直接用INSERT INTO &lt;表名&gt;  VALUES (&lt;内容&gt;);开始。</p>
+<h3 id="134-修改表名">1.3.4 修改表名</h3>
+<p>  如果在匆忙中将Product输成了Poduct，又输入进了大量数据时，删除表再创建并输入数据会非常麻烦。大部分RDBMS中都提供了RENAME 指令来修改表名：</p>
+<p><code>#将表名Poduct修改为Product</code></p>
+<p><code>#Oracle,PostgreSQL</code><br>
+<code>ALTER TABLE Poduct RENAME TO Product;</code></p>
+<p><code>#DB2,MySQL</code><br>
+<code>RENAME TABLE Poduct TO Product;</code></p>
+<p><code>#SQL Server</code><br>
+<code>sp_rename 'Poduct', 'Product'</code></p>
+<p>  不同的RDBMS的RENAME指令的使用方法一般都不同，但都是按照修改前、修改后的名字来指定表名的。<br>
+  今天学了第一章一些基础概念和一些基础操作，明天开始进入第二章：查询基础。同时，这些基础概念到后面的章节都会专门学习~</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/129-shi-xi-mian-jing-qi-er/" class="post-title gt-a-link">
+                    12.10 实习面经
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/sql-xue-xi-bi-ji-yi/" class="leancloud_visitors" data-flag-title="SQL学习笔记（一）">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: '',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
