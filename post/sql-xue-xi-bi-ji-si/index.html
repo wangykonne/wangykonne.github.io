@@ -1,0 +1,394 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（四） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1608390410443">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1608390410443"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（四）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-12-19 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<h1 id="第三章聚合与排序">第三章：聚合与排序</h1>
+<h2 id="33-为聚合结果指定条件">3.3 为聚合结果指定条件</h2>
+<h3 id="331-having子句">3.3.1 HAVING子句</h3>
+<p>  昨天最后说到了一个例子，如果想取出GROUP BY分组后COUNT数恰好为2的组怎么办呢？WHERE语句不能使用聚合函数，所以这时就要采用HAVING子句了。下面是昨天的问题的解决方法：</p>
+<p><code>#按product_type分组并取出COUNT数恰好为2的类别</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>HAVING COUNT(*) = 2;</code></p>
+<p>  HAVING的语法为：HAVING语句写在GROUP BY语句之后，且语句的执行顺序也在GROUP BY之后。目前学过的所有语句的书写顺序暂时为：<br>
+  SELECT→FROM→WHERE→GROUP BY→HAVING<br>
+  同样，HAVING语句也接受其他类型的聚合函数，例如想按product_type分组并取出sale_price的平均值大于等于2500的商品并记录其商品种类和avg值：</p>
+<p><code>#按product_type分组并取出sale_price的平均值大于等于2500的商品并记录其商品种类和avg值</code><br>
+<code>SELECT product_type, AVG(sale_price) AS avg</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>HAVING AVG(sale_price) &gt;= 2500;</code></p>
+<h3 id="332-having子句的构成要素">3.3.2 HAVING子句的构成要素</h3>
+<p>  HAVING子句和包含GROUP BY的SELECT子句一样，对子句内的元素有一定限制，限制也是完全一样的，即HAVING子句内能使用的元素只有①常数；②聚合函数；③GROUP BY子句中出现的列名。下面是一个会出现错误的例子：</p>
+<p><code>#错误示范①</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>HAVING product_name = '圆珠笔';</code></p>
+<h3 id="333-与having语句相比更适合写在where中的条件">3.3.3 与HAVING语句相比，更适合写在WHERE中的条件</h3>
+<p>  也许有人已经发现了，当条件限制不是聚合函数时，HAVING和WHERE的功能似乎重合了。下面来看两个例子，均表示按product_type分类并选择product_type为衣服的类别并查询其COUNT，但一个使用HAVING，一个使用WHERE：</p>
+<p><code>#按product_type分类并选择product_type为衣服的类别并查询其COUNT，使用HAVING</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>HAVING product_type = '衣服';</code></p>
+<p><code>#按product_type分类并选择product_type为衣服的类别并查询其COUNT，使用HAVING</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>WHERE product_type = '衣服'</code><br>
+<code>GROUP BY product_type;</code></p>
+<p>  上面两段代码的结果是完全一样的，确实在不涉及聚合函数的限制条件时使用HAVING和WHERE是等价的，但书上建议使用WHERE，因为WHERE语句的执行速度比HAVING快。总结一下就是，当限制条件涉及使用聚合函数时使用HAVING，其他情况均使用WHERE。</p>
+<h2 id="34-对查询结果进行排序">3.4 对查询结果进行排序</h2>
+<h3 id="341-order-by子句">3.4.1 ORDER BY子句</h3>
+<p>  目前我们已经学习了各种的查询、限制条件、聚合函数、分组方法，下面来学习对查询结果进行排序。在SQL中，使用ORDER BY子句就可以对查询结果进行排序，很简单。下面看一个例子，例如按销售单价升序查询product_id,product_name,sale_price,purchase_price：</p>
+<p><code>#按销售单价升序查询product_id,product_name,sale_price,purchase_price</code><br>
+<code>SELECT product_id, product_name, sale_price, purchase_price</code><br>
+<code>FROM Product</code><br>
+<code>ORDER BY sale_price;</code></p>
+<p>  不论什么情况，ORDER BY子句都是写在SELECT语句的末尾（limit除外），同时执行顺序里ORDER BY也是在结果即将输出时进行排序。所以到目前为止，我们所学的所有子句的书写顺序暂时为：<br>
+  SELECT→FROM→WHERE→GROUP BY→HAVING→ORDER BY</p>
+<h3 id="342-指定升序或者降序">3.4.2 指定升序或者降序</h3>
+<p>  默认情况下ORDER BY子句是升序操作，可以在列名后加DESC关键字进行降序操作，当然升序也可以使用ASC关键字。下面试试上节一样的例子，这次采用降序排列：</p>
+<p><code>#按销售单价降序查询product_id,product_name,sale_price,purchase_price</code><br>
+<code>SELECT product_id, product_name, sale_price, purchase_price</code><br>
+<code>FROM Product</code><br>
+<code>ORDER BY sale_price DESC;</code></p>
+<h3 id="343-指定多个排序键">3.4.3 指定多个排序键</h3>
+<p>  如果想指定多个排序规则，例如上面的例子中sale_price相等的商品可以再按照另一个排序键进行排序。同时ASC和DESC关键字都是以列为单位的，所以可以自定义使用来制定多种多样的排序规则。例如，按销售单价升序再按商品编号降序查询product_id,product_name,sale_price,purchase_price：</p>
+<p><code>#按销售单价升序再按商品编号降序查询product_id,product_name,sale_price,purchase_price</code><br>
+<code>SELECT product_id, product_name, sale_price, purchase_price</code><br>
+<code>FROM Product</code><br>
+<code>ORDER BY sale_price ASC, product_id DESC;</code></p>
+<h3 id="344-null的顺序">3.4.4 NULL的顺序</h3>
+<p>  对于含有NULL值的列会怎么样进行排序呢，下面看一个例子，对进货单价升序查询product_id,product_name,sale_price,purchase_price：</p>
+<p><code>#按进货单价升序查询product_id,product_name,sale_price,purchase_price</code><br>
+<code>SELECT product_id, product_name, sale_price, purchase_price</code><br>
+<code>FROM Product</code><br>
+<code>ORDER BY purchase_price;</code></p>
+<p>  在我自己的MySQL中，结果的NULL值被全部放在了最开头的部分，但不是表示NULL比所有值都小。前面说过NULL不能进行四则运算也不能进行排序，所以所有的RDBMS都会规定在排序中统一把NULL放在最开头或者结尾的地方，具体是开头还是结尾视不同的RDBMS定，有的RDBMS还能指定开头或者结尾。至少在MySQL中是统一放在开头处。</p>
+<h3 id="345-在排序键中使用显示用的列别名">3.4.5 在排序键中使用显示用的列别名</h3>
+<p>  前面说过在GROUP BY子句中不能使用列的别名，但在ORDER BY子句中可以使用列的别名：</p>
+<p><code>#按销售单价升序再按商品编号降序查询product_id,product_name,sale_price,purchase_price，并把product_id改为id，sale_price改为sp</code><br>
+<code>SELECT product_id AS id, product_name, sale_price AS sp, purchase_price</code><br>
+<code>FROM Product</code><br>
+<code>ORDER BY sp ASC, id DESC;</code></p>
+<p>  上面代码和上上节的代码查询结果完全相同（除了别名）。ORDER BY子句可以使用别名的原因和语句的执行顺序有关，到目前为止，学过的所有子句的执行顺序暂时为：<br>
+  FROM→WHERE→GROUP BY→HAVING→SELECT→ORDER BY<br>
+  可以看到ORDER BY位于SELECT之后，所以在SELECT写的别名可以被ORDER BY识别，而GROUP BY执行于SELECT之前所以不能识别SELECT写的别名。事实上所有执行早于SELECT的子句都不能使用别名。</p>
+<h3 id="346-order-by子句中可以使用的列">3.4.6 ORDER BY子句中可以使用的列</h3>
+<p>  ORDER BY子句内的元素使用范围比较宽泛，甚至在SELECT中没出现的列也可以作为ORDER BY子句的排序键：</p>
+<p><code>#按product_id升序查询product_name,sale_price,purchase_price</code><br>
+<code>SELECT product_name, sale_price, purchase_price</code><br>
+<code>FROM Product</code><br>
+<code>ORDER BY product_id;</code></p>
+<p>  上面的语句也可以执行，不过因为没有SELECT product_id，排序的效果会看不见所以不推荐这种方法。除此之外，ORDER BY还可以使用聚合函数：</p>
+<p><code>#按product_type分类并查询其COUNT，最后再按COUNT进行升序排序</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>ORDER BY COUNT(*);</code></p>
+<p>  今天将第三章完结了，明天开始第四章数据更新的学习。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-san/" class="post-title gt-a-link">
+                    SQL学习笔记（三）
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/sql-xue-xi-bi-ji-si/" class="leancloud_visitors" data-flag-title="SQL学习笔记（四）">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: '',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
