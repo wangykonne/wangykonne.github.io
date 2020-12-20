@@ -1,0 +1,422 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（五） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1608476696446">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1608476696446"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（五）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-12-20 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<h1 id="第四章数据更新">第四章：数据更新</h1>
+<h2 id="41-数据的插入">4.1 数据的插入</h2>
+<h3 id="411-insert语句的基本用法">4.1.1 INSERT语句的基本用法</h3>
+<p>  在第一章创建数据库CREATE DATABASE，创建表CREATE TABLE时，运用了INSERT向表中插入数据，但当时没有介绍INSERT的详细使用方法。INSERT语句的基本用法如下，下面的ProductIns是为了这一节学习创建的空表，列和Product一样：</p>
+<p><code>#创建学习用空表ProductIns</code><br>
+<code>CREATE TABLE ProductIns</code><br>
+<code>(product_id CHAR(4) NOT NULL,</code><br>
+<code>product_name VARCHAR(100) NOT NULL,</code><br>
+<code>product_type VARCHAR(32) NOT NULL,</code><br>
+<code>sale_price INTEGER DEFAULT 0,</code><br>
+<code>purchase_price INTEGER ,</code><br>
+<code>regist_date DATE ,</code><br>
+<code>PRIMARY KEY(product_id));</code></p>
+<p><code>#向表中插入一列数据</code><br>
+<code>INSERT INTO ProductIns (product_id, product_name, product_type, sale_price, purchase_price, regist_date)</code><br>
+<code>VALUES ('0001', 'T恤衫','衣服', 1000, 500, '2009-09-20');</code></p>
+<p>  上面显示的INSERT的用法是最基础的，即INSERT INTO 表名 (列名) VALUES (值)，注意值的个数要和列名的个数一致。当同时插入多行数据时，有简便的语法形式，如下：</p>
+<p><code>#多行INSERT(Oracle除外)</code><br>
+<code>INSERT INTO ProductIns VALUES ('0002', '打孔器', '办公用品', 500, 320, '2009-09-11'),</code><br>
+<code>('0003', '运动T恤', '衣服', 4000, 2800, NULL), ('0004', '菜刀', '厨房用具', 3000, 2800, '2009-09-20');</code></p>
+<p><code>#Oracle的多行INSERT</code><br>
+<code>INSERT ALL INTO ProductIns VALUES ('0002', '打孔器', '办公用品', 500, 320, '2009-09-11')</code><br>
+<code>INTO ProductIns VALUES ('0003', '运动T恤', '衣服', 4000, 2800, NULL)</code><br>
+<code>INTO ProductIns VALUES ('0004', '菜刀', '厨房用具', 3000, 2800, '2009-09-20')</code><br>
+<code>SELECT * FROM DUAL;</code></p>
+<p>  上面的代码第一段比较好理解，就是省略了一些结构性的语句。第二段中的DUAL表是Oracle特有的一种临时表，SELECT * FROM DUAL并没有什么实际意义。</p>
+<h3 id="412-列清单的省略">4.1.2 列清单的省略</h3>
+<p>  上一节的代码中，其实已经采用了省略列清单的语句进行INSERT，这种语法很好理解，SQL会将值从左到右赋给从左到右的每一个列。所以在INSERT时，只要注意输入值的顺序就可以省略列清单。</p>
+<h3 id="413-插入null">4.1.3 插入NULL</h3>
+<p>  想要在表中插入NULL值很简单，直接把值写为NULL即可，唯一要注意的就是列是否有NOT NULL的限制。</p>
+<h3 id="414-插入默认值">4.1.4 插入默认值</h3>
+<p>  还可以在表中插入默认值，首先要在CREATE TABLE语句时设置DEFAULT约束来设置默认值。如第一节的代码中设置了sale_price的默认值为0。插入默认值的方法分为两种，显式和隐式：</p>
+<p><code>#显式方法插入默认值</code><br>
+<code>INSERT INTO ProductIns VALUES ('0007', '擦菜板', '厨房用具', DEFAULT, 790, '2209-04-28');</code></p>
+<p>  显式方法直接把值写为DEFAULT即可，隐式方法只要同时省略列和对应的值即可将该列设置为默认值，如下在列清单中省略sale_price在值清单中省略其值，也可设置默认值：</p>
+<p><code>#隐式方法插入默认值</code><br>
+<code>INSERT INTO ProductIns (product_id, product_name, product_type, purchase_price, regist_date) VALUES ('0007', '擦菜板', '厨房用具', 790, '2209-04-28');</code></p>
+<p>  实际使用中，显式方法用的更多，因为代码清晰简洁。最后有一点，不管用显式方法将没有设置默认值的列设置为DEFAULT还是用隐式方法胜率了没有设置默认值的列，都会将这列的值设置为NULL，如果恰好这列又有NOT NULL的限制则会出现错误。</p>
+<h3 id="415-从其他表中复制数据">4.1.5 从其他表中复制数据</h3>
+<p>  下面来学习从其他表中复制数据，下面先创建一个和Product表结构完全一样的表ProductCopy：</p>
+<p><code>#创建学习用表ProductCopy</code><br>
+<code>CREATE TABLE ProductCopy</code><br>
+<code>(product_id CHAR(4) NOT NULL,</code><br>
+<code>product_name VARCHAR(100) NOT NULL,</code><br>
+<code>product_type VARCHAR(32) NOT NULL,</code><br>
+<code>sale_price INTEGER ,</code><br>
+<code>purchase_price INTEGER ,</code><br>
+<code>regist_date DATE ,</code><br>
+<code>PRIMARY KEY (product_id));</code></p>
+<p>  下面把Product的表直接复制到ProductCopy中，语句结构为INSERT INTO...SELECT...FROM...：</p>
+<p><code>#从Product表中复制所有数据到ProductCopy</code><br>
+<code>INSERT INTO ProductCopy (product_id, product_name, product_type, sale_price, purchase_price, regist_date)</code><br>
+<code>SELECT product_id, product_name, product_type,sale_price, purchase_price, regist_date</code><br>
+<code>FROM Product;</code></p>
+<p>  上面的代码用到了SELECT语句，事实上这个SELECT语句还可以使用WHERE子句或者GROUP BY子句和聚合函数，可以在复制数据时加入很多限制条件，例如，想在Product表中按product_type分类并计算sale_price和purchase_price的总值并将这三列数据复制到表Product_type中：</p>
+<p><code>#先创建一个Product_type表</code><br>
+<code>CREATE TABLE Product_type</code><br>
+<code>(product_type VARCHAR(32) NOT NULL,</code><br>
+<code>sum_sale_price INTEGER ,</code><br>
+<code>sum_purchase_price INTEGER ,</code><br>
+<code>PRIMARY KEY(product_type));</code></p>
+<p><code>#在Product表中按product_type分类并计算sale_price和purchase_price的总值并将这三列数据复制到表Product_type中</code><br>
+<code>INSERT INTO Product_type (product_type, sum_sale_price, sum_purchase_price)</code><br>
+<code>SELECT product_type, SUM(sale_price), SUM(purchase_price)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type;</code></p>
+<p>  其实上面的代码也可以省略列清单，只要对应好值的顺序即可。最后，INSERT中的SELECT语句可以使用几乎所有已学的语法子句和函数，除了ORDER BY，<strong>排序语句在INSERT的SELECT中不起作用</strong>。</p>
+<h2 id="42-数据的删除">4.2 数据的删除</h2>
+<h3 id="421-drop-table语句和delete语句">4.2.1 DROP TABLE语句和DELETE语句</h3>
+<p>  这两个语句在第一章其实都用过，DROP TABLE会将表完全删除，再想用只能重新创建表；而DELETE会将表的所有数据删除但会保留表本身，故可以直接重新插入数据。这是它们的主要区别。</p>
+<h3 id="422-delete语句的基本语法">4.2.2 DELETE语句的基本语法</h3>
+<p>  单独一个DELETE的用法很有限，只能删除表中所有的数据：</p>
+<p><code>#清空表Product</code><br>
+<code>DELETE FROM Product;</code></p>
+<p>  DELETE语句要接FROM而不是TABLE，不要和DROP TABLE记混淆了。同时DELETE的删除对象是行，故不能进行只删除某些列的操作，并且DELETE * FROM xx也是错误的用法。</p>
+<h3 id="423-指定删除对象的delete语句">4.2.3 指定删除对象的DELETE语句</h3>
+<p>  DELETE以行为对象，所以可以像SELECT一样使用WHERE语句进行指定条件，例如想删除Product表中sale_price大于等于4000的数据：</p>
+<p><code>#删除Product表中sale_price大于等于4000的数据</code><br>
+<code>DELETE FROM Product</code><br>
+<code>WHERE sale_price &gt;= 4000;</code></p>
+<p>  与SELECT语句不同的是，DELETE语句不能使用GROUP BY、HAVING和ORDER BY这三种子句，只能使用WHERE语句，而WHERE语句中又不能使用聚合函数，所以DELETE也与聚合函数无关了，综上，DELETE语句的使用方法还是很简单且有限的。</p>
+<h2 id="43-数据的更新">4.3 数据的更新</h2>
+<h3 id="431-update语句的基本语法">4.3.1 UPDATE语句的基本语法</h3>
+<p>  如果在INSERT语句插入数据后，有时还想更改数据，此时并不需要将数据完全删除，而可以使用UPDATE直接对数据进行更新，UPDATE的基本语法如下，UPDATE 表名 SET 列名=表达式;如下例子，将regist_date全部更新为'2009-10-10':</p>
+<p><code>#将regist_date全部更新为'2009-10-10'</code><br>
+<code>UPDATE Product</code><br>
+<code>SET regist_date = '2009-10-10';</code></p>
+<h3 id="432-指定条件的update语句">4.3.2 指定条件的UPDATE语句</h3>
+<p>  同DETELE一样，UPDATE也有指定条件的用法，不然只有上面这种用法实在是太蠢了。指定条件同样使用了WHERE语句，如下将商品种类为厨房用具的记录的销售单价更新为原来的十倍：</p>
+<p><code>#将商品种类为厨房用具的记录的销售单价更新为原来的十倍</code><br>
+<code>UPDATE Product</code><br>
+<code>SET sale_price = sale_price*10</code><br>
+<code>WHERE product_type = '厨房用具';</code></p>
+<p>  最后，UPDATE也可以将列的值更新为NULL，比较简单就不写例子了。</p>
+<h3 id="433-多列更新">4.3.3 多列更新</h3>
+<p>  如果要进行多列更新且这些UPDATE语句很相似时怎么办呢？如下，一条一条的输入：</p>
+<p><code>#将商品种类为厨房用具的记录的销售单价更新为原来的十倍</code><br>
+<code>UPDATE Product</code><br>
+<code>SET sale_price = sale_price*10</code><br>
+<code>WHERE product_type = '厨房用具';</code></p>
+<p><code>#再将商品种类为厨房用具的记录的进货单价更新为原来的一半</code><br>
+<code>UPDATE Product</code><br>
+<code>SET purchase_price = purchase_price/2</code><br>
+<code>WHERE product_type = '厨房用具';</code></p>
+<p>  上面的方法繁琐又增加了阅读量，可以合并为一条UPDATE语句执行，具体有两种方法：</p>
+<p><code>#多列更新方法①，使用逗号分割</code><br>
+<code>UPDATE Product</code><br>
+<code>SET sale_price = sale_price*10, purchase_price = purchase_price/2</code><br>
+<code>WHERE product_type = '厨房用具';</code></p>
+<p><code>#多列更新方法②，将列用()清单化，方法②只适合PostgreSQL和DB2</code><br>
+<code>UPDATE Product</code><br>
+<code>SET (sale_price, purchase_price) = (sale_price*10, purchase_price/2)</code><br>
+<code>WHERE product_type = '厨房用具';</code></p>
+<p>  上面两种方法的结果是一样的，但第二种方法只适用于PostgreSQL和DB2系统，所以一般还是第一种方法最常用。</p>
+<p>  今天学习完毕，明天完结第四章最后一节（比较长），有时间再学点第五章。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-si/" class="post-title gt-a-link">
+                    SQL学习笔记（四）
+                </a>
+            </div>
+        
+
+        
+            <span id="/post/sql-xue-xi-bi-ji-wu/" class="leancloud_visitors" data-flag-title="SQL学习笔记（五）">
+                <em class="post-meta-item-text">阅读量 </em>
+                <i class="leancloud-visitors-count">0</i>
+            </span>
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: '',
+		appKey: '',
+		avatar: '',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: '',
+		visitor: true,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
