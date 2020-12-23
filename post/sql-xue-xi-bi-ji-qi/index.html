@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>关于 | 平平无奇上课族</title>
+<title>SQL学习笔记（七） | 平平无奇上课族</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1608733160316">
 
@@ -202,36 +202,105 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    关于
+                    SQL学习笔记（七）
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-12-12 ·
+                        · 2020-12-23 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/uA2TGrnoh/" class="post-tags">
-                            # 日常碎碎念
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
                         </a>
                     
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
 </blockquote>
 <!-- more -->
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>  其实一直以来都有建个主页的想法，但碍于自己不会前端技术只好作罢。直到在知乎上看到了Gridea，不得不说使用起来还是很方便的👍。目前计划是在空闲时候整理自己从前的学习笔记并放到Pages上来，当然了，以后学习的新东西也会整理好上传。除此之外，毕竟是属于自己的小站，当然也会记录一些生活啊学习方面的碎碎念吧。总之就是这样，路漫漫其修远兮，希望自己空闲时刻能坚持更新吧~</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>  关键词：数学专业秃头学生，小镇做题家，国家级摸鱼运动员，新垣结衣圈外男友（？</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>  打游戏（Arknights，联盟），看动漫，睡觉</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>  Github指路：wangykonne；微博指路：@-Kraiyyn</p>
+<h1 id="第五章复杂查询">第五章：复杂查询</h1>
+<h2 id="51-视图">5.1 视图</h2>
+<h3 id="511视图和表">5.1.1视图和表</h3>
+<p>  下面进入新的工具——视图的学习，在SQL中不太需要区分视图和表，只需要知道它们的区别和更新时的一些不同即可。视图和表的区别就是<strong>是否保存了实际的数据</strong>。通常在创建表时，会通过INSERT语句将数据保存在数据库，这些数据会被真的保存到计算机的硬盘上，因此使用SELECT语句实际上相当于从硬盘中读取数据。但是使用视图不会将数据保存到任何地方，实际上视图里储存的是SELECT语句，因此从视图中读取数据时，会在内部执行SELECT语句并创建一张临时表。</p>
+<p>  视图的优点有两个。首先，由于视图不需要保存数据，因此可以节省储存设备的容量，例如在4.1节创建了用来汇总商品种类的销售总价和进货总价的表，表中的数据会占用储存空间，但使用视图只要把这段SELECT语句储存到视图中就可以了。其次，将需要频繁使用的SELECT语句保存为视图可以显著提高查询的效率，并且视图中的数据会随着原表的变化自动更新，而表中的数据需要手动更新。</p>
+<h3 id="512-创建视图的方法">5.1.2 创建视图的方法</h3>
+<p>  创建视图需要使用CREATE VIEW 语句，基本语法为：CREATE VIEW 视图名称(列名...) AS (SELECT语句);。注意SELECT语句中的列顺序要和视图的列顺序对应。下面来试着创建一个视图：</p>
+<p><code>#创建视图查询Product表的所有商品种类及它们的总数</code><br>
+<code>CREATE VIEW ProductSum (product_type, cnt_product)</code><br>
+<code>AS</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type;</code></p>
+<p>  上面代码的第二行的AS和取别名的AS不一样，不能省略。下面来试着使用这个视图，例如查看这个视图：</p>
+<p><code>#查看视图中的所有数据</code><br>
+<code>SELECT *</code><br>
+<code>FROM ProductSum;</code></p>
+<p>  通过视图来封装需要频繁使用的语句可以在之后的查询中简化查询语句，并且只要Product表数据更新了，那么视图ProductSum的数据也会自动地更新。在使用视图进行查询时通常需要执行两个以上的SELECT语句，首先要执行定义视图的SELECT语句，再执行主体查询SELECT语句，同时视图还能以视图为基础创建，例如再创建一个视图查询视图ProductSum中product_type为办公用品的数据：</p>
+<p><code>#创建一个视图查询视图ProductSum中product_type为办公用品的数据</code><br>
+<code>CREATE VIEW ProductSumJim (product_type, cnt_product)</code><br>
+<code>AS</code><br>
+<code>SELECT *</code><br>
+<code>FROM ProductSum</code><br>
+<code>WHERE product_type = '办公用品';</code></p>
+<p>  但以视图创建视图要尽量避免，因为会降低SQL的运算性能。</p>
+<h3 id="513-视图的限制">5.1.3 视图的限制</h3>
+<p>  ①不能使用ORDER BY子句。在定义视图中几乎可以用学过的所有SELECT语句，但不能使用ORDER BY语句。例如下面的视图定义会出现错误：</p>
+<p><code>#错误示例①</code><br>
+<code>CREATE VIEW ProductSum (product_type, cnt_product)</code><br>
+<code>AS</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM Product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>ORDER BY product_type;</code></p>
+<p>  <strong>注意有些RDBMS中可以使用ORDER BY（如PostgreSQL），但这不是通用的做法</strong>。所以在定义视图中尽量不要使用ORDER BY语句。</p>
+<p>  ②对视图进行更新。视图和表一样使用，那对于INSERT,DELETE,UPDATE这类更新语句该怎么使用呢？在标准SQL中，有规定：如果定义视图的SELECT语句满足以下条件就能进行更新：<br>
+   1.SELECT语句没使用DISTINCT。<br>
+   2.FROM子句只有一张表。<br>
+   3.未使用GROUP BY和HAVING子句。<br>
+  例如上面的视图ProductSum就不能通过INSERT INTO ProductSum VALUES ( );进行插入新数据的操作，因为ProductSum的定义是通过GROUP BY子句得到的。总之，记住一个法则：<strong>视图和表需要同时更新，如果一方更新后另一方的数据会出错则不能更新</strong>。<br>
+  最后来看一个可以更新的视图例子：</p>
+<p><code>#除PostgreSQL以外的RDBMS</code><br>
+<code>#创建一个不使用聚合汇总得到的视图</code><br>
+<code>CREATE VIEW ProductJim (product_id, product_name, product_type, sale_price, purchase_price, regist_date)</code><br>
+<code>AS</code><br>
+<code>SELECT *</code><br>
+<code>FROM productcopy</code><br>
+<code>WHERE product_type = '办公用品';</code></p>
+<p><code>#向视图中添加新的数据</code><br>
+<code>INSERT INTO ProductJim VALUES ('0009', '印章', '办公用品', 95, 10, '2009-11-30');</code></p>
+<p>  上面代码的结果不仅会更新视图ProductJim，同时也会把新的数据插入到表productcopy中，因为视图和表是同时更新的。<strong>注意，在PostgreSQL中视图会被初始设定为只读，故上面的代码不能直接执行，需要先执行：</strong></p>
+<p><code>#允许PostgreSQL对视图进行更新的操作</code><br>
+<code>CREATE OR REPLACE RULE insert_rule</code><br>
+<code>AS ON INSERT</code><br>
+<code>TO ProductJim DO INSTEAD</code><br>
+<code>INSERT INTO Product VALUES(</code><br>
+<code>new.product_id,</code><br>
+<code>new.product_name,</code><br>
+<code>new.product_type,</code><br>
+<code>new.sale_price,</code><br>
+<code>new.purchase_price,</code><br>
+<code>new.regist_date);</code></p>
+<h3 id="514-删除视图">5.1.4 删除视图</h3>
+<p>  删除视图要使用DROP VIEW语句；删除表要使用DELETE FROM语句，不要记混淆了。例如想要删除视图ProductJim，如下：</p>
+<p><code>#删除视图ProductJim</code><br>
+<code>DROP VIEW ProductJim;</code></p>
+<p>  在PostgreSQL中，删除以视图为基础创建的多重视图时会出现以下错误，需要使用新的代码：</p>
+<p><code>#删除关联的视图</code><br>
+<code>DROP VIEW ProductJim CASCADE;</code></p>
+<p>  5.1节结束~</p>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/zui-man-chang-de-ye/" class="post-title gt-a-link">
+                    漫长的夜
+                </a>
+            </div>
         
 
         
