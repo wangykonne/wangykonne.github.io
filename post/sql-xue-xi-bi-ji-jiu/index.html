@@ -1,0 +1,512 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（九） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1608994841559">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1608994841559"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（九）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-12-26 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<h1 id="第六章函数-谓词-case表达式">第六章：函数、谓词、CASE表达式</h1>
+<h2 id="61-各种各样的函数">6.1 各种各样的函数</h2>
+<h3 id="611-函数的种类">6.1.1 函数的种类</h3>
+<p>  这一章开始学习SQL中各种各样的函数。SQL的函数大致可以分为以下几种：<br>
+   算术函数（用来进行数值计算的函数）<br>
+   字符串函数（用来进行字符串操作的函数）<br>
+   日期函数（用来进行日期操作的函数）<br>
+   转换函数（用来转换数据类型和值的函数）<br>
+   聚合函数（用来进行数据聚合的函数）</p>
+<p>  在第三章已经学习过COUNT,SUM,AVG,MIN和MAX这些聚合函数了，接下来来学习一些具有代表性的函数，并不需要一次记住，只需要知道有这种函数，在实际应用中查找即可。</p>
+<h3 id="612-算术函数">6.1.2 算术函数</h3>
+<p>  算术函数是最基本的函数，其实第二章用到的+-*/四则运算都是算术函数。为了介绍别的算术函数，先创建一个实例用表samplematch：</p>
+<p><code>#创建学习用表samplematch</code><br>
+<code>CREATE TABLE samplematch</code><br>
+<code>(m NUMERIC(10,3),</code><br>
+<code>n INTEGER,</code><br>
+<code>p INTEGER);</code></p>
+<p><code>#插入数据</code><br>
+<code>START TRANSACTION;</code><br>
+<code>INSERT INTO samplematch VALUES (500,0,NULL),</code><br>
+<code>(-180,0,NULL),</code><br>
+<code>(NULL,NULL,NULL),</code><br>
+<code>(NULL,7,3),</code><br>
+<code>(NULL,5,2),</code><br>
+<code>(NULL,4,NULL),</code><br>
+<code>(8,NULL,3),</code><br>
+<code>(2.27,1,NULL),</code><br>
+<code>(5.555,2,NULL),</code><br>
+<code>(NULL,1,NULL),</code><br>
+<code>(8.76,NULL,NULL);</code><br>
+<code>COMMIT;</code></p>
+<p>  上面用到了一种新的数据结构：NUMERIC(a,b)。NUMERIC(a,b)表示数据的最大全体位数为a,小数位数定为b，如NUMERIC(10,3)保存3.14即为3.140。</p>
+<p>  ①ABS绝对值函数</p>
+<p>  这个函数没啥好解释的，直接上例子：</p>
+<p><code>#查询表中m列的数据的绝对值</code><br>
+<code>SELECT m, ABS(m) AS abs_col FROM samplematch;</code></p>
+<p>  之前说过，几乎所有的运算、函数对NULL都不起作用，所以NULL值不会发生变化。</p>
+<p>  ②MOD求余函数</p>
+<p>  这个函数也没啥好说的，MOD(7,3)=1，自行体会含义。</p>
+<p><code>#计算n列对p列求余数</code></p>
+<p><code>#除SQL Server外</code><br>
+<code>SELECT n, p, MOD(n,p) AS mod_col FROM samplematch;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT n, p, n%p AS mod_col FROM samplematch;</code></p>
+<p>  需要记住的是SQL Server不支持MOD函数，它用%代替取余运算。</p>
+<p>  ③ROUND四舍五入函数</p>
+<p>  这个函数依旧没啥好说的，ROUND(m,n)表示对m保留n位小数。</p>
+<p><code>#对m列数据保留n列的位数</code><br>
+<code>SELECT m, n, ROUND(m,n) FROM samplematch;</code></p>
+<p>  但注意m列定义的时候规定了小数位固定3位，所以ROUND(m,n)也只能取四舍五入，不能把小数位数改变。</p>
+<h3 id="613-字符串函数">6.1.3 字符串函数</h3>
+<p>  为了学习字符串函数，我们也来创建一个实例表：</p>
+<p><code>#创建学习用表samplestr</code><br>
+<code>CREATE TABLE samplestr</code><br>
+<code>(str1 VARCHAR(40),</code><br>
+<code>str2 VARCHAR(40),</code><br>
+<code>str3 VARCHAR(40));</code></p>
+<p><code>#插入数据</code><br>
+<code>START TRANSACTION;</code><br>
+<code>INSERT INTO samplestr VALUES</code><br>
+<code>('opx', 'rt',NULL),('abc','def',NULL),('山田','太郎','是我'),('aaa',NULL,NULL), (NULL,'xyz',NULL),('@!#$%',NULL,NULL),('ABC',NULL,NULL),('aBC',NULL,NULL), ('abc太郎','abc','ABC'),('abcdefabc','abc','ABC'),('micmic','i','I');</code><br>
+<code>COMMIT;</code></p>
+<p>  ①||拼接函数</p>
+<p>  SQL可以用||来连接多个字符串。例如连接str1和str2字符串：</p>
+<p><code>#连接str1,str2字符串</code><br>
+<code>#Oracle，DB2，Postgre SQL</code><br>
+<code>SELECT str1, str2, str1||str2 AS str_concat FROM samplestr;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT str1, str2, str1+str2 AS str_concat FROM samplestr;</code></p>
+<p><code>#SQL Server,MySQL</code><br>
+<code>SELECT str1, str2, CONCAT(str1,str2) AS str_concat FROM samplestr;</code></p>
+<p>  可以看到拼接函数在不同的RDBMS中的用法不同，||只在Oracle,DB2,Postgre SQL中能用，MySQL使用CONCAT函数，SQL Server使用+或者CONCAT函数。</p>
+<p>  ②LENGTH字符串长度函数</p>
+<p>  这个函数没啥好说的，半角英文和符号为一个字节，汉字为两个字节。</p>
+<p><code>#计算str1字符串的长度</code><br>
+<code>#Oracle,DB2,Postgre SQL,MySQL</code><br>
+<code>SELECT str1, LENGTH(str1) FROM samplestr;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT str1, LEN(str1) FROM samplestr;</code></p>
+<p>  需要注意，SQL Server使用LEN()来计算字符串长度，MySQL中还有一个CHAR_LENGTH()函数也是同样的功能。</p>
+<p>  ③LOWER函数和UPPER函数</p>
+<p>  这两个函数很简单，即将所有字符转换为小写或者大写，对英文外的字符不起作用。</p>
+<p><code>#将str1列字符串全部转化为小写</code><br>
+<code>SELECT str1, LOWER(str1) FROM samplestr;</code></p>
+<p><code>#将str1列字符串全部转化为大写</code><br>
+<code>SELECT str1, UPPER(str1) FROM samplestr;</code></p>
+<p>  ④REPLACE函数字符串的替换</p>
+<p>  REPLACE(对象字符串,替换前的字符串,替换后的字符串)。例如把str1中出现的str2字符串替换为str3字符串：</p>
+<p><code>#把str1中出现的str2字符串替换为str3字符串</code><br>
+<code>SELECT str1,str2,str3,REPLACE(str1,str2,str3) FROM samplestr;</code></p>
+<p>  ⑤SUBSTRING字符串截取函数</p>
+<p>  SUBSTRING函数可以将字符串中的一部分子字符串截取出来。例如截取字符串str1中第3、4位的字符：</p>
+<p><code>#截取字符串str1中第3、4位的字符</code><br>
+<code>#Postgre SQL, MySQL</code><br>
+<code>SELECT str1, SUBSTRING(str1 FROM 3 FOR 2) FROM samplestr;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT str1, SUBSTRING(str1,3,2) FROM samplestr;</code></p>
+<p><code>#Oracle,DB2</code><br>
+<code>SELECT str1, SUBSTR(str1,3,2) FROM samplestr;</code></p>
+<p>  SUBSTRING函数在不同的RDBMS中有一些细节上的不同，但结构基本一样，即字符串、截取的初始位置、截取的字符数。</p>
+<h3 id="614-日期函数">6.1.4 日期函数</h3>
+<p>  ①CURRENT_DATE函数获取当前日期</p>
+<p>  CURRENT_DATE函数会返回SQL执行的日期，由于没有参数，因此不需要使用括号，例如今天执行的结果即为'2020-11-06'。</p>
+<p><code>#获取当前日期</code><br>
+<code>#Postgre SQL, MySQL</code><br>
+<code>SELECT CURRENT_DATE;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT CAST(CURRENT_TIMESTAMP AS DATE) AS CUR_DATE;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT CURRENT_DATE FROM dual;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT CURRENT DATE FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  这个函数在不同RDBMS中区别较大，在SQL Server中只能用CURRENT_TIMESTAMP来获取完整时间再用CAST（之后会将）函数转化为DATE类型，在Oracle和DB2中需要指定临时表dual和SYSIBM.SYSDUMMY1。</p>
+<p>  ②CURRENT_TIME获取当前时间</p>
+<p>  类似CURRENT_DATE的功能，这个函数会返回程序执行的时间，例如现在是10:34:10。</p>
+<p><code>#获取当前时间</code><br>
+<code>#Postgre SQL, MySQL</code><br>
+<code>SELECT CURRENT_TIME;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT CAST(CURRENT_TIMESTAMP AS TIME) AS CUR_TIME;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT CURRENT_TIMESTAMP FROM dual;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT CURRENT TIME FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  这个函数在不同RDBMS的区别和CURRENT_DATE差不多。</p>
+<p>  ③CURREN_TIMESTAMP当前日期和时间</p>
+<p>  这个函数具有①+②的功能，即可以获取当前的年月日时分秒。</p>
+<p><code>#获取当前的完整时间</code><br>
+<code>#Postgre SQL, MySQL, SQL Server</code><br>
+<code>SELECT CURRENT_TIMESTAMP;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT CURRENT_TIMESTAMP FROM dual;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT CURRENT TIMESTAMP FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  区别同上，就不多说了。</p>
+<p>  ④EXTRACT函数截取日期元素</p>
+<p>  CURRENT_TIMESTAMP函数得到的是年月日时分秒，可以用EXTRACT函数按需求查询年、月、日等...，同时注意这个函数的返回值的类型是数值型不再是日期型了。</p>
+<p><code>#分别查询当前完整时间的年月日时分秒</code><br>
+<code>#Postgre SQL, MySQL</code><br>
+<code>SELECT CURRENT_TIMESTAMP,</code><br>
+<code>EXTRACT(YEAR FROM CURRENT_TIMESTAMP) AS year,</code><br>
+<code>EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AS month,</code><br>
+<code>EXTRACT(DAY FROM CURRENT_TIMESTAMP) AS day,</code><br>
+<code>EXTRACT(HOUR FROM CURRENT_TIMESTAMP) AS hour,</code><br>
+<code>EXTRACT(MINUTE FROM CURRENT_TIMESTAMP) AS minute,</code><br>
+<code>EXTRACT(SECOND FROM CURRENT_TIMESTAMP) AS second;</code></p>
+<p><code>#SQL Server</code><br>
+<code>SELECT CURRENT_TIMESTAMP,</code><br>
+<code>DATEPART(YEAR FROM CURRENT_TIMESTAMP) AS year,</code><br>
+<code>DATEPART(MONTH FROM CURRENT_TIMESTAMP) AS month,</code><br>
+<code>DATEPART(DAY FROM CURRENT_TIMESTAMP) AS day,</code><br>
+<code>DATEPART(HOUR FROM CURRENT_TIMESTAMP) AS hour,</code><br>
+<code>DATEPART(MINUTE FROM CURRENT_TIMESTAMP) AS minute,</code><br>
+<code>DATEPART(SECOND FROM CURRENT_TIMESTAMP) AS second;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT CURRENT_TIMESTAMP,</code><br>
+<code>EXTRACT(YEAR FROM CURRENT_TIMESTAMP) AS year,</code><br>
+<code>EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AS month,</code><br>
+<code>EXTRACT(DAY FROM CURRENT_TIMESTAMP) AS day,</code><br>
+<code>EXTRACT(HOUR FROM CURRENT_TIMESTAMP) AS hour,</code><br>
+<code>EXTRACT(MINUTE FROM CURRENT_TIMESTAMP) AS minute,</code><br>
+<code>EXTRACT(SECOND FROM CURRENT_TIMESTAMP) AS second</code><br>
+<code>FROM dual;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT CURRENT TIMESTAMP,</code><br>
+<code>EXTRACT(YEAR FROM CURRENT_TIMESTAMP) AS year,</code><br>
+<code>EXTRACT(MONTH FROM CURRENT_TIMESTAMP) AS month,</code><br>
+<code>EXTRACT(DAY FROM CURRENT_TIMESTAMP) AS day,</code><br>
+<code>EXTRACT(HOUR FROM CURRENT_TIMESTAMP) AS hour,</code><br>
+<code>EXTRACT(MINUTE FROM CURRENT_TIMESTAMP) AS minute,</code><br>
+<code>EXTRACT(SECOND FROM CURRENT_TIMESTAMP) AS second</code><br>
+<code>FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  这个函数在SQL Server中又用不了，SQL Server中同样功能的函数叫DATEPART。Oracle和DB2用法一样只需要加个FROM 临时表;即可。</p>
+<h3 id="615-转换函数">6.1.5 转换函数</h3>
+<p>  转换函数比较少也好理解，主要功能是转换数据类型或者转换数据值。</p>
+<p>  ①CAST类型转换函数</p>
+<p>  CAST函数的用法为CAST(数据 AS 想要转换的数据类型)，下面是例子：</p>
+<p><code>#将'0001'转换为数值型</code><br>
+<code>#SQL Server，PostgreSQL</code><br>
+<code>SELECT CAST('0001' AS INTEGER) AS int_col;</code></p>
+<p><code>#MySQL</code><br>
+<code>SELECT CAST('0001' AS SIGNED INTEGER) AS int_col;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT CAST('0001' AS INTEGER) AS int_col FROM DUAL;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT CAST('0001' AS INTEGER) AS int_col FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  区别就不说了，已经说累了。注意MySQL的数据类型要写成SIGNED INTEGER即可。下面再看个例子：</p>
+<p><code>#将字符串'2009-12-14'转换为日期</code><br>
+<code>#SQL Server，PostgreSQL,MySQL</code><br>
+<code>SELECT CAST('2009-12-14' AS DATE) AS date_col;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT CAST('2009-12-14' AS DATE) AS date_col FROM DUAL;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT CAST('2009-12-14' AS DATE) AS date_col FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  ②COALESCE将NULL值转化为其他值</p>
+<p>  COALESCE是SQL特有的函数，其语法为COALESCE(数据1，数据2....)，该函数会返回可变参数中从左数第一个不是NULL的值。例如：</p>
+<p><code>#COALESCE的用法</code><br>
+<code>#SQL Server，PostgreSQL,MySQL</code><br>
+<code>SELECT COALESCE(NULL,1) AS col_1, COALESCE(NULL,'test',NULL) AS col_2, COALESCE(NULL,NULL,'2009-11-01') AS col_3;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT COALESCE(NULL,1) AS col_1, COALESCE(NULL,'test',NULL) AS col_2, COALESCE(NULL,NULL,'2009-11-01') AS col_3</code><br>
+<code>FROM DUAL;</code></p>
+<p><code>#DB2</code><br>
+<code>SELECT COALESCE(NULL,1) AS col_1, COALESCE(NULL,'test',NULL) AS col_2, COALESCE(NULL,NULL,'2009-11-01') AS col_3</code><br>
+<code>FROM SYSIBM.SYSDUMMY1;</code></p>
+<p>  上面的例子只是展示功能和不同RDBMS的用法区别，其实COALESCE函数可以将列中的NULL值转化为其他值，例如想把str1中的NULL值转化为'cbconne'，则如下：</p>
+<p><code>#把str1中的NULL值转化为'cbconne'</code><br>
+<code>SELECT COALESCE(str1,'cbconne') AS col_1 FROM samplestr;</code></p>
+<p>  如上可以将NULL值转化为需要的值，方便使用函数或者进行运算。初见如果觉得这个函数比较不好理解，建议自己上手试几个例子就明白了！</p>
+<p>  今天学完了6.1。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-ba/" class="post-title gt-a-link">
+                    SQL学习笔记（八）
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

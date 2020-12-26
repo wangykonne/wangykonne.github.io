@@ -1,0 +1,399 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（八） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1608994841559">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1608994841559"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（八）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-12-26 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<h1 id="第五章复杂查询">第五章：复杂查询</h1>
+<h2 id="52-子查询">5.2 子查询</h2>
+<h3 id="521-子查询和视图">5.2.1 子查询和视图</h3>
+<p>  一言以蔽之，子查询就是一次性视图（SELECT语句），与视图不同，子查询在SELECT语句执行完毕后就会消失。首先先复习一下昨天学习的视图查询的方法：</p>
+<p><code>#创建视图productsum</code><br>
+<code>CREATE VIEW productsum (product_type, cnt_product)</code><br>
+<code>AS</code><br>
+<code>SELECT product_type, COUNT(*)</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type;</code></p>
+<p><code>#查询视图内所有数据</code><br>
+<code>SELECT *</code><br>
+<code>FROM productsum;</code></p>
+<p>  子查询能够实现同样的功能，只要将定义视图的SELECT语句直接用于查询的FROM语句中即可，但由于子查询是一次性的所以子查询的名称不会保存：</p>
+<p><code>#使用子查询实现同样的功能</code></p>
+<p><code>#除Oracle之外的RDBMS</code><br>
+<code>SELECT *</code><br>
+<code>FROM (SELECT product_type, COUNT(*)</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type) AS productsum;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT *</code><br>
+<code>FROM (SELECT product_type, COUNT(*)</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type) productsum;</code></p>
+<p>  上面的代码可以得到一模一样的结果，但是这里productsum是一个子查询而不是视图，因此这个临时的&quot;表&quot;不会储存在硬盘中，在SQL的视图框中找不到它的名字。<strong>注意Oracle中要去掉FROM 后面的AS</strong>。上面代码是一个嵌套结构，先执行括号里面的SELECT语句再执行外面的SELECT语句，所以可以设计多层嵌套的子查询，如下：</p>
+<p><code>#多层子查询</code></p>
+<p><code>#除Oracle外的RDBMS</code><br>
+<code>SELECT *</code><br>
+<code>FROM (SELECT *</code><br>
+<code>FROM (SELECT product_type, COUNT(*) AS cnt_product</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type) AS productsum</code><br>
+<code>WHERE cnt_product = 4) AS productsum2;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT *</code><br>
+<code>FROM (SELECT *</code><br>
+<code>FROM (SELECT product_type, COUNT(*) AS cnt_product</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type) productsum</code><br>
+<code>WHERE cnt_product = 4) productsum2;</code></p>
+<p>  上面的代码很好理解，就是先从product表中按product_type分组查询不同product_type对应的总数，再查询总数为4的product_type。这种多层嵌套可以继续嵌套下去，执行顺序都是从内到外，但层数越多越难读懂，所以只在有需要的时候用。最后，子查询不会保存，所以在写子查询的名字时一定要想一个合理好懂能表现代码意义的名字方便后来人阅读。</p>
+<h3 id="522-标量子查询">5.2.2 标量子查询</h3>
+<p>  标量子查询是子查询的一种，不同之处在于，标量子查询限制返回的结果只能是一行一列的结果即一个数值。首先通过问题来引出标量子查询，例如，想查询出销售单价高于平均销售单价的商品。这个问题没有分组查询，不能用GROUP BY，从而不能用HAVING，那像下面这样写吗？</p>
+<p><code>#查询出销售单价高于平均销售单价的商品的id，名称和销售价格</code><br>
+<code>SELECT product_id, product_name, sale_price</code><br>
+<code>FROM product</code><br>
+<code>WHERE sale_price &gt; AVG(sale_price);</code></p>
+<p>  显然是不对的，因为WHERE语句不能使用聚合函数。究竟什么样的SELECT语句才能满足条件呢？这时标量子查询就派上用场了。由于AVG(sale_price)是一个标量常数，所以可以直接用一个标量子查询代替它，从而在WHERE子句中没有聚合函数，就可以执行了：</p>
+<p><code>#查询出销售单价高于平均销售单价的商品的id，名称和销售价格</code><br>
+<code>SELECT product_id, product_name, sale_price</code><br>
+<code>FROM product</code><br>
+<code>WHERE sale_price &gt; (SELECT AVG(sale_price)</code><br>
+<code>FROM product);</code></p>
+<p>  同子查询一样，标量子查询的执行顺序也是按括号由内到外。</p>
+<h3 id="523-标量子查询的书写位置">5.2.3 标量子查询的书写位置</h3>
+<p>  标量子查询的书写位置不仅仅局限于WHERE中，只要能够使用常数或者列名的地方，几乎所有的子句都能够使用。例如在SELECT主句中使用标量子查询：</p>
+<p><code>#在SELECT主句中使用标量子查询</code><br>
+<code>SELECT product_id, product_name, sale_price, (SELECT AVG(sale_price) FROM product) AS avg_price</code><br>
+<code>FROM product;</code></p>
+<p>  又例如在HAVING子句中使用标量子查询：</p>
+<p><code>#在HAVING子句中使用标量子查询</code><br>
+<code>SELECT product_type, AVG(sale_price)</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type</code><br>
+<code>HAVING AVG(sale_price) &gt; (SELECT AVG(sale_price) FROM Product);</code></p>
+<h3 id="524-使用标量子查询的注意事项">5.2.4 使用标量子查询的注意事项</h3>
+<p>  标量子查询的注意事项只有一个，就是标量子查询返回的结果只能有一行一列的一个值。所以在写含有标量子查询的嵌套时，务必先执行标量子查询看看结果是不是只有一个值，再写嵌套。</p>
+<h2 id="53-关联子查询">5.3 关联子查询</h2>
+<h3 id="531-普通子查询和关联子查询的区别">5.3.1 普通子查询和关联子查询的区别</h3>
+<p>  在上节，我们使用了子查询来查询了销售单价高于<strong>全部商品</strong>平均销售单价的商品，这次来看另一个例子，查询各种不同商品种类中销售单价高于<strong>该商品种类</strong>平均销售单价的商品，即对每个商品种类计算其平均销售单价，再在每个种类内进行比较。这个问题是以不同种类的组为基础而不是以全部商品为基础：</p>
+<p><code>#使用子查询解决上面的问题？</code><br>
+<code>SELECT product_id, product_name, sale_price</code><br>
+<code>FROM product</code><br>
+<code>WHERE sale_price &gt; (SELECT AVG(sale_price) FROM product GROUP BY product_type);</code></p>
+<p>  遗憾的是，上面的代码并不正确，因为该子查询会返回三行结果，而WHERE中只能使用标量子查询。此时就该用到关联子查询了，只需在上面的子查询代码中加入一行就能得到正确的结果：</p>
+<p><code>#使用关联子查询解决上面的问题</code></p>
+<p><code>#除Oracle外的RDBMS</code><br>
+<code>SELECT product_id, product_name, sale_price</code><br>
+<code>FROM product AS P1</code><br>
+<code>WHERE sale_price &gt; (SELECT AVG(sale_price) FROM product AS P2 WHERE P1.product_type = P2.product_type GROUP BY product_type);</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT product_id, product_name, sale_price</code><br>
+<code>FROM product P1</code><br>
+<code>WHERE sale_price &gt; (SELECT AVG(sale_price) FROM product P2 WHERE P1.product_type = P2.product_type GROUP BY product_type);</code></p>
+<p>  上面代码中起到关键作用的就是子查询中的WHERE语句的条件，该条件说明在同一商品种类进行平均值的比较，而FROM 的两个表都是product所以进行了取别名P1和P2，再用表名.列名的形式表示不同表的列。在细分的组内进行比较时，需要使用关联子查询。</p>
+<h3 id="532-关联子查询也是用来对集合切分的">5.3.2 关联子查询也是用来对集合切分的</h3>
+<p>  其实，上面的代码去掉最后的GROUP BY语句也能得到一样的结果，原因就是关联子查询也是对集合的一种切分，对于子查询中的WHERE条件，每一中商品类别都会返回唯一一行的AVG值，这就是关联子查询不会出错的关键，它相当于对于每个分类都是一个标量子查询。</p>
+<h3 id="533-结合条件一定要写在子查询中">5.3.3 结合条件一定要写在子查询中</h3>
+<p>  上面的代码有两个WHERE，那可以用AND把两个WHERE连接起来吗？例如：</p>
+<p><code>#错误示例</code><br>
+<code>SELECT product_id, product_name, sale_price</code><br>
+<code>FROM product AS P1</code><br>
+<code>WHERE P1.product_type = P2.product_type</code><br>
+<code>AND sale_price &gt; (SELECT AVG(sale_price) FROM product AS P2 GROUP BY product_type);</code></p>
+<p>  答案是不可以，因为上面代码违反了关联函数的作用域。前面已经说过，子查询会先于主查询执行，且不会保存结果表，因此上面的SELECT执行完后，P2表就会被删除，只会留下执行结果，所以WHERE中的P2表也就找不到对象了。具体来说，子查询内部设定的关联名称只能在内部使用，类似于函数定义的实参和形参。</p>
+<p>  第五章完结，复杂查询中的视图、子查询已经全部结束了。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-qi/" class="post-title gt-a-link">
+                    SQL学习笔记（七）
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
