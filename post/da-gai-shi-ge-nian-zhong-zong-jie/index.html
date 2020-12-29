@@ -1,0 +1,341 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>关于即将结束的2020这档子事 | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1609258330084">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1609258330084"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    关于即将结束的2020这档子事
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-12-30 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/uA2TGrnoh/" class="post-tags">
+                            # 日常碎碎念
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>大概算是个年终总结？（废话连篇长文预警）</p>
+</blockquote>
+<!-- more -->
+<h1 id="回首向来萧瑟处">回首向来萧瑟处</h1>
+<blockquote>
+<p>疫情下的年初</p>
+</blockquote>
+<p>  真是糟糕的一年啊，大概人们在回顾这一年时都会这样想吧。确实，如此魔幻的2020真是增长了我的人生阅历。年初的时候新冠疫情爆发，每天的新增病例上升让人触目惊心，还好祖国给力控制的及时。嗯今年前四个多月都是在家里度过，这么长的寒假真是人生第一次。我过上了梦想的家里蹲生活hh，然而过了一个月就受不了了，不得不说和爸妈生活习惯还是挺难协调的（至少对我来说），尤其是在几点起床这个问题上！对于冬天一般每天9点后才起的我，年初每天被7点半叫醒吃早饭实在是太痛苦了呜呜呜😵</p>
+<p>  可能年初唯一的好消息就是初试出分那一天吧hh，当时高兴地多元网课一个字都没听进去，大脑一直空白quq。当天就立下了好好准备复试的flag，然而...在知道初试第三后，瞬间flag就倒了...每天过上了经典肥宅生活——上午起床肝毕业论文，下午晚上玩游戏看动漫Orz，果然最后复试差点翻车，分数低的一还好初试救了我QAQ😭</p>
+<figure data-type="image" tabindex="1"><img src="https://wangykonne.github.io/post-images/1609254454093.jpg" alt="" loading="lazy"></figure>
+<p>  到三四月份时候可以出门了，晚上就和发小出去散步（吃夜宵），一般是走半小时就“啊好累啊去二中旁边看看有什么好吃的呗”。你可真行啊wyk，就这几个月胖了五六斤！后来我俩都意识到这样吃下去真得要胖成了，才稍微克制了一些...（好在现在又减回去了😁）</p>
+<blockquote>
+<p>再见鹭岛</p>
+</blockquote>
+<p>  五月份返校咯~回到熟悉的厦门，坐上学校的校车，见到了久违的淑铌姐和室友和同学们。回到学校的瞬间就意识到了毕业在即这个事实，以前觉得遥不可及的毕业季逐渐有了实感...最让我难过的就是最后见韬的一面定格在了2019年，希望他快点好起来吧！</p>
+<p>  论文答辩，拍毕业照，和室友走遍校园每一个角落，只想把这一切深深印在记忆中。六月份厦园的凤凰花和《凤凰花开的路口》真是绝配啊，学生会做的毕业短片bgm用的就是这个，当时第一次看到真的热泪盈眶。最后的这段时间和另外两个室友高强度约饭约玩，试图用欢声笑语忘记即将到来的分别，这可能是今年我最快乐的时光吧。</p>
+<p>  “我最爱的朋友们，祝你们一切都好，一直都好”坐上公交，看到窗外逐渐模糊的厦大，顺带告别自己在这四年的时光，眼泪彻底决堤在公交上嚎啕大哭（当然只是一直抹眼泪没有哭出声）。嗯现在回想起来真是...有点哈次卡西呢Orz</p>
+<figure data-type="image" tabindex="2"><img src="https://wangykonne.github.io/post-images/1609255034158.jpg" alt="" loading="lazy"></figure>
+<p>  无奖竞猜：上图哪个是我？</p>
+<blockquote>
+<p>你好交大</p>
+</blockquote>
+<p>  终于，九月份和cbc，lz上海汇合！缘分真奇妙啊，从小一起长大的发小，最后又重新聚到了一起，一个在中科院一个同济毕业我在交大，嗯大伙都有光明的前途（确信）。开学到现在，平静又忙碌的生活，嗯似乎没有特别值得记录的事呢，除了周末经常出去玩hh，不过有所收获就够啦！貌似这个学期还算充实，选课拉满，课余时间学了点实用的工具，也找到了实习，似乎...就差脱单了哈哈哈哈哈呜呜呜（笑着笑着就哭了起来...）</p>
+<figure data-type="image" tabindex="3"><img src="https://wangykonne.github.io/post-images/1609255221866.jpg" alt="" loading="lazy"></figure>
+<h1 id="也无风雨也无晴">也无风雨也无晴</h1>
+<blockquote>
+<p>平淡？知足！（摸鱼！）</p>
+</blockquote>
+<p>  要说2020年自己感觉自己最大的变化嘛，大概就是逐渐&quot;佛系&quot;了起来，尤其是在今年火热的&quot;内卷&quot;讨论环境中。当然，&quot;佛系&quot;也不意味着躺平，更多的是认清自己、接纳自己、和不完美和解，这也是一种成长的过程嘛！毕竟努力是为了让自己获得更多的快乐嘛，竞争内卷什么的不可避免，那就试着放平自己的心态，一味上头在热血中迷失忘记了自己真正要的是什么样的生活就得不偿失了。</p>
+<p>  来年的目标？嗯我觉得现在的状态就很不错啦，希望2021能继续保持，多学点实用的技能，争取秋招能拿到一个心仪的offer！</p>
+<figure data-type="image" tabindex="4"><img src="https://wangykonne.github.io/post-images/1609256162268.jpg" alt="" loading="lazy"></figure>
+<blockquote>
+<p>葡萄成熟时</p>
+</blockquote>
+<p>  嗯2020就要过去了，至此我完成了母胎单身的第22个年头（好耶！），再坚持8年就能成为大魔法师了呢（误）。还记得大学后每年跨年都是和室友不然就是搁床上睡觉，然后信誓旦旦地表示来年一定要脱单，再然后就是经典复刻循环往复...那么，自己为什么会一直单身呢？这个问题我还真的很认真地考虑过，首先可能就是性格太太太太怂了吧，从小到大貌似总共暗恋过3个女生，最后都是不了了之，甚至有一个曾经关系很好但自己还是没能鼓起勇气表白（唉）；其次自己也是个死宅，社交圈子小又懒得去参加各种活动，不过我这种容易社恐的人估计去了也只会感觉尬想溜...</p>
+<p>  想想校园生活也没剩多少了，自己可能要永远和纯粹的校园恋爱说byebye了，或多或少还是会有些后悔吧，尤其最近看狗粮番和剧的时候更加感到对甜甜恋爱的渴望...&quot;那爱情的绮丽，总是在孤单里&quot;。不过也没什么嘛，爱情也不是生活的必需品，再不济以后去相亲好了（自我安慰中QAQ...）</p>
+<p>  &quot;今晚月色真美啊&quot;，&quot;风也很温柔呢&quot;（好甜啊，多来点Orz）</p>
+<figure data-type="image" tabindex="5"><img src="https://wangykonne.github.io/post-images/1609256336242.jpg" alt="" loading="lazy"></figure>
+<blockquote>
+<p>2020年的最后一个愿望</p>
+</blockquote>
+<p>  最后一个愿望是：回归分析考试顺利！（这个人不复习搁着摸鱼结果还许愿考试能过，一定是笨蛋吧...嘻嘻）</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-jiu/" class="post-title gt-a-link">
+                    SQL学习笔记（九）
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
