@@ -1,0 +1,403 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（十） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1609600888063">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1609600888063"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（十）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-01-02 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<p>  最近几个老同学来找我玩~有点玩疯了哈哈，所以今天象征性搬运一次笔记（逃）</p>
+<h1 id="第六章函数-谓词-case表达式">第六章：函数、谓词、CASE表达式</h1>
+<h2 id="61-谓词">6.1 谓词</h2>
+<h3 id="611-什么是谓词">6.1.1 什么是谓词</h3>
+<p>  简单来说，谓词就是返回值为布尔变量的函数，其实之前用过的=,&lt;,&gt;,&lt;=,&gt;=,&lt;&gt;等比较运算符其实都是谓词。本节将会介绍以下谓词：LIKE,BETWEEN,IS NULL,IS NOT NULL,IN,EXISTS。</p>
+<h3 id="612-like谓词字符串的部分一致查询">6.1.2 LIKE谓词——字符串的部分一致查询</h3>
+<p>  =是查询字符串是否完全一致的谓词，而LIKE则是查询字符串是否部分一致的谓词。为了方便演示，先创建一个学习用表samplelike：</p>
+<p><code>#创建表samplelike</code><br>
+<code>CREATE TABLE samplelike</code><br>
+<code>(strcol VARCHAR(6) NOT NULL,</code><br>
+<code>PRIMARY KEY (strcol));</code></p>
+<p><code>#插入数据</code><br>
+<code>START TRANSACTION;</code><br>
+<code>INSERT INTO samplelike VALUES ('abcddd','dddabc','abdddc', 'abcdd','ddabc','abddc');</code><br>
+<code>COMMIT;</code></p>
+<p>  此时表中数据有三个包含'ddd'，但它们的'ddd'部分包含在不同的位置，如果想得到查询结果为'dddabc','abdddc','abcddd'的字符串，则就要使用LIKE谓词和%符号了，如下：</p>
+<p><code>#LIKE前方一致查询</code><br>
+<code>SELECT * FROM samplelike</code><br>
+<code>WHERE strcol LIKE 'ddd%';</code></p>
+<p><code>#LIKE中间一致查询</code><br>
+<code>SELECT * FROM samplelike</code><br>
+<code>WHERE strcol LIKE '%ddd%';</code></p>
+<p><code>#LIKE后方一致查询</code><br>
+<code>SELECT * FROM samplelike</code><br>
+<code>WHERE strcol LIKE '%ddd';</code></p>
+<p>  其中的'%'符号表示的是任意长度的任意字符串，且可以为空，所以%ddd%的查询结果会同时有'dddabc','abdddc','abcddd'三个。既然有任意长度的任意字符串，那也会有定长的任意字符串，就是'_'符号了，它表示字节为1的任意字符串。例如想查询形如abc??的字符串：</p>
+<p><code>#查询形如abc??的字符串</code><br>
+<code>SELECT * FROM samplelike</code><br>
+<code>WHERE strcol LIKE 'abc__';</code></p>
+<p>  上面的查询固定了长度为五，且前三个字符为abc，后两个字符任意。搭配使用_和%可以达到需要模糊查询的目标。</p>
+<h3 id="613-between谓词范围查询">6.1.3 BETWEEN谓词——范围查询</h3>
+<p>  BETWEEN谓词的意思比较简单，就是字面上的'之间'的意思。例如想查询product表中销售单价在100到1000之间的商品时：</p>
+<p><code>#查询product表中销售单价在100到1000之间的商品时</code><br>
+<code>SELECT product_name, sale_price FROM product</code><br>
+<code>WHERE sale_price BETWEEN 100 AND 1000;</code></p>
+<p>  BETWEEN a AND b 的结果就是a&lt;= &lt;=b，所以BETWEEN AND语句会包含临界值，如果不想包含临界值还是用基础的&lt;和&gt;号吧</p>
+<h3 id="614-is-null-is-not-null判断是否为null">6.1.4 IS NULL、IS NOT NULL——判断是否为NULL</h3>
+<p>  IS NULL和IS NOT NULL是一对判断是否为NULL值的谓词，相当于NULL值中的等号=和不等号&lt;&gt;。例如查询进货价格为NULL值的商品，查询进货价格不为NULL的商品：</p>
+<p><code>#查询进货价格为NULL值的商品</code><br>
+<code>SELECT product_name, purchase_price FROM product</code><br>
+<code>WHERE purchase_price IS NULL;</code></p>
+<p><code>#查询进货价格不为NULL的商品</code><br>
+<code>SELECT product_name, purchase_price FROM product</code><br>
+<code>WHERE purchase_price IS NOT NULL;</code></p>
+<h3 id="615-in谓词or的简便用法">6.1.5 IN谓词——OR的简便用法</h3>
+<p>  前面我们学过OR的用法，即表示或者，而IN其实就是一种OR的简便用法。那如果想找出进货单价为320，500，5000的商品时，就要用两个OR来执行，而用IN则会简便很多：</p>
+<p><code>#用OR找出进货单价为320，500，5000的商品</code><br>
+<code>SELECT product_name, purchase_price FROM product</code><br>
+<code>WHERE purchase_price = 320 OR purchase_price = 500 OR purchase_price = 5000;</code></p>
+<p><code>#用IN找出进货单价为320，500，5000的商品</code><br>
+<code>SELECT product_name, purchase_price FROM product</code><br>
+<code>WHERE purchase_price IN (320,500,5000);</code></p>
+<p>  上面两端代码的查询结果是一样的。既然有IN，也会有NOT IN。例如希望选出进货单价不为320，500，5000的商品：</p>
+<p><code>#不用NOT IN选出进货单价不为320，500，5000的商品</code><br>
+<code>SELECT product_name, purchase_price FROM product</code><br>
+<code>WHERE purchase_price &lt;&gt; 320 AND purchase_price &lt;&gt; 500 AND purchase_price &lt;&gt; 5000;</code></p>
+<p><code>#用NOT IN选出进货单价不为320，500，5000的商品</code><br>
+<code>SELECT product_name, purchase_price FROM product</code><br>
+<code>WHERE purchase_price NOT IN (320,500,5000);</code></p>
+<p>  可以看到，在并列查询条件很多的时候，用IN会方便很多。</p>
+<h3 id="616-使用子查询作为in谓词的参数">6.1.6 使用子查询作为IN谓词的参数</h3>
+<p>  IN谓词可以使用子查询作为其参数，为了展现例子，先创建一个表shopproduct记录哪些商店销售哪些商品：</p>
+<p><code>#创建表shopproduct</code><br>
+<code>CREATE TABLE ShopProduct</code><br>
+<code>(shop_id CHAR(4) NOT NULL,</code><br>
+<code>shop_name VARCHAR(200) NOT NULL,</code><br>
+<code>product_id CHAR(4) NOT NULL,</code><br>
+<code>quantity INTEGER NOT NULL,</code><br>
+<code>PRIMARY KEY (shop_id, product_id));</code></p>
+<p><code>#插入数据</code><br>
+<code>START TRANSACTION;</code></p>
+<p><code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000A','东京','0001',30);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000A','东京','0002',50);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000A','东京','0003',15);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000B','名古屋','0002',30);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000B','名古屋','0003',120);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000B','名古屋','0004',20);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000B','名古屋','0006',10);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000B','名古屋','0007',40);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000C','大阪','0003',20);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000C','大阪','0004',50);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000C','大阪','0006',90);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000C','大阪','0007',70);</code><br>
+<code>INSERT INTO ShopProduct (shop_id, shop_name, product_id, quantity) VALUES ('000D','福冈','0001',100);</code></p>
+<p><code>COMMIT;</code></p>
+<p>  上面创建表的过程中因为待插入的数据的任一列都不能满足主键的限制，所以选择了两列作为主键。下面来演示子查询和IN结合使用的例子，例如想查询出在大阪店（000C）在售商品的销售单价，首先我们要从shopproduct表中选择大阪店的在售商品ID，然后在product表中选择这些ID对应的商品的销售单价，具体如下：</p>
+<p><code>#用子查询查询出在大阪店（000C）在售商品的销售单价</code><br>
+<code>SELECT product_name, sale_price FROM product</code><br>
+<code>WHERE product_id IN (SELECT product_id FROM shopproduct WHERE shop_id = '000C');</code></p>
+<p>  NOT IN也可以使用子查询，和IN一样就不给例子了。最后，子查询是一种易于维护的代码，因为它可以随着表中数据变化自动变化结果。所以以后要多多练习使用子查询</p>
+<h3 id="617-exists谓词">6.1.7 EXISTS谓词</h3>
+<p>  EXISTS是一种使用方法特殊且有点难理解的谓词，大多数情况可以被IN替代，但我们还是学一下。EXISTS表示&quot;判断是否存在满足某种条件的记录&quot;，如果存在就返回TRUE，不存在就返回FALSE。例如，用EXISTS写上节那个子查询的例子：</p>
+<p><code>#用EXISTS和子查询查询出在大阪店（000C）在售商品的销售单价</code><br>
+<code>SELECT product_name, sale_price FROM product AS P</code><br>
+<code>WHERE EXISTS (SELECT * FROM shopproduct AS SP WHERE SP.shop_id = '000C' AND SP.product_id = P.product_id);</code></p>
+<p>  明显使用EXISTS使代码更加晦涩难懂了。而且注意到EXIST的左侧没有任何列参数，这是EXISTS的特殊之处，即EXISTS只能在右侧书写一个参数，这个参数通常都是一个子查询，且一般是关联子查询。同时，子查询中SELECT * 也与IN例子中的写法不同，因为EXISTS只关心记录是否存在，对返回哪些列没有限制，即使写成下面这样也得到一样的结果：</p>
+<p><code>#子查询中的SELECT啥都行</code><br>
+<code>SELECT product_name, sale_price FROM product AS P</code><br>
+<code>WHERE EXISTS (SELECT 1 FROM shopproduct AS SP WHERE SP.shop_id = '000C' AND SP.product_id = P.product_id);</code></p>
+<p>  同样，也存在NOT EXISTS，逻辑就是多了个非，没啥别的不同。最后，NOT EXISTS也一般是用关联子查询作为参数。</p>
+<p>  今天学完了五个谓词，还剩最后一节CASE表达式。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/da-gai-shi-ge-nian-zhong-zong-jie/" class="post-title gt-a-link">
+                    关于即将结束的2020这档子事
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
