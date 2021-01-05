@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Hello World | 平平无奇上课族</title>
+<title>SQL学习笔记（十一） | 平平无奇上课族</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1609856490821">
 
@@ -202,30 +202,59 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    Hello World
+                    SQL学习笔记（十一）
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-12-13 ·
+                        · 2021-01-04 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/uA2TGrnoh/" class="post-tags">
-                            # 日常碎碎念
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
                         </a>
                     
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>成年人的第一个博客</p>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
 </blockquote>
 <!-- more -->
-<p>  经过两天的不懈努力，wyk终于把小站搭建好了，这几天真是被这种问题给整晕了😭顺便给其他想搭建github pages的同学一点人生经验：如果你用了Gridea渲染后github pages访问变得奇慢无比，请立即去github下载个靠谱的新主题！！</p>
-<p>  没错，就是这个小小的问题困扰了我好几天（恼），我甚至在国内和国外都买了个域名，就差买个服务器了...马上考试和各种ddl都要来了，而我这几天都在整这个啥都没看😭。不说了，预计忙完这一阵子才会更新（或许想摸鱼的时候会搬运一些从前写的东西。</p>
-<blockquote>
-<p>路漫漫其修远兮</p>
-</blockquote>
-<p>  建立这个小站呢，主要还是想监督自己学习，毕竟自己以前学习从来不做笔记，导致本科学过的很多东西如今都忘得差不多了。开学后受到同学的影响，开始试着写写笔记，然后发现写学习笔记其实是一种效率很高的办法。所以，为了督促自己学习，同时又能强化记忆，准备把这里作为自己的小图书馆👨‍🎓，短期目标是顺利通过期末和找到实习，长期目标是顺利毕业成为打工人👨‍💻。</p>
-<p>  let's start!（我真是High到不行啊！）</p>
+<p>  实习第一天，身心俱疲。</p>
+<h1 id="第六章函数-谓词和case表达式">第六章：函数、谓词和CASE表达式</h1>
+<h2 id="63-case表达式">6.3 CASE表达式</h2>
+<h3 id="631-什么是case表达式">6.3.1 什么是CASE表达式</h3>
+<p>  SQL中的CASE表达式类似C/Python中的IF语句，用来设置条件分支。（如果是MySQL应该用IF多于CASE）</p>
+<h3 id="632-case表达式的语法">6.3.2 CASE表达式的语法</h3>
+<p>  CASE语句的基本语法为：</p>
+<p><code>CASE WHEN &lt;求值表达式&gt; THEN &lt;表达式&gt;</code><br>
+<code>WHEN &lt;求值表达式&gt; THEN &lt;表达式&gt;</code><br>
+<code>WHEN &lt;求值表达式&gt; THEN &lt;表达式&gt;</code><br>
+<code>....</code><br>
+<code>ELSE &lt;表达式&gt;</code><br>
+<code>END</code></p>
+<p>  每一个WHEN都会判断求值表达式返回的值是TRUE还是FALSE，如果为TRUE则会输出后面THEN的表达式且CASE语句到此结束。如果所有WHEN都返回的是FALSE，则会返回ELSE的表达式。</p>
+<h3 id="633-case表达式的使用方法">6.3.3 CASE表达式的使用方法</h3>
+<p>  下面来看一个例子，用CASE表达式将ABC字符加入到商品种类中：</p>
+<p><code>#用CASE表达式将ABC字符加入到商品种类中</code><br>
+<code>SELECT product_name,</code><br>
+<code>CASE WHEN product_type = '衣服' THEN CONCAT('A:',product_type)</code><br>
+<code>WHEN product_type = '办公用品' THEN CONCAT('B:',product_type)</code><br>
+<code>WHEN product_type = '厨房用品' THEN CONCAT('C:',product_type)</code><br>
+<code>ELSE NULL</code><br>
+<code>END AS abc_product_type</code><br>
+<code>FROM product;</code></p>
+<p>  上面代码连接字符串用的是CONCAT，其他的RDBMS的连接函数见前面的笔记。最后ELSE语句如果没有表达式可以省略不写，此时会默认为ELSE NULL。END语句是不能省略的。</p>
+<p>  最后，今天学的其实是搜索CASE，还有一种简单CASE，但功能被搜索CASE完全替代，如果用简单CASE做上面的例子：</p>
+<p><code>#用简单CASE表达式将ABC字符加入到商品种类中</code><br>
+<code>SELECT product_name,</code><br>
+<code>CASE product_type</code><br>
+<code>WHEN '衣服' THEN CONCAT('A:',product_type)</code><br>
+<code>WHEN '办公用品' THEN CONCAT('B:',product_type)</code><br>
+<code>WHEN '厨房用品' THEN CONCAT('C:',product_type)</code><br>
+<code>ELSE NULL</code><br>
+<code>END AS abc_product_type</code><br>
+<code>FROM product;</code></p>
+<p>  看上去简化了代码，但如果WHEN表达式的列不相同时就不管用了，所以只用搜索CASE就好了。而且不同RDBMS中还有一些特定的CASE语句，如Oracle的DECODE，MySQL的IF语句，但CASE是通用的基础语句而且使用范围比特定的要广，所以就不学特定的CASE语句了，以后用到再补。</p>
 
                 </div>
             </article>
@@ -234,8 +263,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/about/" class="post-title gt-a-link">
-                    关于
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-ri-ji-shi/" class="post-title gt-a-link">
+                    SQL学习笔记（十）
                 </a>
             </div>
         
