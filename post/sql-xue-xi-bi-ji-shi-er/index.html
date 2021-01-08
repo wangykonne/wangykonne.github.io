@@ -1,11 +1,10 @@
 <html>
-
 <head>
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>友情链接 | 平平无奇上课族</title>
+<title>SQL学习笔记（十二） | 平平无奇上课族</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1610115342472">
 
@@ -34,12 +33,11 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
-
 <body>
 <div class="main gt-bg-theme-color-first">
-        <div class="main-content">
-            <style>
+    <style>
     /* 导航栏样式 */
     .navbar {
         position: relative;
@@ -200,28 +198,125 @@
         }
     }
 </script>
-            <div class="post-container">
-                <div class="post-detail">
-                    <article>
-                        <!-- <div class="post-content-wrapper"> -->
-                            <div class="post-content">
-                                <div class="friends-desc">
-                                    
-                                </div>
-                                <h3 id="linklist">友链列表</h3>
-                                
-                                    
-                                
-                            </div>
-                        <!-- </div> -->
-                    </article>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（十二）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-01-08 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
                 </div>
-                
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<h1 id="第七章集合运算">第七章：集合运算</h1>
+<h2 id="71-表的加减法">7.1 表的加减法</h2>
+<h3 id="711-什么是集合运算">7.1.1 什么是集合运算</h3>
+<p>  迄今为止，我们已经学了对单个表的所有增删改查及各种函数的用法。本节来学习集合运算，即表之间的运算，如表的加减法。</p>
+<h3 id="712-表的加法union">7.1.2 表的加法——UNION</h3>
+<p>  在前面插入数据的学习中，我们创建了一个表productcopy和product表一样，后来又往里面添加了一个数据。即productcopy的前八条数据和product一样，第九条数据是独有的。下面我们来用UNION连接这两个表：</p>
+<p><code>#用UNION连接productcopy,product</code><br>
+<code>SELECT product_name, product_type FROM product</code><br>
+<code>UNION</code><br>
+<code>SELECT product_name, product_type FROM productcopy;</code></p>
+<p>  上面的代码结果会返回9行数据而不是17行，简而言之，UNION其实就相当于集合的并集，它会返回在两表的全部商品并去重。</p>
+<h3 id="713-集合运算的注意事项">7.1.3 集合运算的注意事项</h3>
+<p>  ①作为运算对象的记录中的列的数量和类型必须一致。如果两个表的列的数量不同或者同一位置的列的数据类型不一样都会发生错误。</p>
+<p>  ②可以使用任何SELECT语句，但ORDER BY 子句只能在最后使用一次，下面给一个示例，查询两个表中厨房用具的ID号和商品名并连接，最后按ID升序排列：</p>
+<p><code>#查询两个表中厨房用具的ID号和商品名并连接，最后按ID升序排列</code><br>
+<code>SELECT product_id, product_name FROM product</code><br>
+<code>WHERE product_type = '厨房用具'</code><br>
+<code>UNION</code><br>
+<code>SELECT product_id, product_name FROM productcopy</code><br>
+<code>WHERE product_type = '厨房用具'</code><br>
+<code>ORDER BY product_id ASC;</code></p>
+<h3 id="714-包含重复行的集合运算all">7.1.4 包含重复行的集合运算——ALL</h3>
+<p>  前面介绍过，UNION相当于集合的并集运算，得到的结果不会有重复行。但也可以得到包含重复行的结果，只需要在UNION后面加关键字ALL就可以了：</p>
+<p><code>#用UNION连接productcopy,product,包含重复行</code><br>
+<code>SELECT product_name, product_type FROM product</code><br>
+<code>UNION ALL</code><br>
+<code>SELECT product_name, product_type FROM productcopy;</code></p>
+<h3 id="715-选取表中的公共部分intersect">7.1.5 选取表中的公共部分——INTERSECT</h3>
+<p>  下面来学习集合的交集运算——INTERSECT，其语法和UNION完全一致：</p>
+<p><code>#查询两个表公共部分的ID号和商品名，并按ID号升序排列</code><br>
+<code>#Oracle,SQL Server,DB2,PostgreSQL</code><br>
+<code>SELECT product_id, product_name FROM product</code><br>
+<code>INTERSECT</code><br>
+<code>SELECT product_id, product_name FROM productcopy</code><br>
+<code>ORDER BY product_id ASC;</code></p>
+<p>  注意，INTERSECT在MySQL中暂时不能使用。UNION的所有注意事项和ALL关键字的用法都和INTERSECT完全一致，就不多说了。</p>
+<h3 id="716-记录的减法except">7.1.6 记录的减法——EXCEPT</h3>
+<p>  最后来学习集合的差集运算——EXCEPT，其语法也和UNION相同。例如查询在productcopy而不在product表中的商品的ID和名称，按ID升序排列：</p>
+<p><code>#查询在productcopy而不在product表中的商品的ID和名称，按ID升序排列：</code><br>
+<code>#SQL Server,DB2,PostgreSQL</code><br>
+<code>SELECT product_id, product_name FROM productcopy</code><br>
+<code>EXCEPT</code><br>
+<code>SELECT product_id, product_name FROM product</code><br>
+<code>ORDER BY product_id ASC;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT product_id, product_name FROM productcopy</code><br>
+<code>MINUS</code><br>
+<code>SELECT product_id, product_name FROM product</code><br>
+<code>ORDER BY product_id ASC;</code></p>
+<p>  最后要说明一点，UNION和INTERSECT执行都不论表的前后次序，即A UNION B和B UNION A是一致的。但差集运算与前后顺序是有关的，要思考好是A EXCEPT B还是B EXCEPT A。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-yi/" class="post-title gt-a-link">
+                    SQL学习笔记（十一）
+                </a>
             </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
 
 
+	<div id="vcomments"></div>
 
-            <div class="site-footer gt-c-content-color-first">
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">日近长安远</div>
     <div class="social-container">
         
@@ -251,8 +346,7 @@
   hljs.initHighlightingOnLoad()
 </script>
 
-        </div>
     </div>
+</div>
 </body>
-
 </html>
