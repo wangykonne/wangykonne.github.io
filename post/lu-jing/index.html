@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>SQL学习笔记（十二） | 平平无奇上课族</title>
+<title>滤镜 | 平平无奇上课族</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1610550583806">
 
@@ -202,73 +202,25 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    SQL学习笔记（十二）
+                    滤镜
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-01-08 ·
+                        · 2021-01-13 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
-                            # SQL基础知识
+                        <a href="https://wangykonne.github.io/tag/uA2TGrnoh/" class="post-tags">
+                            # 日常碎碎念
                         </a>
                     
                 </div>
                 <div class="post-content">
-                    <blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-<!-- more -->
-<h1 id="第七章集合运算">第七章：集合运算</h1>
-<h2 id="71-表的加减法">7.1 表的加减法</h2>
-<h3 id="711-什么是集合运算">7.1.1 什么是集合运算</h3>
-<p>  迄今为止，我们已经学了对单个表的所有增删改查及各种函数的用法。本节来学习集合运算，即表之间的运算，如表的加减法。</p>
-<h3 id="712-表的加法union">7.1.2 表的加法——UNION</h3>
-<p>  在前面插入数据的学习中，我们创建了一个表productcopy和product表一样，后来又往里面添加了一个数据。即productcopy的前八条数据和product一样，第九条数据是独有的。下面我们来用UNION连接这两个表：</p>
-<p><code>#用UNION连接productcopy,product</code><br>
-<code>SELECT product_name, product_type FROM product</code><br>
-<code>UNION</code><br>
-<code>SELECT product_name, product_type FROM productcopy;</code></p>
-<p>  上面的代码结果会返回9行数据而不是17行，简而言之，UNION其实就相当于集合的并集，它会返回在两表的全部商品并去重。</p>
-<h3 id="713-集合运算的注意事项">7.1.3 集合运算的注意事项</h3>
-<p>  ①作为运算对象的记录中的列的数量和类型必须一致。如果两个表的列的数量不同或者同一位置的列的数据类型不一样都会发生错误。</p>
-<p>  ②可以使用任何SELECT语句，但ORDER BY 子句只能在最后使用一次，下面给一个示例，查询两个表中厨房用具的ID号和商品名并连接，最后按ID升序排列：</p>
-<p><code>#查询两个表中厨房用具的ID号和商品名并连接，最后按ID升序排列</code><br>
-<code>SELECT product_id, product_name FROM product</code><br>
-<code>WHERE product_type = '厨房用具'</code><br>
-<code>UNION</code><br>
-<code>SELECT product_id, product_name FROM productcopy</code><br>
-<code>WHERE product_type = '厨房用具'</code><br>
-<code>ORDER BY product_id ASC;</code></p>
-<h3 id="714-包含重复行的集合运算all">7.1.4 包含重复行的集合运算——ALL</h3>
-<p>  前面介绍过，UNION相当于集合的并集运算，得到的结果不会有重复行。但也可以得到包含重复行的结果，只需要在UNION后面加关键字ALL就可以了：</p>
-<p><code>#用UNION连接productcopy,product,包含重复行</code><br>
-<code>SELECT product_name, product_type FROM product</code><br>
-<code>UNION ALL</code><br>
-<code>SELECT product_name, product_type FROM productcopy;</code></p>
-<h3 id="715-选取表中的公共部分intersect">7.1.5 选取表中的公共部分——INTERSECT</h3>
-<p>  下面来学习集合的交集运算——INTERSECT，其语法和UNION完全一致：</p>
-<p><code>#查询两个表公共部分的ID号和商品名，并按ID号升序排列</code><br>
-<code>#Oracle,SQL Server,DB2,PostgreSQL</code><br>
-<code>SELECT product_id, product_name FROM product</code><br>
-<code>INTERSECT</code><br>
-<code>SELECT product_id, product_name FROM productcopy</code><br>
-<code>ORDER BY product_id ASC;</code></p>
-<p>  注意，INTERSECT在MySQL中暂时不能使用。UNION的所有注意事项和ALL关键字的用法都和INTERSECT完全一致，就不多说了。</p>
-<h3 id="716-记录的减法except">7.1.6 记录的减法——EXCEPT</h3>
-<p>  最后来学习集合的差集运算——EXCEPT，其语法也和UNION相同。例如查询在productcopy而不在product表中的商品的ID和名称，按ID升序排列：</p>
-<p><code>#查询在productcopy而不在product表中的商品的ID和名称，按ID升序排列：</code><br>
-<code>#SQL Server,DB2,PostgreSQL</code><br>
-<code>SELECT product_id, product_name FROM productcopy</code><br>
-<code>EXCEPT</code><br>
-<code>SELECT product_id, product_name FROM product</code><br>
-<code>ORDER BY product_id ASC;</code></p>
-<p><code>#Oracle</code><br>
-<code>SELECT product_id, product_name FROM productcopy</code><br>
-<code>MINUS</code><br>
-<code>SELECT product_id, product_name FROM product</code><br>
-<code>ORDER BY product_id ASC;</code></p>
-<p>  最后要说明一点，UNION和INTERSECT执行都不论表的前后次序，即A UNION B和B UNION A是一致的。但差集运算与前后顺序是有关的，要思考好是A EXCEPT B还是B EXCEPT A。</p>
+                    <!-- more -->
+<p>  今天下地铁买个了外包装很好看的面包当晚餐，然而吃下去的味道却让人一言难尽。所以自己为什么会买它呢？恐怕一定程度上就是自己单纯被自己脑补催眠哎呀这么精致肯定味道也不会差到哪里去啦。简而言之，潜意识里，我已经带上了滤镜看这个面包。</p>
+<p>  作为钢铁直男的我，生活中很少用到滤镜。却不知，在过去很多年的生活中，自己在看待很多事物上都或多或少带有一点美化的滤镜心理。倒不是说自己讨厌这种滤镜下的认知，毕竟也不是第一天知道自己的这种倾向，只是凡事期望越大失望也越大，一旦滤镜破碎往往受伤的也是自己。现在想想，我目前为数不多的人生经历中发生过许多这种事，所以我到底是个理想主义者还是现实主义者？唔我现在也不太确定了。</p>
+<p>  可能是小时候每年暑假都会来上海找我哥玩的缘故，从小我就对上海这座城市充满了好感，毕竟小城镇的孩子突然间来到大城市，就仿佛知道了牡丹花比小野花要艳丽得多一样。并且家里人也希望我以后能去上海读大学，可惜最后没有考上去了厦大，这可能是加重了滤镜效应的原因吧，所以即便放弃留在厦大的保研资格我也选择了考交大来上海。现在在上海的几个月过去了，感受却和从前大不相同，虽然可能有成长的原因在里面，但还是能感到心中的落差，从前一直认为是国内最好的城市，现在只能在发达程度上苟同。脱离了自己脑补出来的各种滤镜下的印象，才发现，哦原来我喜欢的不是上海，而是自己脑中强加给这座城市的一些“我以为”下的上海。所以你并不是真的喜欢这座城市，而是喜欢自己虚构出来的另一座城市罢了。同样，去过几次成都旅游后，我对成都的好感也直线上升，甚至经常想着毕业干脆去成都生活好了。嗯，这一次一定要深思熟虑，最好能有空提前去成都“破滤镜”感受一下哈哈。</p>
+<p>  不止是事物，看人方面也存在滤镜效应。长大了就会发现，往往自己喜欢的人并没有自己想象的那么完美，滤镜仿佛给大脑带上了墨镜，失去了理性的判断就经常容易脑袋一热误以为她就是Ms.Right。wyk，要记住曾经翻车的血泪史啊！</p>
+<p>  人不是机器，思维总会有主观性，所以滤镜效应是不可避免的。但还是希望自己能多一点理性少一点“我以为”。不管以后是看人还是看事，都不要刻板印象或者脑补美化，而要更objective一点！</p>
 
                 </div>
             </article>
@@ -277,8 +229,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-yi/" class="post-title gt-a-link">
-                    SQL学习笔记（十一）
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-er/" class="post-title gt-a-link">
+                    SQL学习笔记（十二）
                 </a>
             </div>
         
