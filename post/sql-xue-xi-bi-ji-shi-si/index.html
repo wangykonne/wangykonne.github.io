@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>12.9 实习面经 | 平平无奇上课族</title>
+<title>SQL学习笔记（十四） | 平平无奇上课族</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1610771408805">
 
@@ -202,54 +202,75 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    12.9 实习面经
+                    SQL学习笔记（十四）
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-12-13 ·
+                        · 2021-01-16 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/X53688U0i/" class="post-tags">
-                            # 面试经验整理
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
                         </a>
                     
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>面试公司：上海任意门科技有限公司  时长：约40分钟  结果：未知</p>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
 </blockquote>
 <!-- more -->
-<blockquote>
-<p>面试题</p>
-</blockquote>
-<!-- more -->
-<p>Q1：就简历问了些项目的具体内容和工作<br>
-A1：（简历上的项目是研一上学期数据挖掘课的大作业，我把自己做的内容和工作都说明清楚就结束了，可能因为是商业数分类的岗位，没有问太多这方面的东西）</p>
-<p>Q2：你觉得数据分析和数据挖掘岗位有什么区别？<br>
-A2：（区别还是挺大的，自己答得挺顺的所以不记得具体说了啥，总之大概就是一个偏技术与理论一个偏产品和商业思维的区别）</p>
-<p>Q3：公司的核心产品是Soul APP，你觉得Soul APP的产品经理和分析团队每天需要观测哪些指标来分析产品是否有异常呢？<br>
-A3：（直击知识盲区，现场开始胡言乱语，我的回答是活跃用户、发动态数量这些基本的数据。最后面试官提了一个指标叫次流：表示第一天活跃的用户第二天还活跃的比例。涨姿势了！）</p>
-<p>Q4：Soul不同于微博，它的匿名性给了它一个去中心化产品的定位，你觉得数据上如何反应这种去中心化呢？<br>
-A4：（彻底懵圈，如果是Q3还能说点东西这道题就真的是硬编了...最后也没答到点上QAQ😭，面试官也没给答案，估计是觉得说了我也听不懂吧Orz）</p>
-<p>Q5：介绍一下SQL的窗口函数有哪些？<br>
-A5：（只回答了rank,dense_rank,row_number和聚合函数，面试官给我补充了lead和lag函数）</p>
-<p>Q6：说一下rank,dense_rank,row_number三者的区别？<br>
-A6：（比较简单，rank同次序会跳数，dense_rank同次序不会跳数，row_number不能同次序）</p>
-<p>Q7：紧接Q6，既然row_number不能同次序，那如果有两行完全一样谁前谁后呢？<br>
-A7：（我回答是按照主键或者索引定序，看面试官的表情应该是说对了）</p>
-<p>Q8：介绍一下内联结外联结和全联结<br>
-A8：（很简单的概念题，但是太紧张一开始把全联结说成交叉联结的定义了，呜呜呜😭）</p>
-<p>Q9：union和union all的区别？union可以对两个表中列名不同但数量相同对应数据类型也相同相关限制也相同数据含义也相同的列使用吗？<br>
-A9：（区别是是否对数据去重；可以使用）</p>
-<p>Q10：SQL题，一张表active_user，两列分别为用户uid和活跃时间（YYYY-MM-DD），求某一天的次流？<br>
-A10：（这道题我用了太多子查询被面试官说太麻烦，解答是将表active_user按uid左联结自己，查询两次活跃时间差为1天且活跃时间包括题干中的“某一天”的记录，最后select count(uid)，再除于某一天的前一天的活跃用户即可）</p>
-<p>Q11：反问环节<br>
-A11：（问了些有关工作内容的问题）</p>
-<blockquote>
-<p>心得体会</p>
-</blockquote>
-<!-- more -->
-<p>  公司环境还是很好的，很有年轻互联网公司内味。面试官也很Nice，回答不上商业的哪些题的时候他一直在提示我，虽然还是没说上来TAT。地理位置还是挺远的，一个半小时地铁才能到。工作内容主要是用SQL、Python进行数据分析，偶尔会进行数据挖掘，然后用Tableau进行数据可视化，写分析报告之类的。不过一般商业数分也都是这些活吧，只能说自己这方面的思维能力还要加强呀~</p>
+<h1 id="第八章sql-高级处理">第八章：SQL 高级处理</h1>
+<h2 id="81-窗口函数">8.1 窗口函数</h2>
+<h3 id="811-什么是窗口函数">8.1.1 什么是窗口函数</h3>
+<p>  窗口函数也被称为OLAP函数，即Online Analytical Processing，窗口函数就是用来实现实时分析功能的函数，在SQL Server和Oracle中也被成为分析函数。</p>
+<h3 id="812-窗口函数的语法">8.1.2 窗口函数的语法</h3>
+<p>  窗口函数的基础语法为：&lt;窗口函数&gt; OVER (PARTITION BY &lt;列名&gt; ORDER BY &lt;列名&gt;)。能够作为窗口函数使用的函数有两种：①聚合函数；②专用的窗口函数如RANK,DENSE_RANK,ROW_NUMBER。</p>
+<h3 id="813-rank函数使用方法">8.1.3 RANK函数使用方法</h3>
+<p>  下面学习RANK函数的使用方法来理解一下窗口函数的语法。例如对product表的不同商品种类分别进行销售单价的升序排序：</p>
+<p><code>#对product表的不同商品种类分别进行销售单价的升序排序</code><br>
+<code>SELECT product_name, product_type, sale_price, RANK() OVER (PARTITION BY product_type ORDER BY sale_price) AS ranking</code><br>
+<code>FROM product;</code></p>
+<p>  从例子中可以理解，PARTITION设定的是排序的对象范围，可以从字面意思理解为用来分割不同组；ORDER BY和前面学的ORDER BY用法完全一致。从窗口函数的用法可以看出，它兼具了GROUP BY的分组功能和ORDER BY的分类功能，但不具备GROUP BY的汇总功能。PARTITION BY相当于把表划分为一个个窗口，进行各自的操作。</p>
+<h3 id="814-不指定partition-by">8.1.4 不指定PARTITION BY</h3>
+<p>  在不指定PARTITION BY时，使用窗口函数会把整个表当成一个窗口。例如上面的例子中，如果删去PARTITION BY就会得到和直接使用ORDER BY一样的结果：</p>
+<p><code>#对product表销售单价的升序排序</code><br>
+<code>SELECT product_name, product_type, sale_price, RANK() OVER (ORDER BY sale_price) AS ranking</code><br>
+<code>FROM product;</code></p>
+<h3 id="815-专用窗口函数的种类">8.1.5 专用窗口函数的种类</h3>
+<p>  下面来总结一下具有代表性的专用窗口函数：</p>
+<p>  RANK函数：计算排序时，如果存在相同位次的记录，则会跳过之后的位次。例如有3条记录并列第一时：1，1，1，4。</p>
+<p>  DENSE_RANK函数：如果存在相同位次的记录，也不会跳过之后的位次。例如有3条记录并列第一时：1，1，1，2。</p>
+<p>  ROW_NUMBER函数：赋予唯一的连续位次。例如有3条记录并列第一时：1，2，3，4。</p>
+<p>  最后用一个例子使用这三种函数来看看最后的结果：</p>
+<p><code>#比较RANK函数、DENSE_RANK函数、ROW_NUMBER函数的结果</code><br>
+<code>SELECT product_name, product_type, sale_price,</code><br>
+<code>RANK() OVER (ORDER BY sale_price) AS ranking,</code><br>
+<code>DENSE_RANK() OVER (ORDER BY sale_price) AS dense_ranking,</code><br>
+<code>ROW_NUMBER() OVER (ORDER BY sale_price) AS row_num</code><br>
+<code>FROM product;</code></p>
+<h3 id="816-窗口函数的适用范围">8.1.6 窗口函数的适用范围</h3>
+<p>  窗口函数只能写在SELECT子句之中，一句话，直接死记硬背就完事。</p>
+<h3 id="817-聚合函数作为窗口函数使用">8.1.7 聚合函数作为窗口函数使用</h3>
+<p>  聚合函数也可以作为窗口函数使用，但功能会有一点不同。例如以SUM函数为例子：</p>
+<p><code>#将SUM函数作为窗口函数</code><br>
+<code>SELECT product_id, product_name, sale_price, SUM(sale_price) OVER (ORDER BY product_id) AS cur_sum</code><br>
+<code>FROM product;</code></p>
+<p>  使用SUM窗口函数时，括号内有参数，这点和RANK家族的不一样。上面代码的结果是根据product_id升序进行累加求和，即cur_sum第一行是id为0001的sale_price，第二行是id为0001和0002的sale_price之和...AVG在用在窗口函数时也是这种累计的功能：</p>
+<p><code>#将AVG函数作为窗口函数</code><br>
+<code>SELECT product_id, product_name, sale_price, AVG(sale_price) OVER (ORDER BY product_id) AS cur_avg</code><br>
+<code>FROM product;</code></p>
+<h3 id="818-计算移动平均">8.1.8 计算移动平均</h3>
+<p>  窗口函数还包括更加详细的汇总范围的备选功能，即框架。例如想计算排序后一个值和前面两行的平均值，显然这是一个移动平均值，上面的方法用不了：</p>
+<p><code>#计算每个列值和前两行的平均值</code><br>
+<code>SELECT product_id, product_name, sale_price,</code><br>
+<code>AVG(sale_price) OVER (ORDER BY product_id ROWS 2 PRECEDING) AS moving_avg</code><br>
+<code>FROM product;</code></p>
+<p>  ROWS关键字用来指定行，PRECEDING表示向前，FOLLOWING表示向后；所以ROWS 2 PRECEDING表示自己和前两行数据。再来看一个同时使用PRECEDING和FOLLOWING的例子：</p>
+<p><code>#计算每个列值和前后各一行的平均值</code><br>
+<code>SELECT product_id, product_name, sale_price,</code><br>
+<code>AVG(sale_price) OVER (ORDER BY product_id ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS moving_avg</code><br>
+<code>FROM product;</code></p>
+<p>  同时使用前后时要使用BETWEEN AND语句连接，其他的MIN,MAX,SUM,COUNT函数的窗口函数用法也类似，就不举例了。</p>
 
                 </div>
             </article>
@@ -258,8 +279,8 @@ A11：（问了些有关工作内容的问题）</p>
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/hello-world/" class="post-title gt-a-link">
-                    Hello World
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-san/" class="post-title gt-a-link">
+                    SQL学习笔记（十三）
                 </a>
             </div>
         
