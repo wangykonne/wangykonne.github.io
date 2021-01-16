@@ -1,0 +1,377 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（十五） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1610773472066">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1610773472066"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（十五）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-01-16 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<p>  今日不想学习，把所有的SQL笔记都搬运完了，还有一些自己写在笔记本上的内容整理完再发上来。</p>
+<h1 id="第八章sql-高级处理">第八章：SQL 高级处理</h1>
+<h2 id="82-grouping运算符">8.2 GROUPING运算符</h2>
+<h3 id="821-rollup同时得到合计和小计">8.2.1 ROLLUP——同时得到合计和小计</h3>
+<p>  ROLLUP是一种GROUPING运算符，它可以算出合计行。例如想查询各个商品种类的合计销售价格并得到一个合计行：</p>
+<p><code>#查询各个商品种类的合计销售价格并得到一个合计行</code><br>
+<code>#DB2,Oracle,SQL Server,PostgreSQL</code><br>
+<code>SELECT product_type, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY ROLLUP(product_type);</code></p>
+<p><code>#MySQL</code><br>
+<code>SELECT product_type, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY product_type WITH ROLLUP;</code></p>
+<p>  注意MySQL中ROLLUP用法的区别，上面的代码可以得到一个合计sum_price行，但这行的其他列为NULL值。下面再来试试如何得到小计，首先将regist_date加入GROUP BY子句中：</p>
+<p><code>#按商品类别和注册时间分组查询商品类别、注册时间和销售价的总和</code><br>
+<code>SELECT product_type, regist_date, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY product_type, regist_date;</code></p>
+<p>  此时在使用ROLLUP函数就可以得到厨房用具SUM值的小计和办公用品SUM小计和衣服的SUM小计：</p>
+<p><code>#使用ROLLUP函数就可以得到厨房用具SUM值的小计和办公用品SUM小计和衣服的SUM小计</code><br>
+<code>#DB2,Oracle,SQL Server,PostgreSQL</code><br>
+<code>SELECT product_type, regist_date, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY ROLLUP(product_type, regist_date);</code></p>
+<p><code>#MySQL</code><br>
+<code>SELECT product_type, regist_date, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY product_type,regist_date WITH ROLLUP;</code></p>
+<h3 id="822-grouping函数让null更加容易分辨">8.2.2 GROUPING函数——让NULL更加容易分辨</h3>
+<p>  在上面代码的结果中，衣服的分组有两列regist_date为NULL值，但这两个NULL值的原因是不一样的，第一个NULL是因为记录本身就是NULL值，但第二个NULL是因为这一行是小计行所以regist_date被设置为NULL。为此，SQL特意设置了一个GROUPING函数，对于第一个NULL会返回0，第二个NULL则会返回1，下面用GROUPING函数重复下上面的例子：</p>
+<p><code>#用GROUPING函数重复上面的例子</code><br>
+<code>#DB2,Postgre SQL,SQL Server,Oracle</code><br>
+<code>SELECT GROUPING(product_type) AS product_type, GROUPING(regist_date) AS regist_date, SUM(sale_price) AS sum_price</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY ROLLUP(product_type, regist_date);</code></p>
+<p><code>#MySQL</code><br>
+<code>SELECT GROUPING(product_type) AS product_type, GROUPING(regist_date) AS regist_date, SUM(sale_price) AS sum_price</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type, regist_date WITH ROLLUP;</code></p>
+<p>  这样就可以分辨合计小计和普通值了，（0，0）即为普通值，（0，1）即为一种商品种类的小计值，（1，1）即为所有数据的合计值。但这样也有一个问题，明显product_type和regist_date的原来信息丢失了，0和1在实际中没什么别的意义。结合前几天学过的CASE函数就可以得到一个很漂亮的合计小计表：</p>
+<p><code>#使用CASE函数和GROUPING函数得到最完美的合计小计表</code><br>
+<code>#DB2,Postgre SQL,SQL Server,Oracle</code><br>
+<code>SELECT CASE WHEN GROUPING(product_type)=1 THEN '合计' ELSE product_type</code><br>
+<code>END AS product_type,</code><br>
+<code>CASE WHEN GROUPING(regist_date)=1 AND GROUPING(product_type)&lt;&gt;1 THEN '小计'</code><br>
+<code>WHEN GROUPING(regist_date)=1 AND GROUPING(product_type)=1 THEN 'NULL'</code><br>
+<code>ELSE CAST(regist_date AS VARCHAR(16))</code><br>
+<code>END AS regist_date,</code><br>
+<code>SUM(sale_price) AS sum_price</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY ROLLUP(product_type, regist_date);</code></p>
+<p><code>#MySQL</code><br>
+<code>SELECT CASE WHEN GROUPING(product_type)=1 THEN '合计' ELSE product_type</code><br>
+<code>END AS product_type,</code><br>
+<code>CASE WHEN GROUPING(regist_date)=1 AND GROUPING(product_type)&lt;&gt;1 THEN '小计'</code><br>
+<code>WHEN GROUPING(regist_date)=1 AND GROUPING(product_type)=1 THEN 'NULL'</code><br>
+<code>ELSE CAST(regist_date AS VARCHAR(16))</code><br>
+<code>END AS regist_date,</code><br>
+<code>SUM(sale_price) AS sum_price</code><br>
+<code>FROM product</code><br>
+<code>GROUP BY product_type, regist_date WITH ROLLUP;</code></p>
+<p>  需要注意的是，CASE的返回值要是同一个类型，所以当直接输出regist_date时要用CAST函数将日期转化为字符串。</p>
+<h3 id="823-cube用数据搭积木">8.2.3 CUBE——用数据搭积木</h3>
+<p>  下面来介绍另一个GROUPING函数，即CUBE。CUBE语法和ROLLUP语法相同，所以我们用上面的例子，将ROLLUP换为CUBE看看会得到什么结果：</p>
+<p><code>#使用CUBE查询</code><br>
+<code>#DB2,Oracle,SQL Server,PostgreSQL</code><br>
+<code>SELECT product_type, regist_date, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY CUBE(product_type,regist_date);</code></p>
+<p><code>#MySQL</code><br>
+<code>未找到正确使用方法,可能还没实装</code></p>
+<p>  总之，与ROLLUP相比，GROUP BY ROLLUP(A1,A2..An)会返回n+1个汇总结果即GROUP BY(),GROUP BY(A1),GROUP BY(A1,A2)..GROUP BY(A1,A2..An)。而GROUP BY CUBE(A1,A2..An)会返回<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>个汇总结果即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mi>n</mi><mn>0</mn></msubsup><mo>+</mo><msubsup><mi>C</mi><mi>n</mi><mn>1</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msubsup><mi>C</mi><mi>n</mi><mi>n</mi></msubsup><mo>=</mo><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">C_n^0+C_n^1+...C_n^n=2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.061108em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.93033em;vertical-align:-0.247em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.4530000000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>的全组合。所以上面代码的最终结果就是多了GROUP BY(regist_date)的记录。</p>
+<h3 id="824-grouping-sets取得单列的汇总结果">8.2.4 GROUPING SETS——取得单列的汇总结果</h3>
+<p>  GROUPING SETS和ROLLUP和CUBE都是一样的语法，类似地，GROUP BY GROUPING SETS(A1,A2..An)会返回恰好n个汇总结果即GROUP BY(A1)...GROUP BY(An)，所以这个函数只会取出单列汇总结果的查询数据，同样看一个应用的例子：</p>
+<p><code>#使用GROUPING SETS查询</code><br>
+<code>#DB2,Oracle,SQL Server,PostgreSQL</code><br>
+<code>SELECT product_type, regist_date, SUM(sale_price) AS sum_price FROM product</code><br>
+<code>GROUP BY GROUPING SETS(product_type,regist_date);</code></p>
+<p><code>#MySQL</code><br>
+<code>未找到正确使用方法,可能还没实装</code></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-si/" class="post-title gt-a-link">
+                    SQL学习笔记（十四）
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
