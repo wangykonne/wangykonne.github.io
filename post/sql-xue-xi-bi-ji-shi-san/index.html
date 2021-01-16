@@ -1,0 +1,405 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>SQL学习笔记（十三） | 平平无奇上课族</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1610767619199">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            平平无奇上课族
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1610767619199"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL学习笔记（十三）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-01-16 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
+                            # SQL基础知识
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+</blockquote>
+<!-- more -->
+<h1 id="第七章集合运算">第七章：集合运算</h1>
+<h2 id="72-联结以列为单位对表进行联结">7.2 联结（以列为单位对表进行联结）</h2>
+<h3 id="721-什么是联结">7.2.1 什么是联结</h3>
+<p>  上一节学了三种集合运算UNION,INTERSECT,EXCEPT；这三种运算都是以表的行为单位的，即对表的行进行操作。而联结则是一种以列为单位的运算，它可以将多个表按列并在一起，有点像R语言中的cbind函数连接矩阵。SQL中的联结分为两种：内联结和外联结。</p>
+<h3 id="722-内联结">7.2.2 内联结</h3>
+<p>  之前在学习子查询的时候我们创建了一个表shopproduct，它有四列，其中有一列和product名相同，即两个表的所有列分为两种：①两张表都有的列——product_id,②只存在其中一张表的列。联结运算，其实就是以①中的列为桥梁，将②中满足条件的列汇集到同一张新表中。如下：以product_id联结product和shopproduct表：</p>
+<p><code>#以product_id联结product和shopproduct表</code><br>
+<code>#SQL Server,MySQL,PostgreSQL,DB2</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct AS SP INNER JOIN product AS P</code><br>
+<code>ON SP.product_id = P.product_id;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct SP INNER JOIN product P</code><br>
+<code>ON SP.product_id = P.product_id;</code></p>
+<p>  关于内联结有三点需要注意：①FROM子句中使用两个或多个表，这是之前学习没碰到过的，用INNER JOIN把多个表内联结起来；②ON后面跟的是联结的条件，即联结键，能起到和WHERE一样的作用，需要指定多个键时可以用AND或OR。在内联结时ON子句是不可少的，且ON要书写在FROM和WHERE之间。所以到目前为止，子句的书写顺序为——SELECT FROM ON WHERE GROUPBY HAVING ORDERBY；③SELECT子句在查询列时前面要加上表的别名，否则容易引发混乱。最后来看一个内联结和WHERE结合使用的例子，在上面的问题中如果只想查询店ID为000A的门店的信息时：</p>
+<p><code>#以product_id联结product和shopproduct表且只想查询店ID为000A的门店的信息</code><br>
+<code>#SQL Server,MySQL,PostgreSQL,DB2</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct AS SP INNER JOIN product AS P</code><br>
+<code>ON SP.product_id = P.product_id</code><br>
+<code>WHERE SP.shop_id = '000A';</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct SP INNER JOIN product P</code><br>
+<code>ON SP.product_id = P.product_id</code><br>
+<code>WHERE SP.shop_id = '000A';</code></p>
+<p>  当然，这种内联结有点像子查询，在SELECT执行之后这张新表就会消失，如果想继续使用这张表，要将它保存为视图。</p>
+<h3 id="723-外联结-outer-join">7.2.3 外联结 ——OUTER JOIN</h3>
+<p>  外联结OUTER JOIN的使用方法和内联结完全一致，只是结果不一样，下面我们用外联结重复上面的例子看看结果有什么不一样的地方：</p>
+<p><code>#以product_id联结product和shopproduct表</code><br>
+<code>#SQL Server,MySQL,PostgreSQL,DB2</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct AS SP RIGHT OUTER JOIN product AS P</code><br>
+<code>ON SP.product_id = P.product_id;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct SP RIGHT OUTER JOIN product P</code><br>
+<code>ON SP.product_id = P.product_id;</code></p>
+<p>  外联结的要点：①选取出了单张表的全部信息，与内联结的结果相比，显然结果的行数不一样，外联结多了两行，而多出来的两个记录在shopproduct表中不存在只在product表中存在。所以外联结只要数据存在某一个表中就能在最后的结果中显示出来，那些未知列的信息统一设为NULL；②外联结还有一点就是要设置主表，即最后的结果会包含主表的全部信息，可以用LEFT或RIGHT来指定主表，上面的例子用的是RIGHT，表示右边的是主表，也可以用LEFT代替，两者得到的结果完全一样：</p>
+<p><code>#以product_id联结product和shopproduct表</code><br>
+<code>#SQL Server,MySQL,PostgreSQL,DB2</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM product AS P LEFT OUTER JOIN shopproduct AS SP</code><br>
+<code>ON SP.product_id = P.product_id;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM product P LEFT OUTER JOIN shopproduct SP</code><br>
+<code>ON SP.product_id = P.product_id;</code></p>
+<h3 id="724-三张以上表的联结">7.2.4 三张以上表的联结</h3>
+<p>  首先创建一个库存商品表，包括仓库编号、商品编号和库存数量：</p>
+<p><code>#创建表InventroyProduct</code><br>
+<code>CREATE TABLE InventoryProduct</code><br>
+<code>( inventory_id	 CHAR(4) NOT NULL,</code><br>
+<code>product_id CHAR(4) NOT NULL,</code><br>
+<code>inventory_quantity INTEGER NOT NULL,</code><br>
+<code>PRIMARY KEY (inventory_id, product_id));</code></p>
+<p><code>#插入数据</code><br>
+<code>START TRANSACTION;</code></p>
+<p><code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0001',	0);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity)VALUES ('S001',	'0002',	120);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0003',	200);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0004',	3);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0005',	0);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0006',	99);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0007',	999);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S001',	'0008',	200);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity)VALUES ('S002',	'0001',	10);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0002',	25);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0003',	34);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0004',	19);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0005',	99);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0006',	0);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0007',	0);</code><br>
+<code>INSERT INTO InventoryProduct (inventory_id, product_id, inventory_quantity) VALUES ('S002',	'0008',	18);</code></p>
+<p><code>COMMIT;</code></p>
+<p>  下面取出InventoryProduct表中的库存数量，和shopproduct,product进行内联结，以product_id为联结键：</p>
+<p><code>#内连接三张表，并查询P001号仓库的商品信息</code><br>
+<code>#SQL Server,MySQL,PostgreSQL,DB2</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price, IP.inventory_quantity</code><br>
+<code>FROM shopproduct AS SP INNER JOIN product AS P</code><br>
+<code>ON SP.product_id = P.product_id</code><br>
+<code>INNER JOIN InventoryProduct AS IP</code><br>
+<code>ON SP.product_id = IP.product_id</code><br>
+<code>WHERE IP.inventory_id = 'P001';</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price, IP.inventory_quantity</code><br>
+<code>FROM shopproduct SP INNER JOIN product P</code><br>
+<code>ON SP.product_id = P.product_id</code><br>
+<code>INNER JOIN InventoryProduct IP</code><br>
+<code>ON SP.product_id = IP.product_id</code><br>
+<code>WHERE IP.inventory_id = 'P001';</code></p>
+<p>  内联结可以对多张表进行联结，只需要INNER JOIN——ON——INNER JOIN——ON这样一致重复下去就可以。外联结也是一样的。</p>
+<h3 id="725-交叉联结cross-join">7.2.5 交叉联结——CROSS JOIN</h3>
+<p>  交叉联结用的比较少，可以理解为不用ON的内联结，因为没有联结键，所以最后的数据量会之间相乘，例如product中有8条记录而shopproduct中有13条记录，故交叉联结后会有13*8=104条记录：</p>
+<p><code>#交叉联结两张表</code><br>
+<code>#SQL Server,MySQL,PostgreSQL,DB2</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct AS SP CROSS JOIN product AS P;</code></p>
+<p><code>#Oracle</code><br>
+<code>SELECT SP.shop_id, SP.shop_name, SP.product_id, P.product_name, P.sale_price</code><br>
+<code>FROM shopproduct SP CROSS JOIN product P;</code></p>
+<p>  交叉联结很像集合的乘法，即集合乘后的数据量等于之前数据量的乘积。但这种联结一般很少用到，因为没有什么有用的信息且会耗费太多的运算时间和资源。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/lu-jing/" class="post-title gt-a-link">
+                    滤镜
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
