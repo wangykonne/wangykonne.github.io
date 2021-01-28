@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>SQL学习笔记（十一） | db自留地</title>
+<title>Word2vec实战练习 | db自留地</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1611843141502">
 
@@ -202,59 +202,82 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    SQL学习笔记（十一）
+                    Word2vec实战练习
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-01-04 ·
+                        · 2021-01-28 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
-                            # SQL基础知识
+                        <a href="https://wangykonne.github.io/tag/Z9KKB0vgJ/" class="post-tags">
+                            # 机器学习实战
                         </a>
                     
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+<p>Word2vec小白入门练习</p>
 </blockquote>
 <!-- more -->
-<p>  实习第一天，身心俱疲。</p>
-<h1 id="第六章函数-谓词和case表达式">第六章：函数、谓词和CASE表达式</h1>
-<h2 id="63-case表达式">6.3 CASE表达式</h2>
-<h3 id="631-什么是case表达式">6.3.1 什么是CASE表达式</h3>
-<p>  SQL中的CASE表达式类似C/Python中的IF语句，用来设置条件分支。（如果是MySQL应该用IF多于CASE）</p>
-<h3 id="632-case表达式的语法">6.3.2 CASE表达式的语法</h3>
-<p>  CASE语句的基本语法为：</p>
-<p><code>CASE WHEN &lt;求值表达式&gt; THEN &lt;表达式&gt;</code><br>
-<code>WHEN &lt;求值表达式&gt; THEN &lt;表达式&gt;</code><br>
-<code>WHEN &lt;求值表达式&gt; THEN &lt;表达式&gt;</code><br>
-<code>....</code><br>
-<code>ELSE &lt;表达式&gt;</code><br>
-<code>END</code></p>
-<p>  每一个WHEN都会判断求值表达式返回的值是TRUE还是FALSE，如果为TRUE则会输出后面THEN的表达式且CASE语句到此结束。如果所有WHEN都返回的是FALSE，则会返回ELSE的表达式。</p>
-<h3 id="633-case表达式的使用方法">6.3.3 CASE表达式的使用方法</h3>
-<p>  下面来看一个例子，用CASE表达式将ABC字符加入到商品种类中：</p>
-<p><code>#用CASE表达式将ABC字符加入到商品种类中</code><br>
-<code>SELECT product_name,</code><br>
-<code>CASE WHEN product_type = '衣服' THEN CONCAT('A:',product_type)</code><br>
-<code>WHEN product_type = '办公用品' THEN CONCAT('B:',product_type)</code><br>
-<code>WHEN product_type = '厨房用品' THEN CONCAT('C:',product_type)</code><br>
-<code>ELSE NULL</code><br>
-<code>END AS abc_product_type</code><br>
-<code>FROM product;</code></p>
-<p>  上面代码连接字符串用的是CONCAT，其他的RDBMS的连接函数见前面的笔记。最后ELSE语句如果没有表达式可以省略不写，此时会默认为ELSE NULL。END语句是不能省略的。</p>
-<p>  最后，今天学的其实是搜索CASE，还有一种简单CASE，但功能被搜索CASE完全替代，如果用简单CASE做上面的例子：</p>
-<p><code>#用简单CASE表达式将ABC字符加入到商品种类中</code><br>
-<code>SELECT product_name,</code><br>
-<code>CASE product_type</code><br>
-<code>WHEN '衣服' THEN CONCAT('A:',product_type)</code><br>
-<code>WHEN '办公用品' THEN CONCAT('B:',product_type)</code><br>
-<code>WHEN '厨房用品' THEN CONCAT('C:',product_type)</code><br>
-<code>ELSE NULL</code><br>
-<code>END AS abc_product_type</code><br>
-<code>FROM product;</code></p>
-<p>  看上去简化了代码，但如果WHEN表达式的列不相同时就不管用了，所以只用搜索CASE就好了。而且不同RDBMS中还有一些特定的CASE语句，如Oracle的DECODE，MySQL的IF语句，但CASE是通用的基础语句而且使用范围比特定的要广，所以就不学特定的CASE语句了，以后用到再补。</p>
+<h2 id="word2vec实战练习">Word2vec实战练习</h2>
+<h3 id="前置准备">前置准备</h3>
+<p>  进行中文文本的Word2vec词向量构建，首先需要进行分词。所以在这次练习中，需要预先安装好python中的分词库jieba和word2vec的库gensim。直接使用pip install的方法安装快捷又省心。</p>
+<h3 id="实战过程">实战过程</h3>
+<pre><code class="language-python">#加载库
+import jieba
+import jieba.analyse
+from string import punctuation
+from gensim.models import word2vec
+#创建好分词前和分词后txt文件的路径
+source_txt = 'C:/Users/wangyuankai/Desktop/report.txt'
+target_txt = 'C:/Users/wangyuankai/Desktop/result.txt'
+source_file = open(source_txt, 'r', encoding = 'utf-8')
+target_file = open(target_txt, 'w', encoding = 'utf-8')
+#定义要删除的标点等字符，punctuation里自带有一些半角标点，因此只需再补一些全角标点即可
+add_punc='，。、【 】 “”：；（）《》‘’{}？！⑦()、%^&gt;℃：.”“^-——=&amp;#@￥'
+all_punc=punctuation+add_punc
+#对文本进行分词操作并去除标点符号和无实意的停用词
+line = source_file.readline()
+stopwords = str(&quot;的和要以并为是&quot;)
+while line:
+    #第一次分词得到既有中文分词又有标点符号，以空格为间隔
+    line_seg = &quot; &quot;.join(jieba.cut(line))
+    #移除标点等需要删除的符号
+    testline=line_seg.split(' ')
+    te2=[]
+    for i in testline:
+        te2.append(i)
+        if i in all_punc or i in stopwords:
+            te2.remove(i)
+    #返回的te2是个list，转换为string后少了空格，因此需要再次分词
+    #第二次在仅有汉字的基础上再次进行分词
+    line_seg2 = &quot; &quot;.join(jieba.cut(''.join(te2)))
+    target_file.writelines(line_seg2)
+    line = source_file.readline()
+source_file.close()
+target_file.close()
+#word2vec建模并储存
+sentences = word2vec.Text8Corpus('C:/Users/wangyuankai/Desktop/result.txt')
+model = word2vec.Word2Vec(sentences, size=1000)
+model.save('C:/Users/wangyuankai/Desktop/test.model')
+#应用举例（获取最相似的n个词语，计算相似度）
+print(&quot;与脱贫最相似的五个词语为&quot;)
+print(model.wv.most_similar(&quot;脱贫&quot;,topn=5))
+print(&quot;脱贫与民生的相似度为&quot;)
+print(model.wv.similarity('脱贫','民生'))
+</code></pre>
+<p>  上面代码运行的结果为：</p>
+<pre><code class="language-python">&quot;与脱贫最相似的五个词语为&quot;
+&quot;[('发展', 0.34930261969566345), ('疫情', 0.29745471477508545), ('保障', 0.29070693254470825), ('人员', 0.2822575271129608), ('推动', 0.2802283763885498)]&quot;
+&quot;脱贫与民生的相似度为&quot;
+&quot;0.27995038&quot;
+</code></pre>
+<h3 id="个人总结">个人总结</h3>
+<p>  上面的实战过程中，有必要说明一下的就是word2vec.Word2vec()函数了。Word2vec函数的基本形式为：Word2vec(sentences,size=100,alpha=0.025,window=5, min_count=5, max_vocab_size=None, sample=0.001,seed=1, workers=3, sg=0, hs=0, negative=5, cbow_mean=1,iter=5,null_word=0, sorted_vocab=1, batch_words=10000))</p>
+<p>  参数含义：①sentences就是待训练的语料，小文本可以用list输入，大文本也可以用我上面的Text8Corpus方法输入；②size表示词向量的维度，越大训练越慢但效果越好；③alpha表示学习速率；④window表示最多考虑特定词前后各window个词语进行建模；⑤min_count表示用来建模的词语的最小词频，词频小于min_count的词语会被舍弃；⑥max_vocab_size设置词向量构建期间的RAM限制。如果所有独立单词个数超过这个，则就消除掉其中最不频繁的一个;⑦sample为高频词汇的随机降采样的配置阈值；⑧workers设置训练的并行核数；⑨seed为随机数种子；⑩sg=0使用CBOW算法，sg=1使用skip-gram算法；①①hs=0采用negative sampling技巧，hs=1使用hierarchica softmax技巧；①②negative设置使用negative sampling技巧时具体用几个sample；①③cbow_mean如果为0，则采用上下文词向量的和，如果为1则采用其均值；①④iter迭代次数；①⑤sorted_vocab=1时会在分配word index的时候会先对单词基于频率降序排序；①⑥batch_words每一批的传递给训练线程的单词的数量。</p>
+<p>  虽然参数看起来很多，但其实影响比较大的就几个，首先size的设置是最重要的，一般要根据文本的大小进行设置，如果太小会丢失很多信息，太大又会让词语间的相似度变得很低降低应用价值；其次min_count也比较重要，如果确定每个词语都是需要的，那应该设置min_count=1防止词语被舍弃；其余的参数可以就使用默认值进行训练。</p>
+<p>  最后分享一个工作中踩过的坑，如果你是把分词后的词语一个个先存在list中，比如words=[&quot;词语1&quot;,&quot;词语2&quot;,&quot;词语3&quot;]，那在训练过程中，一定要写成sentences=[words]而不能直接写sentences=words。因为Word2vec会默认sentences输入了一段文本，会对list中的词语再进行一次分词，那会把words中的词语拆成单个的字进行建模，最后使用模型的时候会出现“word XX not in vocabulary”这样的错误。（当然，如果你min_count设置的高也会可能导致低频词不在vocabulary中）</p>
+<p>  以上就是一个简单的实战练习，Word2vec用的最多的不是相似度或者近义词，而是用训练好的模型将词语向量化，将文字转化为数值向量从而方便进行其他机器学习算法的建模（用model[word]实现）。一句话概括，Word2vec只是一种特征处理的工具。</p>
 
                 </div>
             </article>
@@ -263,8 +286,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/sql-xue-xi-ri-ji-shi/" class="post-title gt-a-link">
-                    SQL学习笔记（十）
+                <a href="https://wangykonne.github.io/post/word2vec-xiao-bai-ru-men/" class="post-title gt-a-link">
+                    Word2vec小白入门
                 </a>
             </div>
         
