@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangykonne.github.io</id>
     <title>db自留地</title>
-    <updated>2021-01-28T14:12:23.477Z</updated>
+    <updated>2021-02-22T10:51:52.680Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangykonne.github.io"/>
     <link rel="self" href="https://wangykonne.github.io/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://wangykonne.github.io/images/avatar.png</logo>
     <icon>https://wangykonne.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, db自留地</rights>
+    <entry>
+        <title type="html"><![CDATA[返校随笔]]></title>
+        <id>https://wangykonne.github.io/post/fan-xiao-sui-bi/</id>
+        <link href="https://wangykonne.github.io/post/fan-xiao-sui-bi/">
+        </link>
+        <updated>2021-02-18T10:40:43.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>现在是2月18号下午14点46分，我坐在回上海的高铁上。一如往常，“返校综合症”让我又depressed 起来，既不想看番也不想打游戏也不想看剧。那么能做点啥打发时间呢？于是我打开了手机的备忘录。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>现在是2月18号下午14点46分，我坐在回上海的高铁上。一如往常，“返校综合症”让我又depressed 起来，既不想看番也不想打游戏也不想看剧。那么能做点啥打发时间呢？于是我打开了手机的备忘录。</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TF-IDF小白入门]]></title>
+        <id>https://wangykonne.github.io/post/tf-idf-xiao-bai-ru-men/</id>
+        <link href="https://wangykonne.github.io/post/tf-idf-xiao-bai-ru-men/">
+        </link>
+        <updated>2021-02-05T01:28:01.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>小年快乐，耶~</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>小年快乐，耶~</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Word2vec实战练习]]></title>
         <id>https://wangykonne.github.io/post/word2vec-shi-zhan-lian-xi/</id>
@@ -113,36 +143,6 @@
         <link href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-er/">
         </link>
         <updated>2021-01-08T14:10:37.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SQL学习笔记（十一）]]></title>
-        <id>https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-yi/</id>
-        <link href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-yi/">
-        </link>
-        <updated>2021-01-04T13:53:05.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SQL学习笔记（十）]]></title>
-        <id>https://wangykonne.github.io/post/sql-xue-xi-ri-ji-shi/</id>
-        <link href="https://wangykonne.github.io/post/sql-xue-xi-ri-ji-shi/">
-        </link>
-        <updated>2021-01-02T15:11:20.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
 <p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
 </blockquote>
