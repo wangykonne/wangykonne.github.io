@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangykonne.github.io</id>
     <title>db自留地</title>
-    <updated>2021-02-22T10:51:52.680Z</updated>
+    <updated>2021-03-04T13:57:18.329Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangykonne.github.io"/>
     <link rel="self" href="https://wangykonne.github.io/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://wangykonne.github.io/images/avatar.png</logo>
     <icon>https://wangykonne.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, db自留地</rights>
+    <entry>
+        <title type="html"><![CDATA[专业词汇汇总（持续更新）]]></title>
+        <id>https://wangykonne.github.io/post/zhuan-ye-ci-hui-hui-zong-chi-xu-geng-xin/</id>
+        <link href="https://wangykonne.github.io/post/zhuan-ye-ci-hui-hui-zong-chi-xu-geng-xin/">
+        </link>
+        <updated>2021-03-04T13:51:42.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>为了防止出现面试听到一个名词直接懵逼的情况出现，有必要学习一些业务上常见的名词</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>为了防止出现面试听到一个名词直接懵逼的情况出现，有必要学习一些业务上常见的名词</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ABtest]]></title>
+        <id>https://wangykonne.github.io/post/abtest/</id>
+        <link href="https://wangykonne.github.io/post/abtest/">
+        </link>
+        <updated>2021-03-04T13:48:15.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>后知后觉的我在看到很多大厂实习开始招人后才恍然大悟，嗯该开始准备准备了</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>后知后觉的我在看到很多大厂实习开始招人后才恍然大悟，嗯该开始准备准备了</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[返校随笔]]></title>
         <id>https://wangykonne.github.io/post/fan-xiao-sui-bi/</id>
@@ -121,28 +151,6 @@
         <link href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-san/">
         </link>
         <updated>2021-01-16T03:05:55.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[滤镜]]></title>
-        <id>https://wangykonne.github.io/post/lu-jing/</id>
-        <link href="https://wangykonne.github.io/post/lu-jing/">
-        </link>
-        <updated>2021-01-13T14:05:50.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SQL学习笔记（十二）]]></title>
-        <id>https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-er/</id>
-        <link href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-er/">
-        </link>
-        <updated>2021-01-08T14:10:37.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
 <p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
 </blockquote>

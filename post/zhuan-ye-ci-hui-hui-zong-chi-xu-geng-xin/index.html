@@ -1,11 +1,10 @@
 <html>
-
 <head>
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>友情链接 | db自留地</title>
+<title>专业词汇汇总（持续更新） | db自留地</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1614866114611">
 
@@ -34,12 +33,11 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
-
 <body>
 <div class="main gt-bg-theme-color-first">
-        <div class="main-content">
-            <style>
+    <style>
     /* 导航栏样式 */
     .navbar {
         position: relative;
@@ -200,28 +198,102 @@
         }
     }
 </script>
-            <div class="post-container">
-                <div class="post-detail">
-                    <article>
-                        <!-- <div class="post-content-wrapper"> -->
-                            <div class="post-content">
-                                <div class="friends-desc">
-                                    
-                                </div>
-                                <h3 id="linklist">友链列表</h3>
-                                
-                                    
-                                
-                            </div>
-                        <!-- </div> -->
-                    </article>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    专业词汇汇总（持续更新）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-03-04 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/HFnUHOrnC/" class="post-tags">
+                            # 数分岗知识
+                        </a>
+                    
                 </div>
-                
+                <div class="post-content">
+                    <blockquote>
+<p>为了防止出现面试听到一个名词直接懵逼的情况出现，有必要学习一些业务上常见的名词</p>
+</blockquote>
+<!-- more -->
+<h2 id="gmv">GMV</h2>
+<h3 id="是什么">是什么？</h3>
+<p>  GMV，全称Gross Merchandise Volume，指网站或平台的成交金额，具体地，指的是拍下订单的总金额，包含付款和未付款两部分（甚至拍下付款后退货的订单也会计入GMV中）。</p>
+<h3 id="怎么算">怎么算？</h3>
+<p>  GMV（成交总额）是用来衡量平台竞争力（市场占有率）的指标。通常电商平台的GMV=销售额+取消订单金额+拒收订单金额+退货订单金额，即GMV为已付款订单和未付款订单之和。</p>
+<h3 id="和营收有什么区别">和营收有什么区别？</h3>
+<p>  在大致的计算公式中就可以看出，GMV是大于实际营收。</p>
+<h3 id="有什么用处">有什么用处？</h3>
+<p>  ①GMV可以用来研究顾客的购买意愿，即顾客下单之后发生取消拒收退货的比率。当一个特定的产品的实际营收/GMV的值偏小时，说明顾客对产品的喜好度不高，即使通过各种营销手段让顾客购买了产品，但还是有较多客户对产品不是很钟意。<br>
+  ②虽然GMV的计算是有水分的（例如淘宝里的刷单），但GMV还是能一定程度上体现一个平台、公司的竞争力。</p>
+<h2 id="留存率">留存率</h2>
+<h3 id="是什么-2">是什么？</h3>
+<p>  留存率顾名思义，就是用户留下来继续使用的比率。以时间跨度的不同，又可以分为：次留率（用户在某天登录后第二天再次登录的比率），3日留存率（用户在某天登录后，三天后再次登录的比率）...以此类推</p>
+<h3 id="怎么算-2">怎么算？</h3>
+<p>  在任意门面试被问到过，用SQL计算次留率，当时写的很麻烦，其实只要以登陆时间表（有用户UID和登录日期）在参考日期left join自己，选择两次登录日期之差=1的用户的数量/参考日期登录的总用户数量就行了。</p>
+<h3 id="和流失率的关系">和流失率的关系</h3>
+<p>  一般来说留存率是用新增用户计算的，而流失率是用老用户计算的；即新用户看留存率，老用户看流失率。</p>
+<h3 id="有什么用处-2">有什么用处？</h3>
+<p>  留存率反映的实际上是一种转化率，即由初期的不稳定的用户转化为活跃用户、稳定用户、忠诚用户的过程，随着这个留存率统计过程的不断延展，就能看到不同时期的用户的变化情况。通过计算新用户不同时间维度的留存率和老用户不同时间维度的流失率，可以从宏观上把握用户的生命周期长度，从而对产品进行分析改进等。</p>
+<h2 id="埋点">埋点</h2>
+<h3 id="是什么-3">是什么？</h3>
+<p>  所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程。比如用户某个icon点击次数、观看某个视频的时长等等。埋点的技术实质，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获。例如：期望采集某个app的某个广告的有效曝光数，有效曝光的判别条件是停留时长超过1秒且有效加载出广告内容。这就是一种“埋点”。</p>
+<h3 id="怎么埋">怎么埋？</h3>
+<p>  埋点技术有三种：代码埋点，可视化埋点，无埋点。</p>
+<p>  ①代码埋点：在网页/app中加上一些代码，当用户触发相应行为时，进行数据上报，也就是代码埋点。这样的代码，在网站上叫监测代码，在app中叫SDK（Software Development Kit）。这种埋点的优点是能详细设置埋点的条件，得到的数据很精确；缺点是时间人力成本大（因为需要开发人员也参与）。</p>
+<p>  ②可视化埋点：利用可视化交互手段，数据产品/数据分析师可以通过可视化界面（管理后台连接设备）配置事件，可以理解为有一个可视化的埋点客户端，在上面点一点就行。优点是只需要了解业务就能自行埋点（无需开发人员）；缺点是仅支持客户端行为，小公司没有这类客户端就不能进行可视化埋点。</p>
+<p>  ③无埋点：例如开发人员在某个app上集成采集SDK后，SDK便直接开始捕捉和监测用户在应用里的<strong>所有行为</strong>，并全部上报，不需要开发人员添加额外代码。数据分析师通过管理后台的圈选功能来选出自己关注的用户行为，并给出事件命名，之后就可以结合时间属性、用户属性、事件进行分析了。所以无埋点不是真的不埋点，而是抓取所有数据然后按需取出。优点是一劳永逸，一次取出的所有数据可以供多次埋点使用（在时限内）；缺点是一般采集的数据远远大于埋点所需要的数据。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/abtest/" class="post-title gt-a-link">
+                    ABtest
+                </a>
             </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
 
 
+	<div id="vcomments"></div>
 
-            <div class="site-footer gt-c-content-color-first">
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">日近长安远</div>
     <div class="social-container">
         
@@ -251,8 +323,7 @@
   hljs.initHighlightingOnLoad()
 </script>
 
-        </div>
     </div>
+</div>
 </body>
-
 </html>
