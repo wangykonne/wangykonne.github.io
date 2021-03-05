@@ -1,0 +1,320 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>正则化理论  | db自留地</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1614950627175">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            db自留地
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1614950627175"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    正则化理论 
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-03-05 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/oCxH4CJK4/" class="post-tags">
+                            # 机器学习理论
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>机器学习的矫枉过正</p>
+</blockquote>
+<!-- more -->
+<h2 id="正则化方法">正则化方法</h2>
+<p>  介绍正则化之前，首先要知道“过拟合”问题，即模型的参数过多导致模型过于复杂，在训练数据集上效果很好，但在预测新数据时效果很差，专业说法叫模型泛化能力差。<br>
+  根据奥卡姆剃刀原则，两个模型效果一样应该选简单的那个，就是这个道理。所以有必要在机器学习过程中“惩罚”那些复杂的模型。在损失函数中引入惩罚，就是正则化方法。具体地，分为L1惩罚和L2惩罚。</p>
+<h2 id="l1惩罚">L1惩罚</h2>
+<p>  L1惩罚在损失函数中附加了待估参数的绝对值之和的某个倍数，即新的损失函数为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>J</mi><mrow><mi>n</mi><mi>e</mi><mi>w</mi></mrow></msub><mo>=</mo><msub><mi>J</mi><mrow><mi>o</mi><mi>l</mi><mi>d</mi></mrow></msub><mo>+</mo><mi>λ</mi><munder><mo>∑</mo><mi>j</mi></munder><mrow><mo fence="true">∣</mo><msub><mi>w</mi><mi>j</mi></msub><mo fence="true">∣</mo></mrow></mrow><annotation encoding="application/x-tex">J_{new}=J_{old}+\lambda \sum_j\left|w_j\right|
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.09618em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.09618em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.463782em;vertical-align:-1.413777em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8723309999999997em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.413777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">∣</span></span></span></span></span></span></p>
+<p>  其中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">w_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>为待估参数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>为L1正则化待选择的超参数，一般要训练得到。如果熟悉范数可以看到，其实惩罚项就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>倍的待估参数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>的1-范数的值。</p>
+<p>  另外，L1正则化有一个特点，就是L1正则化会减少模型中参数的个数，为什么会这样呢，如果你画出1-范数的单位区域就明白了，如下图：<br>
+<img src="https://wangykonne.github.io/post-images/1614950561358.png" alt="" loading="lazy"><br>
+  显然，在这个正方形区域做最优化问题时，最优解在顶点上的概率非常高，而顶点即意味着需要一些参数取0，所以L1正则化有一定的特征筛选的功能，如果模型的特征个数很多很多，就可以用L1惩罚进行正则化。</p>
+<h2 id="l2惩罚">L2惩罚</h2>
+<p>  L2惩罚在损失函数中附加了待估参数的平方和的某个倍数，即新的损失函数为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>J</mi><mrow><mi>n</mi><mi>e</mi><mi>w</mi></mrow></msub><mo>=</mo><msub><mi>J</mi><mrow><mi>o</mi><mi>l</mi><mi>d</mi></mrow></msub><mo>+</mo><mi>λ</mi><munder><mo>∑</mo><mi>j</mi></munder><msubsup><mi>w</mi><mi>j</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">J_{new}=J_{old}+\lambda \sum_jw_j^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.09618em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.09618em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.463782em;vertical-align:-1.413777em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8723309999999997em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.413777em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>  其中，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">w_j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span>为待估参数，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>为L2正则化待选择的超参数，也要通过训练得到。同理，L2惩罚项就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>倍的待估参数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span></span>的2-范数的值。</p>
+<h2 id="正则化参数lambda">正则化参数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span></h2>
+<p>  正则化是结构风险最小化的一种策略实现，能够有效降低过拟合。损失函数实际上包含了两个方面：一个是训练样本误差。一个是正则化项。其中，参数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>起到了权衡的作用。当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>比较大时，惩罚的影响很大，模型容易欠拟合；当<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>比较小时，惩罚的力度比较小，模型又容易过拟合。所以，这又是一种矛盾的状态了，怎么选择合适的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>呢？（交给电脑就好了~）</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/luo-ji-hui-gui-li-lun/" class="post-title gt-a-link">
+                    逻辑回归（理论）
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
