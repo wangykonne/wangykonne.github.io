@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>SQL学习笔记（十四） | db自留地</title>
+<title>数分面试题（持续更新） | db自留地</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1615014130021">
 
@@ -202,75 +202,39 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    SQL学习笔记（十四）
+                    数分面试题（持续更新）
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-01-16 ·
+                        · 2021-03-06 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
-                            # SQL基础知识
+                        <a href="https://wangykonne.github.io/tag/HFnUHOrnC/" class="post-tags">
+                            # 数分岗知识
                         </a>
                     
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
+<p>摘自各个网站的面经帖</p>
 </blockquote>
 <!-- more -->
-<h1 id="第八章sql-高级处理">第八章：SQL 高级处理</h1>
-<h2 id="81-窗口函数">8.1 窗口函数</h2>
-<h3 id="811-什么是窗口函数">8.1.1 什么是窗口函数</h3>
-<p>  窗口函数也被称为OLAP函数，即Online Analytical Processing，窗口函数就是用来实现实时分析功能的函数，在SQL Server和Oracle中也被成为分析函数。</p>
-<h3 id="812-窗口函数的语法">8.1.2 窗口函数的语法</h3>
-<p>  窗口函数的基础语法为：&lt;窗口函数&gt; OVER (PARTITION BY &lt;列名&gt; ORDER BY &lt;列名&gt;)。能够作为窗口函数使用的函数有两种：①聚合函数；②专用的窗口函数如RANK,DENSE_RANK,ROW_NUMBER。</p>
-<h3 id="813-rank函数使用方法">8.1.3 RANK函数使用方法</h3>
-<p>  下面学习RANK函数的使用方法来理解一下窗口函数的语法。例如对product表的不同商品种类分别进行销售单价的升序排序：</p>
-<p><code>#对product表的不同商品种类分别进行销售单价的升序排序</code><br>
-<code>SELECT product_name, product_type, sale_price, RANK() OVER (PARTITION BY product_type ORDER BY sale_price) AS ranking</code><br>
-<code>FROM product;</code></p>
-<p>  从例子中可以理解，PARTITION设定的是排序的对象范围，可以从字面意思理解为用来分割不同组；ORDER BY和前面学的ORDER BY用法完全一致。从窗口函数的用法可以看出，它兼具了GROUP BY的分组功能和ORDER BY的分类功能，但不具备GROUP BY的汇总功能。PARTITION BY相当于把表划分为一个个窗口，进行各自的操作。</p>
-<h3 id="814-不指定partition-by">8.1.4 不指定PARTITION BY</h3>
-<p>  在不指定PARTITION BY时，使用窗口函数会把整个表当成一个窗口。例如上面的例子中，如果删去PARTITION BY就会得到和直接使用ORDER BY一样的结果：</p>
-<p><code>#对product表销售单价的升序排序</code><br>
-<code>SELECT product_name, product_type, sale_price, RANK() OVER (ORDER BY sale_price) AS ranking</code><br>
-<code>FROM product;</code></p>
-<h3 id="815-专用窗口函数的种类">8.1.5 专用窗口函数的种类</h3>
-<p>  下面来总结一下具有代表性的专用窗口函数：</p>
-<p>  RANK函数：计算排序时，如果存在相同位次的记录，则会跳过之后的位次。例如有3条记录并列第一时：1，1，1，4。</p>
-<p>  DENSE_RANK函数：如果存在相同位次的记录，也不会跳过之后的位次。例如有3条记录并列第一时：1，1，1，2。</p>
-<p>  ROW_NUMBER函数：赋予唯一的连续位次。例如有3条记录并列第一时：1，2，3，4。</p>
-<p>  最后用一个例子使用这三种函数来看看最后的结果：</p>
-<p><code>#比较RANK函数、DENSE_RANK函数、ROW_NUMBER函数的结果</code><br>
-<code>SELECT product_name, product_type, sale_price,</code><br>
-<code>RANK() OVER (ORDER BY sale_price) AS ranking,</code><br>
-<code>DENSE_RANK() OVER (ORDER BY sale_price) AS dense_ranking,</code><br>
-<code>ROW_NUMBER() OVER (ORDER BY sale_price) AS row_num</code><br>
-<code>FROM product;</code></p>
-<h3 id="816-窗口函数的适用范围">8.1.6 窗口函数的适用范围</h3>
-<p>  窗口函数只能写在SELECT子句之中，一句话，直接死记硬背就完事。</p>
-<h3 id="817-聚合函数作为窗口函数使用">8.1.7 聚合函数作为窗口函数使用</h3>
-<p>  聚合函数也可以作为窗口函数使用，但功能会有一点不同。例如以SUM函数为例子：</p>
-<p><code>#将SUM函数作为窗口函数</code><br>
-<code>SELECT product_id, product_name, sale_price, SUM(sale_price) OVER (ORDER BY product_id) AS cur_sum</code><br>
-<code>FROM product;</code></p>
-<p>  使用SUM窗口函数时，括号内有参数，这点和RANK家族的不一样。上面代码的结果是根据product_id升序进行累加求和，即cur_sum第一行是id为0001的sale_price，第二行是id为0001和0002的sale_price之和...AVG在用在窗口函数时也是这种累计的功能：</p>
-<p><code>#将AVG函数作为窗口函数</code><br>
-<code>SELECT product_id, product_name, sale_price, AVG(sale_price) OVER (ORDER BY product_id) AS cur_avg</code><br>
-<code>FROM product;</code></p>
-<h3 id="818-计算移动平均">8.1.8 计算移动平均</h3>
-<p>  窗口函数还包括更加详细的汇总范围的备选功能，即框架。例如想计算排序后一个值和前面两行的平均值，显然这是一个移动平均值，上面的方法用不了：</p>
-<p><code>#计算每个列值和前两行的平均值</code><br>
-<code>SELECT product_id, product_name, sale_price,</code><br>
-<code>AVG(sale_price) OVER (ORDER BY product_id ROWS 2 PRECEDING) AS moving_avg</code><br>
-<code>FROM product;</code></p>
-<p>  ROWS关键字用来指定行，PRECEDING表示向前，FOLLOWING表示向后；所以ROWS 2 PRECEDING表示自己和前两行数据。再来看一个同时使用PRECEDING和FOLLOWING的例子：</p>
-<p><code>#计算每个列值和前后各一行的平均值</code><br>
-<code>SELECT product_id, product_name, sale_price,</code><br>
-<code>AVG(sale_price) OVER (ORDER BY product_id ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS moving_avg</code><br>
-<code>FROM product;</code></p>
-<p>  同时使用前后时要使用BETWEEN AND语句连接，其他的MIN,MAX,SUM,COUNT函数的窗口函数用法也类似，就不举例了。</p>
+<h2 id="一个网站一段时间销售额变低应从哪几个方面去考量">一个网站一段时间销售额变低，应从哪几个方面去考量</h2>
+<p>  首先，要定位到现象真正发生的位置，即到底是谁的销售额变低了？这里可以划分的维度有：①用户（画像，来源地区，新老，渠道等），是否是有某个特征的用户量下降了导致的销售额变低？②产品或者栏目板块，是否是某个产品或者某个特定栏目板块导致的销售额变低？③访问时段，是否是某个时段的销售额突然下降了？</p>
+<p>  定义到发生的位置后，对问题进行拆解，具体套路是把销售额的计算量化，分析是哪个指标导致的销售额变低。例如：销售额=入站流量*下单率*客单价，入站流量=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∑</mo></mrow><annotation encoding="application/x-tex">\sum</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span></span></span></span>各来源流量*流量转化率，下单率=商品页面访问量*下单转化率，客单价=商品数量*商品价格。</p>
+<p>  确定到问题的源头后，对问题的原因进行分析，比如采取内外部框架：①内部：网站改版，产品更新，优化广告投放；②外部：用户偏好变化，媒体舆论环境，经济形势，竞品行为。</p>
+<h2 id="用户流失分析">用户流失分析</h2>
+<p>  套用上面的分析套路。首先定位到现象真正发生的位置，即到底是哪里的用户流失了。例如：①用户（画像，来源地区，新老等），可能是某个年龄段某个地区或新/老用户发生了流失；②产品，如果公司不止一个产品，要定位是哪个产品的用户发生了流失；③渠道，用户接触产品的渠道不同（如同个游戏有官服和各种渠道服），可能是某一个渠道的用户发生了流失。</p>
+<p>  指标拆解：用户流失数量=某群体用户数量*流失率。拆解看是因为到了这个阶段的用户数量多了（比如说大部分用户到了衰退期），还是这个用户群体的流失率比较高。</p>
+<p>  内外部分析原因：①内部：产品对新用户不友好，收费不合理，产品服务出现重大问题，活动质量低，缺少留存手段，用户参与度低依赖度低；②外部：市场变化，竞品行为，社会舆论环境，节假日等。</p>
+<h3 id="新老用户流失的区别">新老用户流失的区别</h3>
+<p>  新用户流失：原因可能有非目标用户（刚性流失）、产品不满足需求（自然流失）、产品难以上手（受挫流失）和竞争产品影响（市场流失）。对于新用户流失，要考虑的是如何在较少的数据支撑下做流失用户识别，提前防止用户流失，并如何对有效的新用户进行挽回。</p>
+<p>  老用户流失：原因可能有到达用户生命周期衰退期（自然流失）、过度拉升arpu（每用户平均收入）导致低端用户驱逐（刚性流失）、社交蒸发难以满足前期用户需求（受挫流失）和竞争产品影响（市场流失）。老用户有较多的数据，更容易进行流失用户识别，做好防止用户流失更重要。并且，当老用户流失后，要考虑用户生命周期剩余价值，是否需要进行挽回。有关新老用户的用户周期，可以参考下图：<br>
+<img src="https://wangykonne.github.io/post-images/1615013450161.jpg" alt="" loading="lazy"></p>
+<h2 id="gmv在一段时间内上升了20怎么分析">GMV在一段时间内上升了20%，怎么分析</h2>
+<p>  指标上升题都可以套上面的套路，但这种指标严重异动的情况暗示了有坑，在噼里啪啦一顿分析之前，不妨先检验一下是否是简单的计算错误。</p>
+<p>  如果指标真的没有问题，就按套路的流程走。定位异常位置：进行用户群体、产品、渠道的细分，定位GMV在哪个点上提升了；指标拆解：将指标的计算量化，如GMV=广告投放数量*广告点击率*产品浏览量*放入购物车率*交易成功率*客单价，检查哪一步有显著变化导致了GMV上升；原因分析：还是分为内外两部分，内部原因考虑网站、产品、广告投放、活动等，外部原因考虑市场、社会舆论、竞品、节假日等。</p>
+<p>  最好，这一题要注意，GMV流水包括取消的订单金额和退货/拒收的订单金额，还有一种原因是商家刷单然后退货，虽然GMV上去了，但是实际成交量并没有那么多。如果GMV上升但营收没有太大变化就可以定位这个问题。</p>
 
                 </div>
             </article>
@@ -279,8 +243,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-shi-san/" class="post-title gt-a-link">
-                    SQL学习笔记（十三）
+                <a href="https://wangykonne.github.io/post/zheng-ze-hua-li-lun/" class="post-title gt-a-link">
+                    正则化理论 
                 </a>
             </div>
         
