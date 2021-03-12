@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Word2vec实战练习 | db自留地</title>
+<title>萌新编程题实战（持续更新） | db自留地</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1615519657502">
 
@@ -202,82 +202,151 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    Word2vec实战练习
+                    萌新编程题实战（持续更新）
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-01-28 ·
+                        · 2021-03-12 ·
                     </time>
                     
-                        <a href="https://wangykonne.github.io/tag/Z9KKB0vgJ/" class="post-tags">
-                            # 机器学习实战
+                        <a href="https://wangykonne.github.io/tag/BI-XY98Ii/" class="post-tags">
+                            # 算法岗知识
                         </a>
                     
                 </div>
                 <div class="post-content">
                     <blockquote>
-<p>Word2vec小白入门练习</p>
+<p>我太菜了，做得又慢又复杂Orz</p>
 </blockquote>
 <!-- more -->
-<h2 id="word2vec实战练习">Word2vec实战练习</h2>
-<h3 id="前置准备">前置准备</h3>
-<p>  进行中文文本的Word2vec词向量构建，首先需要进行分词。所以在这次练习中，需要预先安装好python中的分词库jieba和word2vec的库gensim。直接使用pip install的方法安装快捷又省心。</p>
-<h3 id="实战过程">实战过程</h3>
-<pre><code class="language-python">#加载库
-import jieba
-import jieba.analyse
-from string import punctuation
-from gensim.models import word2vec
-#创建好分词前和分词后txt文件的路径
-source_txt = 'C:/Users/wangyuankai/Desktop/report.txt'
-target_txt = 'C:/Users/wangyuankai/Desktop/result.txt'
-source_file = open(source_txt, 'r', encoding = 'utf-8')
-target_file = open(target_txt, 'w', encoding = 'utf-8')
-#定义要删除的标点等字符，punctuation里自带有一些半角标点，因此只需再补一些全角标点即可
-add_punc='，。、【 】 “”：；（）《》‘’{}？！⑦()、%^&gt;℃：.”“^-——=&amp;#@￥'
-all_punc=punctuation+add_punc
-#对文本进行分词操作并去除标点符号和无实意的停用词
-line = source_file.readline()
-stopwords = str(&quot;的和要以并为是&quot;)
-while line:
-    #第一次分词得到既有中文分词又有标点符号，以空格为间隔
-    line_seg = &quot; &quot;.join(jieba.cut(line))
-    #移除标点等需要删除的符号
-    testline=line_seg.split(' ')
-    te2=[]
-    for i in testline:
-        te2.append(i)
-        if i in all_punc or i in stopwords:
-            te2.remove(i)
-    #返回的te2是个list，转换为string后少了空格，因此需要再次分词
-    #第二次在仅有汉字的基础上再次进行分词
-    line_seg2 = &quot; &quot;.join(jieba.cut(''.join(te2)))
-    target_file.writelines(line_seg2)
-    line = source_file.readline()
-source_file.close()
-target_file.close()
-#word2vec建模并储存
-sentences = word2vec.Text8Corpus('C:/Users/wangyuankai/Desktop/result.txt')
-model = word2vec.Word2Vec(sentences, size=1000)
-model.save('C:/Users/wangyuankai/Desktop/test.model')
-#应用举例（获取最相似的n个词语，计算相似度）
-print(&quot;与脱贫最相似的五个词语为&quot;)
-print(model.wv.most_similar(&quot;脱贫&quot;,topn=5))
-print(&quot;脱贫与民生的相似度为&quot;)
-print(model.wv.similarity('脱贫','民生'))
+<h2 id="字节-房间题">字节-房间题</h2>
+<h3 id="题目描述">题目描述</h3>
+<p>  有n个房间，现在i号房间里的人需要被重新分配，分配的规则是这样的：先让i号房间里的人全都出来，接下来按照 i+1, i+2, i+3, ... 的顺序依此往这些房间里放一个人，n号房间的的下一个房间是1号房间，直到所有的人都被重新分配。现在告诉你分配完后每个房间的人数以及最后一个人被分配的房间号x，你需要求出分配前每个房间的人数。数据保证一定有解，若有多解输出任意一个解。</p>
+<h3 id="输入描述">输入描述</h3>
+<p>  第一行两个整数n, x (1&lt;=x&lt;=n)，代表房间房间数量以及最后一个人被分配的房间号；<br>
+第二行n个整数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ，代表每个房间分配后的人数。</p>
+<h3 id="输出描述">输出描述</h3>
+<p>  输出n个整数，代表每个房间分配前的人数。</p>
+<h3 id="示例">示例</h3>
+<pre><code>输入：
+3 1
+6 5 1    
+输出：
+4 4 4
 </code></pre>
-<p>  上面代码运行的结果为：</p>
-<pre><code class="language-python">&quot;与脱贫最相似的五个词语为&quot;
-&quot;[('发展', 0.34930261969566345), ('疫情', 0.29745471477508545), ('保障', 0.29070693254470825), ('人员', 0.2822575271129608), ('推动', 0.2802283763885498)]&quot;
-&quot;脱贫与民生的相似度为&quot;
-&quot;0.27995038&quot;
+<h3 id="思路与解答">思路与解答</h3>
+<p>  我的想法是从末状态进行倒推，从x位置-1然后到x-1位置再-1。而终止情况就是在某个位置人数-1之后，其前一个位置的人数恰好为0，此时刚好说明回到了原始状态。代码如下：</p>
+<pre><code class="language-python">information = input().split()
+n = int(information[0])
+x = int(information[1])
+n_number = input().split()
+a = [int(n_number[i]) for i in range(len(n_number))]
+i = 0
+#反向移动函数
+def move(m):
+    if m != 1:
+        m -= 1
+    else:
+        m = n  
+    return m
+#倒推到初始情况
+while a[x-1] != 0:
+    a[x-1] -= 1
+    x = move(x)
+    i += 1
+#补上人被清空的初始房间
+a[x-1] = i
+result = ''
+for i in range((len(a))-1):
+    result += str(a[i])+' '
+print(result+str(a[-1]))
 </code></pre>
-<h3 id="个人总结">个人总结</h3>
-<p>  上面的实战过程中，有必要说明一下的就是word2vec.Word2vec()函数了。Word2vec函数的基本形式为：Word2vec(sentences,size=100,alpha=0.025,window=5, min_count=5, max_vocab_size=None, sample=0.001,seed=1, workers=3, sg=0, hs=0, negative=5, cbow_mean=1,iter=5,null_word=0, sorted_vocab=1, batch_words=10000))</p>
-<p>  参数含义：①sentences就是待训练的语料，小文本可以用list输入，大文本也可以用我上面的Text8Corpus方法输入；②size表示词向量的维度，越大训练越慢但效果越好；③alpha表示学习速率；④window表示最多考虑特定词前后各window个词语进行建模；⑤min_count表示用来建模的词语的最小词频，词频小于min_count的词语会被舍弃；⑥max_vocab_size设置词向量构建期间的RAM限制。如果所有独立单词个数超过这个，则就消除掉其中最不频繁的一个;⑦sample为高频词汇的随机降采样的配置阈值；⑧workers设置训练的并行核数；⑨seed为随机数种子；⑩sg=0使用CBOW算法，sg=1使用skip-gram算法；①①hs=0采用negative sampling技巧，hs=1使用hierarchica softmax技巧；①②negative设置使用negative sampling技巧时具体用几个sample；①③cbow_mean如果为0，则采用上下文词向量的和，如果为1则采用其均值；①④iter迭代次数；①⑤sorted_vocab=1时会在分配word index的时候会先对单词基于频率降序排序；①⑥batch_words每一批的传递给训练线程的单词的数量。</p>
-<p>  虽然参数看起来很多，但其实影响比较大的就几个，首先size的设置是最重要的，一般要根据文本的大小进行设置，如果太小会丢失很多信息，太大又会让词语间的相似度变得很低降低应用价值；其次min_count也比较重要，如果确定每个词语都是需要的，那应该设置min_count=1防止词语被舍弃；其余的参数可以就使用默认值进行训练。</p>
-<p>  最后分享一个工作中踩过的坑，如果你是把分词后的词语一个个先存在list中，比如words=[&quot;词语1&quot;,&quot;词语2&quot;,&quot;词语3&quot;]，那在训练过程中，一定要写成sentences=[words]而不能直接写sentences=words。因为Word2vec会默认sentences输入了一段文本，会对list中的词语再进行一次分词，那会把words中的词语拆成单个的字进行建模，最后使用模型的时候会出现“word XX not in vocabulary”这样的错误。（当然，如果你min_count设置的高也会可能导致低频词不在vocabulary中）</p>
-<p>  以上就是一个简单的实战练习，Word2vec用的最多的不是相似度或者近义词，而是用训练好的模型将词语向量化，将文字转化为数值向量从而方便进行其他机器学习算法的建模（用model[word]实现）。一句话概括，Word2vec只是一种特征处理的工具。</p>
+<h2 id="字节-移动房间题">字节-移动房间题</h2>
+<h3 id="题目描述-2">题目描述</h3>
+<p>  存在n+1个房间，每个房间依次为房间1 2 3...i，每个房间都存在一个传送门，i房间的传送门可以把人传送到房间pi(1&lt;=pi&lt;=i),现在路人甲从房间1开始出发(当前房间1即第一次访问)，每次移动他有两种移动策略：A. 如果访问过当前房间 i 偶数次，那么下一次移动到房间i+1；B. 如果访问过当前房间 i 奇数次，那么移动到房间pi；现在路人甲想知道移动到房间n+1一共需要多少次移动；</p>
+<h3 id="输入描述-2">输入描述</h3>
+<p>  第一行包括一个数字n，表示房间的数量，接下来一行存在n个数字 pi(1&lt;=pi&lt;=i), pi表示从房间i可以传送到房间pi。</p>
+<h3 id="输出描述-2">输出描述</h3>
+<p>  输出一行数字，表示最终移动的次数。</p>
+<h3 id="示例-2">示例</h3>
+<pre><code>输入：
+2
+1 2
+输出：
+4
+</code></pre>
+<p>  说明：开始从房间1只访问一次所以只能跳到p1即房间1， 之后采用策略A跳到房间2，房间2这时访问了一次因此采用策略B跳到p2房间即房间2，之后采用策略A跳到房间3，因此到达房间3需要4步操作。</p>
+<h3 id="思路与解答-2">思路与解答</h3>
+<p>  我的想法比较简单粗暴，用一个list-at储存下路人的移动轨迹，但移动到n+1时停止。同时写一个函数num(i)来表示路人目前到i房间多少次了，而有移动轨迹at的话这个计数只要比对at=i的次数就可以了。代码如下：</p>
+<pre><code class="language-python">n = int(input())
+pi = input().split()
+at = [1]
+#访问房间i的次数函数
+def num(i):
+    k = 0
+    for j in range(len(at)):
+        if at[j]==i:
+            k+=1
+    return k
+step = 0
+#随移动更新轨迹at，到n+1房间停止
+while at[step]!=(n+1):
+    if num(at[step])%2 == 1:
+        at.append(int(pi[at[step]-1]))
+    else:
+        at.append(at[step]+1)
+    step+=1
+print(step)
+</code></pre>
+<h2 id="字节-片段字符串长度题">字节-片段字符串长度题</h2>
+<h3 id="题目描述-3">题目描述</h3>
+<p>  有一个仅包含’a’和’b’两种字符的字符串s，长度为n，每次操作可以把一个字符做一次转换（把一个’a’设置为’b’，或者把一个’b’置成’a’)；但是操作的次数有上限m，问在有限的操作数范围内，能够得到最大连续的相同字符的子串的长度是多少？</p>
+<h3 id="输入描述-3">输入描述</h3>
+<p>  第一行两个整数 n , m，第二行为长度为n且只包含’a’和’b’的字符串s。</p>
+<h3 id="输出描述-3">输出描述</h3>
+<p>  输出在操作次数不超过 m 的情况下，能够得到的 最大连续 全’a’子串或全’b’子串的长度。</p>
+<h3 id="示例-3">示例</h3>
+<pre><code>输入：
+8 1
+aabaabaa
+输出：
+5
+</code></pre>
+<p>  说明：把第一个 'b' 或者第二个 'b' 置成 'a'，可得到长度为 5 的全 'a' 子串。</p>
+<h3 id="思路与解答-3">思路与解答</h3>
+<p>  首先分析需要什么功能，显然需要一个函数能返回一个字符串中最长片段a或b的长度，正巧之前学了点正则表达式，所以可以用正则表达式取出字符串中所有的a片段或b片段，返回最长片段的长度。其次，需要变化ab若干，不管变化多少次都可以用1次递归，所以我写了个函数change1(string,i)表示将string的第i个位置的a变为b或b变为a，返回变换后的新字符串。<br>
+  解这道题的思路类似贪心算法——每次变换达到最大长度的字符串保留为新字符串然后继续递归执行m次（虽然每一步最优不一定合起来就是总体最优，但这道题貌似就是总体最优），有上面这两个函数，以变换一次为例，可以找到变换一次能达到的最长片段长度和对应的新字符串，然后递归m次，用序列储存m次变换对应的长度，取最大值即可。代码如下：</p>
+<pre><code class="language-python">import re
+npm = input().split()
+n = int(npm[0])
+m = int(npm[1])
+abstr = input()
+#计算最大片段长度
+def count(string):
+    resulta = re.findall('[a]+',string)
+    resultb = re.findall('[b]+',string)
+    la = [len(resulta[i]) for i in range(len(resulta))]
+    lb = [len(resultb[i]) for i in range(len(resultb))]
+    return max(max(la),max(lb))
+#得到变换i位置后的新字符串
+def change1(string,i):
+    l = list(string)
+    if l[i]=='a':
+        l[i] = 'b'
+    else:
+        l[i] = 'a'
+    return ''.join(l)
+ans = [0 for i in range(m)]
+j = 0
+#每次变换更新能得到最大片段长的新字符串为abstr进行下一轮循环
+while j&lt;=(m-1):
+    length = [count(change1(abstr,i)) for i in range(n)]
+    ans[j] = max(length)
+    maxindex = sorted(range(len(length)), key=lambda k: length[k], reverse=True)[0]
+    abstr = change1(abstr, maxindex)
+    j+=1
+print(max(ans))
+</code></pre>
 
                 </div>
             </article>
@@ -286,8 +355,8 @@ print(model.wv.similarity('脱贫','民生'))
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/word2vec-xiao-bai-ru-men/" class="post-title gt-a-link">
-                    Word2vec小白入门
+                <a href="https://wangykonne.github.io/post/ji-cheng-suan-fa-li-lun-jian-jie/" class="post-title gt-a-link">
+                    集成算法理论简介
                 </a>
             </div>
         
