@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangykonne.github.io</id>
     <title>db自留地</title>
-    <updated>2021-03-14T05:53:10.002Z</updated>
+    <updated>2021-03-14T06:55:12.523Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangykonne.github.io"/>
     <link rel="self" href="https://wangykonne.github.io/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://wangykonne.github.io/images/avatar.png</logo>
     <icon>https://wangykonne.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, db自留地</rights>
+    <entry>
+        <title type="html"><![CDATA[评估指标]]></title>
+        <id>https://wangykonne.github.io/post/ping-gu-zhi-biao/</id>
+        <link href="https://wangykonne.github.io/post/ping-gu-zhi-biao/">
+        </link>
+        <updated>2021-03-14T03:19:32.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>1 day（本文仅针对二元分类问题）</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>1 day（本文仅针对二元分类问题）</p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[萌新编程题实战（持续更新）]]></title>
         <id>https://wangykonne.github.io/post/meng-xin-bian-cheng-ti-shi-zhan-chi-xu-geng-xin/</id>
@@ -142,21 +157,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
 <p>后知后觉的我在看到很多大厂实习开始招人后才恍然大悟，嗯该开始准备准备了</p>
-</blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[返校随笔]]></title>
-        <id>https://wangykonne.github.io/post/fan-xiao-sui-bi/</id>
-        <link href="https://wangykonne.github.io/post/fan-xiao-sui-bi/">
-        </link>
-        <updated>2021-02-18T10:40:43.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>现在是2月18号下午14点46分，我坐在回上海的高铁上。一如往常，“返校综合症”让我又depressed 起来，既不想看番也不想打游戏也不想看剧。那么能做点啥打发时间呢？于是我打开了手机的备忘录。</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>现在是2月18号下午14点46分，我坐在回上海的高铁上。一如往常，“返校综合症”让我又depressed 起来，既不想看番也不想打游戏也不想看剧。那么能做点啥打发时间呢？于是我打开了手机的备忘录。</p>
 </blockquote>
 ]]></content>
     </entry>
