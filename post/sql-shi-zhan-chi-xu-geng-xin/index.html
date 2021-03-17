@@ -1,11 +1,10 @@
 <html>
-
 <head>
     <meta charset="utf-8" />
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>友情链接 | db自留地</title>
+<title>SQL实战（持续更新） | db自留地</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1615968117090">
 
@@ -34,12 +33,11 @@
 <!--<script src="media/scripts/index.js"></script>-->
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
 </head>
-
 <body>
 <div class="main gt-bg-theme-color-first">
-        <div class="main-content">
-            <style>
+    <style>
     /* 导航栏样式 */
     .navbar {
         position: relative;
@@ -200,28 +198,118 @@
         }
     }
 </script>
-            <div class="post-container">
-                <div class="post-detail">
-                    <article>
-                        <!-- <div class="post-content-wrapper"> -->
-                            <div class="post-content">
-                                <div class="friends-desc">
-                                    
-                                </div>
-                                <h3 id="linklist">友链列表</h3>
-                                
-                                    
-                                
-                            </div>
-                        <!-- </div> -->
-                    </article>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    SQL实战（持续更新）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-03-16 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/HFnUHOrnC/" class="post-tags">
+                            # 数分岗知识
+                        </a>
+                    
                 </div>
-                
+                <div class="post-content">
+                    <blockquote>
+<p>错题，好题（自认为）记录</p>
+</blockquote>
+<!-- more -->
+<h2 id="180连续出现的数字">180.连续出现的数字</h2>
+<h3 id="题目描述">题目描述</h3>
+<p>  编写一个 SQL 查询，查找所有至少<strong>连续出现三次</strong>的数字。返回的结果表中的数据可以按<strong>任意顺序</strong>排列。例子如下图：<br>
+<img src="https://wangykonne.github.io/post-images/1615877648588.png" alt="" loading="lazy"></p>
+<h3 id="解答">解答</h3>
+<p>  这道题不难，关键在<strong>连续出现</strong>的判断，我用的是left join三次比较简单粗暴：<br>
+<img src="https://wangykonne.github.io/post-images/1615877894677.png" alt="" loading="lazy"><br>
+  后面看到了一种简便方法，使用窗口函数lead()，lead(column,n)表示将column列整体上移n行进行对齐：<br>
+<img src="https://wangykonne.github.io/post-images/1615878549134.png" alt="" loading="lazy"></p>
+<h2 id="196删除重复的电子邮箱">196.删除重复的电子邮箱</h2>
+<h3 id="题目描述-2">题目描述</h3>
+<p>  编写一个 SQL 查询，来删除Person表中所有重复的电子邮箱，重复的邮箱里只保留Id 最小的那个。例子如下：<br>
+<img src="https://wangykonne.github.io/post-images/1615885811587.png" alt="" loading="lazy"></p>
+<h3 id="解答-2">解答</h3>
+<p>  错误示范：<br>
+<img src="https://wangykonne.github.io/post-images/1615885941642.png" alt="" loading="lazy"><br>
+  错误原因在于使用mysql进行delete from操作时，如果子查询中from子句和删除对象使用同一张表就会出错。下面是正确示范：<br>
+<img src="https://wangykonne.github.io/post-images/1615886045524.png" alt="" loading="lazy"></p>
+<h2 id="262行程和用户">262.行程和用户</h2>
+<h3 id="题目描述-3">题目描述</h3>
+<p>  写一段 SQL 语句查出 &quot;2013-10-01&quot; 至 &quot;2013-10-03&quot; 期间非禁止用户（乘客和司机都必须未被禁止）的取消率。非禁止用户即 Banned 为 No 的用户，禁止用户即 Banned 为 Yes 的用户。取消率 的计算方式如下：(被司机或乘客取消的非禁止用户生成的订单数量) / (非禁止用户生成的订单总数)。返回结果表中的数据可以按任意顺序组织。其中取消率 Cancellation Rate 需要四舍五入保留 两位小数 。<br>
+<img src="https://wangykonne.github.io/post-images/1615888648098.png" alt="" loading="lazy"><br>
+  输出为：<br>
+<img src="https://wangykonne.github.io/post-images/1615888709294.png" alt="" loading="lazy"></p>
+<h3 id="解答-3">解答</h3>
+<p>  计算每天的非禁止用户的订单总数表a和每天被司机或乘客取消的非禁止用户生成的订单数量表b，以a表左联结b表再相除保留两位小数即可，但这样做如果分子为0会导致少一天的记录，所以给分子套一个coalesce()转化NULL为0。如下：<br>
+<img src="https://wangykonne.github.io/post-images/1615888909030.png" alt="" loading="lazy"></p>
+<h2 id="1179重新格式化部门表">1179.重新格式化部门表</h2>
+<h3 id="题目描述-4">题目描述</h3>
+<p>  编写一个 SQL 查询来重新格式化表，使得新的表中有一个部门 id 列和一些对应 每个月 的收入（revenue）列。<br>
+<img src="https://wangykonne.github.io/post-images/1615965024961.png" alt="" loading="lazy"></p>
+<h3 id="解答-4">解答</h3>
+<p>  无他，只是忘加了聚合函数写错了而已，答案如下：<br>
+<img src="https://wangykonne.github.io/post-images/1615965088189.png" alt="" loading="lazy"></p>
+<h2 id="字节真题">字节真题</h2>
+<h3 id="题目描述-5">题目描述</h3>
+<p>  现在有两张表table1:student_id,class；table2:student_id,course,score。使用SQL求：①每个班级每门课程的平均分？②每个班级总分最高的学生？<br>
+<img src="https://wangykonne.github.io/post-images/1615966157268.png" alt="" loading="lazy"></p>
+<h3 id="解答-5">解答</h3>
+<p>  ①如下，所以为什么面试那天会报错，离谱...<br>
+<img src="https://wangykonne.github.io/post-images/1615966519032.png" alt="" loading="lazy"><br>
+  ②有些MySQL可以select出现非聚合列非聚合函数，有些又不行，估计是版本的问题，如果不行就比较复杂（具体思路是建一个表有学生总分和班级最高分，如果学生总分和班级最高分相等就是待选的学生）：<br>
+<img src="https://wangykonne.github.io/post-images/1615968022208.png" alt="" loading="lazy"></p>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://wangykonne.github.io/post/zi-jie-shu-ju-wa-jue-shi-xi-mian-jing/" class="post-title gt-a-link">
+                    字节数据挖掘实习面经
+                </a>
             </div>
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
 
 
+	<div id="vcomments"></div>
 
-            <div class="site-footer gt-c-content-color-first">
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">日近长安远</div>
     <div class="social-container">
         
@@ -251,8 +339,7 @@
   hljs.initHighlightingOnLoad()
 </script>
 
-        </div>
     </div>
+</div>
 </body>
-
 </html>
