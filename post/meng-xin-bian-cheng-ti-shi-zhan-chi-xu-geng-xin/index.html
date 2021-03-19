@@ -6,7 +6,7 @@
 
 <title>萌新编程题实战（持续更新） | db自留地</title>
 
-<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1616048649012">
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1616135674183">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
@@ -179,7 +179,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1616048649012"
+            <form id="gridea-search-form" style="position: relative" data-update="1616135674183"
                 action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
@@ -206,7 +206,7 @@
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2021-03-12 ·
+                        · 2021-03-18 ·
                     </time>
                     
                         <a href="https://wangykonne.github.io/tag/BI-XY98Ii/" class="post-tags">
@@ -347,6 +347,95 @@ while j&lt;=(m-1):
     j+=1
 print(max(ans))
 </code></pre>
+<h2 id="1269停在原地的方案数">1269.停在原地的方案数</h2>
+<h3 id="题目描述-4">题目描述</h3>
+<p>  有一个长度为 arrLen 的数组，开始有一个指针在索引 0 处。每一步操作中，你可以将指针向左或向右移动 1 步，或者停在原地（指针不能被移动到数组范围外）。给你两个整数 steps 和 arrLen ，请你计算并返回：在恰好执行 steps 次操作以后，指针仍然指向索引 0 处的方案数。由于答案可能会很大，请返回方案数 模 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup><mo>+</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">10^9 + 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span> 后的结果。</p>
+<h3 id="示例-4">示例</h3>
+<pre><code>输入：steps = 3, arrLen = 2
+输出：4
+解释：3 步后，总共有 4 种不同的方法可以停在索引 0 处。
+向右，向左，不动
+不动，向右，向左
+向右，不动，向左
+不动，不动，不动
+</code></pre>
+<h3 id="思路与解答-4">思路与解答</h3>
+<p>  这道题第一想法是递归，假设经过i次移动到达位置j的方法有n[i][j]，每一步只有左右移动或不动，反映为j-1或者j+1或j，因此经过i次移动到达位置j的方法可以拆为①经过i-1次移动到达位置j-1；②经过i-1次移动到达位置j+1；③经过i-1次移动到达位置j。递推公式为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><mi>n</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>+</mo><mi>n</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo>]</mo><mo>+</mo><mi>n</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">n[i][j]=n[i-1][j-1]+n[i-1][j+1]+n[i-1][j]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span></span></p>
+<p>  初始状态n[0][0]=1（由n[1][0]=1可以倒推），限制为j-1不能小于0且j+1必须小于arrLen。</p>
+<pre><code class="language-python">class Solution:
+    def numWays(self, steps: int, arrLen: int) -&gt; int:
+       '''分析可知steps内最远也只能到达steps位置，因此再长的序列其实没有意义，取两者较小的一个即可'''
+        arrLen = min(arrLen, steps + 1)
+        n = [[0] * arrLen for i in range(steps + 1)]
+        n[0][0] = 1
+        for i in range(1, steps + 1):
+            for j in range(arrLen):
+                for k in [-1, 0, 1]:
+                    #限制条件的判断，坐标必须在0到arrLen-1之内
+                    if 0 &lt;= j - k &lt; arrLen:
+                        n[i][j] += n[i - 1][j - k]
+        return n[steps][0] % (10**9 + 7)
+</code></pre>
+<h2 id="1604警告一小时内使用相同员工卡大于等于三次的人">1604.警告一小时内使用相同员工卡大于等于三次的人</h2>
+<h3 id="题目描述-5">题目描述</h3>
+<p>  每当一个员工使用一次他的员工卡，安保系统会记录下员工的名字和使用时间。如果一个员工在一小时时间内使用员工卡的次数大于等于三次，这个系统会自动发布一个 警告 。给你字符串数组keyName 和 keyTime ，其中 [keyName[i], keyTime[i]] 对应一个人的名字和他在 某一天 内使用员工卡的时间。使用时间的格式是 24小时制 ，形如 &quot;HH:MM&quot; ，比方说 &quot;23:51&quot; 和 &quot;09:49&quot; 。请你返回去重后的收到系统警告的员工名字，将它们按 字典序升序 排序后返回。请注意 &quot;10:00&quot; - &quot;11:00&quot; 视为一个小时时间范围内，而 &quot;23:51&quot; - &quot;00:10&quot; 不被视为一小时内，因为系统记录的是某一天内的使用情况。</p>
+<h3 id="示例-5">示例</h3>
+<pre><code>输入：keyName = [&quot;daniel&quot;,&quot;daniel&quot;,&quot;daniel&quot;,&quot;luis&quot;,&quot;luis&quot;,&quot;luis&quot;,&quot;luis&quot;], keyTime = [&quot;10:00&quot;,&quot;10:40&quot;,&quot;11:00&quot;,&quot;09:00&quot;,&quot;11:00&quot;,&quot;13:00&quot;,&quot;15:00&quot;]
+输出：[&quot;daniel&quot;]
+解释：&quot;daniel&quot; 在一小时内使用了 3 次员工卡（&quot;10:00&quot;，&quot;10:40&quot;，&quot;11:00&quot;）。
+</code></pre>
+<h3 id="思路与解答-5">思路与解答</h3>
+<p>  首先写一个judge(name)函数，用来判断name这个人是否在一小时内用了三次卡，具体写法是先从keyTime中选择name对应的全部时间点存为time列表，如果time长度小于3直接不用判断return 0，如果time长度大于3，首先将time排序，然后从time[0]开始遍历到time[倒数第三个]，判断规则是：如果time[i]加上一小时超过了time[i+2]，就break跳出循环并return name。之后只需要从set(keyName)中一个个选择name，套用这个函数，把不是return 0的name给记录最后排序输出即可。如下：</p>
+<pre><code class="language-python">class Solution:
+    def alertNames(self, keyName: List[str], keyTime: List[str]) -&gt; List[str]:
+        def judge(name):
+            time=[]
+            result = ''
+            for i in range(len(keyName)):
+                if keyName[i]==name:
+                    time.append(keyTime[i])
+            if len(time)&gt;=3:
+                time.sort()
+                for i in range(len(time)-2):
+                    newtime = str(int(time[i][0:2])+1)+time[i][2:]
+                    if len(newtime)&lt;5:
+                        newtime = '0'+newtime
+                    if newtime&gt;=time[i+2]:
+                        result=name
+                        break
+            return result
+        answer = []
+        for i in set(keyName):
+            if judge(i)!='':
+                answer.append(judge(i))
+        answer.sort()
+        return answer
+</code></pre>
+<p>  然而，非常遗憾，提交之后显示运行超时Orz，说明复杂度太高了。看了下题解有个老哥用了字典连接name和对应的time，并且把时间统一转为分钟min进行比较，个人觉得不错，如下：</p>
+<pre><code class="language-python">class Solution:
+    def alertNames(self, keyName: List[str], keyTime: List[str]) -&gt; List[str]:
+        hashamp = {}
+        for i in range(len(keyName)):
+            time = keyTime[i].split(&quot;:&quot;)
+            time = int(time[0])*60 + int(time[1])
+            if keyName[i] not in hashamp:
+                hashamp[keyName[i]] = [time]
+            else:
+                hashamp[keyName[i]].append(time)
+        for name in hashamp.keys():
+            hashamp[name].sort()
+        lst = []
+        for name in hashamp.keys():
+            '''这里貌似有点小瑕疵，默认了hashamp[name]的长度都是大于2的，应该加个if判断不然会出现index错误'''
+            for i in range(len(hashamp[name])-2):
+                if 0 &lt; hashamp[name][i+2]-hashamp[name][i] &lt;= 60:
+                    lst.append(name)
+                    break
+        lst.sort()
+        return lst
+</code></pre>
 
                 </div>
             </article>
@@ -355,8 +444,8 @@ print(max(ans))
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/ji-cheng-suan-fa-li-lun-jian-jie/" class="post-title gt-a-link">
-                    集成算法理论简介
+                <a href="https://wangykonne.github.io/post/sql-shi-zhan-chi-xu-geng-xin/" class="post-title gt-a-link">
+                    SQL实战（持续更新）
                 </a>
             </div>
         
