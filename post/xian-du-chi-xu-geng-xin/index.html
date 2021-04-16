@@ -1,0 +1,352 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>闲读（持续更新） | db自留地</title>
+
+<link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1618552504807">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wangykonne.github.io/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<style>
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <style>
+    /* 导航栏样式 */
+    .navbar {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-brand {
+        display: inline-block;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        text-decoration: none;
+    }
+
+    .navbar-nav {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .navbar-collapse {
+        -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        padding: 0.25rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+    }
+
+    .navbar-toggler:hover,
+    .navbar-toggler:focus {
+        text-decoration: none;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+
+        .navbar-expand-lg .navbar-nav {
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+
+        .navbar-expand-lg .navbar-collapse {
+            display: -ms-flexbox !important;
+            display: flex !important;
+            -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+        }
+
+        .navbar-expand-lg .navbar-toggler {
+            display: none;
+        }
+    }
+
+    @media (max-width: 991px) {
+        #navbarSupportedContent {
+            display: none;
+        }
+    }
+</style>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            db自留地
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/post/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1618552504807"
+                action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = function () {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    闲读（持续更新）
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2021-03-16 ·
+                    </time>
+                    
+                        <a href="https://wangykonne.github.io/tag/rxXWgxRge/" class="post-tags">
+                            # 闲书时光
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <blockquote>
+<p>读闲书的时分最是惬意</p>
+</blockquote>
+<!-- more -->
+<h2 id="围城">围城</h2>
+<blockquote>
+<p>“围在城里的人想逃出来，城外的人想冲进去，对婚姻也罢，职业也罢，人生的愿望大都如此。”</p>
+</blockquote>
+<p>  老实说，读完《围城》并没有感觉到多少“围城”之意，全篇更多的记述的是一个浑身缺点的知识分子（文凭也是买的或许都不能叫知识分子）在上世纪动乱年代的平静生活。从留洋归来到家乡生活到讲师生涯到最后结婚回到家乡，每一段故事都让我更加讨厌男主方鸿渐——因为他身上实在是太多各式各样的缺点。不过，这也正是一部讽刺小说成功的象征，之所以这些缺点会引起共鸣，也是因为自己身上也有同样的问题，方鸿渐就像一面镜子，看似普通百姓，可每个人都会讨厌他身上的一些点，“以人为镜可以正衣冠”，能让人警醒不要成为自己讨厌的人算是这个人物最大的功劳了。全书对“围城”描写最深刻的，恐怕就是方鸿渐的情感生活了，不得不说这个穷酸文人女人缘倒是挺好的，然而却是个渣男，尤其是他跟孙柔嘉闪婚之后吵嘴甚至家暴这变化实在让人唏嘘。所以，从谈恋爱的海誓山盟到婚姻的柴米油盐最后一地鸡毛，到底是哪里出了问题？生活改变人心？还是两人压根没互相了解？（题外话）如此看来有必要设立一个结婚冷静期。</p>
+<blockquote>
+<p>“苏小姐临别时的态度，冷缩了方鸿渐的高兴。他想这事势难两全，只求做得光滑干净，让苏小姐的爱情好好的无疾善终。他叹口气，怜悯苏小姐。自己不爱她，而偏为她弄得心软，这太不公道！她太取巧了！她不应当这样容易受伤，她该熬住不叫痛。为什么爱情会减少一个人心灵的抵抗力，使人变得软弱，被摆布呢？假如上帝真是爱人类的，他决无力量做得起主宰。”</p>
+</blockquote>
+<p>  方鸿渐属实渣男，自己不喜欢苏小姐就不要给她任何“好像有戏”的暗示，最后一脚把人踢开还要怪人容易受伤。所以后面看到苏小姐和方鸿渐再次碰面，苏小姐一顿冷嘲热讽着实解气。</p>
+<blockquote>
+<p>“那只祖传的老钟从容自在地打起来，仿佛积蓄了半天的时间，等夜深人静，搬出来一一细数：“当、当、当、当、当、当”响了六下。六点钟是五个钟头以前，那时候鸿渐在回家的路上走，蓄心要待柔嘉好，劝她别再为昨天的事弄得夫妇不欢；那时候，柔嘉在家里等鸿渐回来吃晚饭，希望他会跟姑母和好，到她厂里做事。这个时间落伍的计时机无意中包涵对人生的讽刺和感伤，深于一切语言、一切啼笑。”</p>
+</blockquote>
+<p>  文章的结尾戛然而止，但确实无比惊艳，讽刺意味拉满。方鸿渐根本不爱孙柔嘉，反倒是孙柔嘉对方鸿渐确实有爱情，两人闪婚基本就敲定了日后的种种矛盾。遇不到爱情又何必结婚呢？</p>
+<h2 id="东方快车谋杀案">东方快车谋杀案</h2>
+<p>  作为阿婆的代表作，这本书真的是典中典，前几天在图书馆翻阿婆的书就唯独没有这本，可见太精彩太经典了给人借完了。</p>
+<p>  推理小说不好剧透，总之就是非常精彩，一口气看完酣畅淋漓，看到最后拨开云雾见青天，才有一种“我逐渐理解一切！”的恍然大悟。不过其实前面有很多作案的暗示，只是我第一遍没get到。另外，虽然是推理小说，但也有关于“正义”的思考，何为正义？当正义迟到，个人能否代替法律执行正义呢？法律有漏洞的地方能否用人治进行补充？</p>
+<h2 id="三体">三体</h2>
+<p>  一部世界观庞大的科幻著作，</p>
+<h2 id="人类简史从动物到上帝">人类简史：从动物到上帝</h2>
+<p>  没读之前乍一听以为是本枯燥无趣的历史书，实际上这本“人类史书”并不是单纯走历史线从猿人写到今天（要是那样这本书也不会这么出名了）。和其他很多主观上的以人为中心的史书不同，这本书算是真正做到了客观看待人类——我们自身，正如作者所写的：人类——这种动物，像观察一种动物一样观察我们自己的发展进化史，不单从历史角度，还有科学文化宗教自然各个方面的客观看法，而这些，这正是这本书引人入胜之处。</p>
+<h3 id="盖起金字塔">盖起金字塔</h3>
+<blockquote>
+<p>而且这可不是史上的最后一次。就算今天，仍然如此。有多少年轻的大学毕业生投身大企业、从事各种劳心劳力的工作，发誓要努力赚钱，好在35岁就退休，去从事他们真正有兴趣的事业？但等他们到了35岁，却发现自己背着巨额贷款，要付子女的学费，要养在高级住宅区的豪宅，每家得有两部车，而且觉得生活里不能没有高级红酒和去国外的假期。他们该怎么做？他们会放下一切，回去野外采果子挖树根吗？当然不可能，而是加倍努力，继续把自己累得半死。</p>
+</blockquote>
+<p>  从游牧文明的猎人进化为农业文明的农民，没有一个人会怀疑这种进化带来了许多好处：发展了生产力、提高人口、延长寿命...然而，作者的“暴论”却是——“与其说是人类征服了农作物，不如说是农作物束缚了人类；人类把食物单一限制在谷物中，土地成了人类最重要的财产，同时也降低了人类的抗风险能力且增加了战争和冲突，而且人类还丧失了重回游牧文明的权力——膨胀的人口已经不可能重回游牧文明了”</p>
+<blockquote>
+<p>农业带来的压力影响深远，这正是后代大规模政治和社会制度的基础。但可悲的是，虽然农民勤劳不懈、希望能够保障自己未来的经济安全，但这几乎从来未曾实现。不管在任何地方，都出现了统治者和精英阶级，不仅靠着农民辛苦种出的食粮为生，还几乎全征收抢光，只留给农民勉强可过活的数量。正是这些征收来的多余食粮，养活了政治、战争、艺术和哲学，建起了宫殿、堡垒、纪念碑和庙宇。在现代晚期之前，总人口有九成以上都是农民，日出而作、胼手胝足。他们生产出来的多余食粮养活了一小撮的精英分子：国王、官员、战士、牧师、艺术家和思想家，但历史写的几乎全是这些人的故事。于是，历史只告诉了我们极少数的人在做些什么，而其他绝大多数人的生活就是不停挑水耕田。</p>
+</blockquote>
+<p>  并非考虑时代的进步带来的成就与辉煌，而是从全人类的福祉的角度出发，确实曾经的农业革命带给农民的更多是剥削与压迫，不过今天这种现象已经不再（至少在我国），肉眼可见的，家里外公那辈人都通过劳作让生活越来越好，没有剥削压迫，勤劳致富不再是资本家口中的虚妄之诺而是农民过上好日子的行动指南。</p>
+<h3 id="历史从无正义">历史从无正义</h3>
+<blockquote>
+<p>而且，如果你问一个白人至上主义者为什么赞成种族阶级制度，他几乎一定能跟你滔滔不绝地来场伪科学讲座，告诉你不同种族之间本来就有生物学上的差异，比如说，白人的血液或基因就有什么特殊之处，让他们天生更聪明、更有道德感也更勤奋。另外，如果你问一个资本主义的忠实拥护者为什么赞成财富阶级的制度，他也很可能告诉你，这正是客观能力差异带来的必然结果。这些人认为，有钱人之所以有钱，是因为他们能力更强，工作更认真。这样一来，有钱人该有更好的医疗保健、更好的教育、更好的营养，也是天经地义的事。这每分每毫，都是他们应得的。</p>
+</blockquote>
+<p>  从智人时代到即便今天，人类的劣根性从未被根除。从远古时期智人和尼安德特人的角逐中，智人踩在所有尼安德特人的尸体上进化为现在所有人类共同的祖先；到今天美国一名警察跪杀黑人引发的“BLM”运动。“种族优越感”似乎从未远去，它并没有随着文明程度提高而消失，相反还演化出了不同的形式：金钱优越感、学历优越感、外貌优越感...这种劣根性深植于人类心中限制世界变得更好，正如作者所说，灵魂上有瑕疵的生物注定是不能进化为地球的“上帝”的。</p>
+<h3 id="发现自己的无知">发现自己的无知</h3>
+<blockquote>
+<p>科学革命并不是“知识的革命”，而是“无知的革命”。真正让科学革命起步的伟大发现，就是发现“人类对于最重要的问题其实毫无所知”。</p>
+</blockquote>
+<blockquote>
+<p>现代科学和欧洲帝国的历史连接究竟是怎么产生的？虽然科技在19世纪和20世纪大放异彩，但在现代早期并不突出。这里真正的关键因素在于，不管是想寻找植物的植物学家还是想寻找殖民地的海军军官，都有一种共同的心态。他们共同的出发点就是承认无知，都会说“我不知道那里有什么”。于是，他们都觉得有走出去、寻找新发现的必要。而且，他们都希望这样取得的新知识能够让他们成为世界的主人。</p>
+</blockquote>
+<p>  苏格拉底说过，“我唯一知道的就是自己一无所知”。敢于承认自己一无所知，甚至敢质疑神、上帝其实也一无所知，是人类在科学革命中迈出的重要一步。看到这不得不向为科学起航献出生命的古代科学家们致敬啊，“朝闻道，夕死可矣”。</p>
+<h3 id="资本主义教条">资本主义教条</h3>
+<blockquote>
+<p>这是自由市场资本主义美中不足之处。它无法保证利润会以公平的方式取得或是以公平的方式分配。而且相反的是，因为人类有追求利润和经济成长的渴望，就会决定盲目扫除一切可能的阻挠。等到“成长”成了无上的目标、不受其他道德伦理考虑的制衡，就很容易衍生成一场灾难。有一些宗教（例如基督教和纳粹）杀害了数百万人，原因是出于仇恨。然而，资本主义也杀害了数百万人，原因则是出于冷漠和贪婪。</p>
+</blockquote>
+<p>  作为马列主义思想的拥护者，共产主义事业的接班人，看完这段话我直呼内行，在人类史中抨击资本主义的血腥和罪恶，作者不说是个共产主义者，至少也是个关心人类命运（不仅仅是精英阶层）对社会有理解的人。</p>
+<h3 id="一场永远的革命">一场永远的革命</h3>
+<blockquote>
+<p>有人会说，所谓的现代就是充满了盲目的屠杀、战争和压迫，而代表意象就是第一次世界大战的战壕、广岛的蘑菇状爆炸云，以及希特勒几近疯狂的意志。但也有人说，现代是个和平的时代，像是南美从来没有战壕，莫斯科和纽约从来没见过那些蘑菇云，而甘地和路德·金都让我们看到了宁静致远的缩影。</p>
+</blockquote>
+<p>  生活在和平年代和平国家真是幸运又幸福，至少不用担心睡着后会不会被导弹炸死。珍爱和平，远离战争。</p>
+<h3 id="成为神的这种动物">成为神的这种动物</h3>
+<blockquote>
+<p>7万年前，智人还不过是一种微不足道的动物，在非洲的角落自顾自地生活。但就在接下来的几千年间，智人就成了整个地球的主人、生态系统的梦魇。时至今日，智人似乎只要再跨一步就能进入神的境界，不仅有望获得永恒的青春，更拥有创造和毁灭一切的神力。但遗憾的是，智人在地球上的所作所为，实在没有太多令人自豪。虽然我们主宰了环境、增加了粮食产量、盖起城市、建立帝国，还创造了无远弗届的贸易网络，但全球的痛苦减少了吗？一次又一次，虽然整体人类的能力大幅提升，但却不一定能改善个别人类的福祉，而且常常还让其他动物深受其害。在过去的几十年间，至少就人类的生存条件而言有了确实的进步，饥荒、瘟疫和战争都已减少。然而，其他动物的生存条件却是以前所未有的速度急遽恶化，而且就算是人类相关的改进，也还需要再长时间观察才能判断是否利大于弊，是否能够延续。此外，虽然现在人类已经拥有许多令人赞叹的能力，但我们仍然对目标感到茫然，而且似乎也仍然总是感到不满。我们的交通工具已经从独木舟变成帆船、变成汽船、变成飞机，再变成航天飞机，但我们还是不知道自己该前往的目的地。我们拥有的力量比以往任何时候都更强大，但几乎不知道该怎么使用这些力量。更糟糕的是，人类似乎也比以往任何时候更不负责。我们让自己变成了神，而唯一剩下的只有物理法则，我们也不用对任何人负责。正因如此，我们对周遭的动物和生态系统掀起一场灾难，只为了寻求自己的舒适和娱乐，但从来无法得到真正的满足。拥有神的能力，但是不负责任、贪得无厌，而且连想要什么都不知道。天下危险，恐怕莫此为甚。</p>
+</blockquote>
+<p>  这本书精彩之处就在此，作为一本人类史书，没有如何歌颂人类伟大智慧，没有如何称人类为世界的主宰，而是像手术刀一般直戳人类的痛处。确实，作为拥有如此力量如此智慧如此文明的物种，它一路进化给地球给其他生物带来的并不是上帝一般的泽披万物，而是撒旦一样一路破坏一路毁灭。也许物质层面人类已经接近地球的“神”，但精神层面还远远不及呢。</p>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+
+        
+
+        
+            <script src='https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+
+<style>
+	div#vcomments{
+		width:100%;
+		max-width: 1000px;
+		padding: 2.5%
+	}
+</style>
+
+
+	<div id="vcomments"></div>
+
+<script>
+	new Valine({
+		el: '#vcomments',
+		appId: 'aHb7wrt4LdY1y2xNnPnv8Bdf-9Nh9j0Va',
+		appKey: '3ND7IFEdq0etn28alvpNtWLk',
+		avatar: 'mp',
+		pageSize: 5,
+		recordIp: false,
+		placeholder: 'Just Go Go',
+		visitor: false,
+	});
+</script>
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">日近长安远</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    <div class="footer-info">
+        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+    <div>
+        Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://wangykonne.github.io/atom.xml" target="_blank">RSS</a></a>
+    </div>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

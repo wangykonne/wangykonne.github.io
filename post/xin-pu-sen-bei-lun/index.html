@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>SQL学习笔记（六） | db自留地</title>
+<title>辛普森悖论 | db自留地</title>
 
 <link rel="shortcut icon" href="https://wangykonne.github.io/favicon.ico?v=1618552504807">
 
@@ -202,100 +202,80 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    SQL学习笔记（六）
+                    辛普森悖论
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-12-21 ·
+                        · 2021-04-01 ·
                     </time>
-                    
-                        <a href="https://wangykonne.github.io/tag/5kDrY3mnW/" class="post-tags">
-                            # SQL基础知识
-                        </a>
                     
                 </div>
                 <div class="post-content">
-                    <blockquote>
-<p>学习用书：SQL基础教程（Mick著） 数据库：MySQL 数据库可视化软件：SQLyog</p>
-</blockquote>
-<!-- more -->
-<h1 id="第四章数据更新">第四章：数据更新</h1>
-<h2 id="44-事务">4.4 事务</h2>
-<h3 id="441-什么是事务">4.4.1 什么是事务</h3>
-<p>  在RDBMS中，事务就是对表中数据更新的单位，简单来说，事务就是<strong>需要在同一个处理单元中执行的一系列更新处理的集合</strong>。在实际生活中，前面学过的INSERT,DELETE,UPDATE等更新处理往往不是只使用一次，而是要连续执行一系列更新处理。例如要将运动T恤的价格下调1000，T恤的价格上调1000，如果按前面学过的UPDATE需要使用两次：</p>
-<p><code>#将运动T恤的价格下调1000</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price - 1000</code><br>
-<code>WHERE product_name = '运动T恤';</code></p>
-<p><code>#将T恤的价格上调1000</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price + 1000</code><br>
-<code>WHERE product_name = 'T恤衫';</code></p>
-<p>  上面的代码属于两个处理单元，简单来说就是不能做到同时进行两种更新操作。使用事务可以使代码更美观且在一个处理单元中完成所有的更新处理操作。</p>
-<h3 id="442-创建事务">4.4.2 创建事务</h3>
-<p>  在SQL中事务的基本语法为：事务开始语句+DML语句若干+事务结束语句。使用事务开始和结束语句将更新处理DML语句括起来，就实现了一个事务处理。这里需要注意的是事务的开始语句，在不同的RDBMS中其语法不同：</p>
-<p><code>#事务开始的语句</code><br>
-<code>#SQL Server,PostgreSQL</code><br>
-<code>BEGIN TRANSACTION;</code></p>
-<p><code>#MySQL</code><br>
-<code>START TRANSACTION;</code></p>
-<p><code>#Oracle,DB2</code><br>
-<code>无</code></p>
-<p>  而事务结束的语句在所有RDBMS中都是相同的，即COMMIT;或者ROLLBACK;（两者含义有差别）。下面使用事务进行上面说的两种更新操作：</p>
-<p><code>#使用事务同时进行将运动T恤的价格下调1000、T恤的价格上调1000的操作</code><br>
-<code>#MySQL</code><br>
-<code>START TRANSACTION;</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price - 1000</code><br>
-<code>WHERE product_name = '运动T恤';</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price + 1000</code><br>
-<code>WHERE product_name = 'T恤衫';</code><br>
-<code>COMMIT;</code></p>
-<p><code>#SQL Server,PostgreSQL</code><br>
-<code>BEGIN TRANSACTION;</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price - 1000</code><br>
-<code>WHERE product_name = '运动T恤';</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price + 1000</code><br>
-<code>WHERE product_name = 'T恤衫';</code><br>
-<code>COMMIT;</code></p>
-<p><code>#DB2,Oracle</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price - 1000</code><br>
-<code>WHERE product_name = '运动T恤';</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price + 1000</code><br>
-<code>WHERE product_name = 'T恤衫';</code><br>
-<code>COMMIT;</code></p>
-<p>  COMMIT是提交事务包含的全部更新处理的结束指令，相当于文件处理中的覆盖保存。一旦提交就无法回到事务开始的状态了；而ROLLBACK是取消事务包含的全部更新的结束指令，相当于文件处理中的取消保存，即使用ROLLBACK后事务里的DML语句都不会执行，数据库会恢复到事务开始之前的状态。例如：</p>
-<p><code>#MySQL</code><br>
-<code>START TRANSACTION;</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price - 1000</code><br>
-<code>WHERE product_name = '运动T恤';</code><br>
-<code>UPDATE Product</code><br>
-<code>SET sale_price = sale_price + 1000</code><br>
-<code>WHERE product_name = 'T恤衫';</code><br>
-<code>ROLLBACK;</code></p>
-<p>  上面的操作以ROLLBACK结尾，所以不会执行DML语句，运动T恤和T恤衫的价格都不会改变。</p>
-<h3 id="443-事务何时开始">4.4.3 事务何时开始</h3>
-<p>  事务开始指令在不同的RDBMS中不同，且DB2和Oracle没有事务开始指令。实际上几乎所有的数据库产品都可以不用事务开始指令，因为事务在建立链接时就会自动开始。那么既然不用事务开始指令怎么区别各个不同的事务呢？通常RDBMS有下面两种模式：<br>
-  ①每条SQL语句就是一个事务（自动提交模式）<br>
-  ②直到用户执行一个COMMIT或者ROLLBACK为止算一个事务<br>
-  SQL Server,PostgreSQL,MySQL默认都使用模式①，即每条语句都会在执行时自动被BEGIN和COMMIT括起来而不显示；而Oracle默认使用模式②，事务都是直到用户写了事务结束指令才会结束。对于模式①需要注意的是DELETE语句，如果不是模式①，即使使用了DELETE误删了数据，也可以通过ROLLBACK进行回滚恢复数据；而在自动提交模式中使用了DELETE就再也无法恢复数据了只能重新插入。</p>
-<h3 id="444-acid特性">4.4.4 ACID特性</h3>
-<p>  RDBMS的事务都遵从四种特性，称为ACID特性，具体如下：</p>
-<p>  原子性（Atomicity）<br>
-  原子性是指在事务结束时，其中所有的DML语句要么是全部执行要么是全部不执行，分别对应COMMIT和ROLLBACK语句。</p>
-<p>  一致性（Consistency）<br>
-  一致性是指事务中的DML语句要满足数据库设置的约束，如NOT NULL约束、主键约束等。如果写了不合法的DML语句，则这些不合法的DML语句会被回滚即不执行，而其他合法的会继续执行下去（仅针对COMMIT结尾的事务）。</p>
-<p>  隔离性（Isolation）<br>
-  隔离性是指不同事务之间互不干扰的特性，这保证了不同事务之间不能互相嵌套，即在某个事务中进行的操作，在该事务结束前对别的事务是不可见的。例如在某个事务中插入了一个新数据，那么只要这个事务没提交，在其他事务中这个新数据就是不存在的。</p>
-<p>  耐久性（Durability）<br>
-  耐久性指的是在事务（不论是提交还是回滚）结束后，RDBMS会保证这个时间点的数据状态被保存。即使由于系统故障导致数据丢失，数据库也会自动恢复。</p>
-<p>  因为后天要期中考，今天摸鱼只完结了第四章，明天尽量从复习里抽点时间学点第五章。最后要说的是，学完这四章，对于SQL最基础的增删改查的学习就已经结束了，第五章之后可以说就是中阶的SQL了，开冲。（明天两门期末我害搁着搬运，老摸鱼哥了）</p>
+                    <h2 id="何为辛普森悖论">何为辛普森悖论</h2>
+<p>  简单地说，当人们尝试探究两种变量（比如新生录取率与性别）是否具有相关性的时候，会分别对之进行分组研究。然而，在分组比较中都占优势的一方，在总评中有时反而是失势的一方。换句话说，在一个维度的各个分量上都占相对优势也不能保证在整个维度上占优。</p>
+<h2 id="一个例子">一个例子</h2>
+<p>  例如下面这张表格：</p>
+<table>
+<thead>
+<tr>
+<th>学院</th>
+<th style="text-align:right">女生申请</th>
+<th style="text-align:center">女生录取</th>
+<th style="text-align:center">女生录取率</th>
+<th style="text-align:center">男生申请</th>
+<th style="text-align:center">男生录取</th>
+<th style="text-align:center">男生录取率</th>
+<th style="text-align:center">合计申请</th>
+<th style="text-align:center">合计录取</th>
+<th style="text-align:center">合计录取率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商学院</td>
+<td style="text-align:right">100</td>
+<td style="text-align:center">49</td>
+<td style="text-align:center">49%</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">75%</td>
+<td style="text-align:center">120</td>
+<td style="text-align:center">64</td>
+<td style="text-align:center">53.3%</td>
+</tr>
+<tr>
+<td>法学院</td>
+<td style="text-align:right">20</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">5%</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">10%</td>
+<td style="text-align:center">120</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">9.2%</td>
+</tr>
+<tr>
+<td>合计</td>
+<td style="text-align:right">120</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">42%</td>
+<td style="text-align:center">120</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">240</td>
+<td style="text-align:center">75</td>
+<td style="text-align:center">31.3%</td>
+</tr>
+</tbody>
+</table>
+<p>  从学院的维度上乍一看，商学院和法学院都是男生录取率更高，但合计下来却是女生录取率更高，这其实就是一种辛普森悖论。其数学内核非常简单：简单地将各分组的结果相加并不能反映总体的真实情况。试着去分析这个例子就会发现，这种悖论源于两个学院相差悬殊的录取率，商学院为53.3%而法学院仅有9.2%，然而男女生申请的比例又恰好与这种差异相反——男生申请法学院的多而女生申请商学院的多，这就导致实际上男生更多的在法学院成为了炮灰，而分组下的结果则错误地反映了男生录取率高这个假象。</p>
+<h2 id="如何避免辛普森悖论">如何避免辛普森悖论</h2>
+<p>  在数据分析中经常会碰到辛普森悖论，那如何去避免这种分组带来的偏见呢？</p>
+<p>  ①<strong>不能单纯看数据本身</strong>。直接计算会得出错误的结论，我们必须考虑数据生成过程——因果模型——决定数据，减少潜伏变量的影响，最好能挖掘出全面的对结果有影响的因素，只考虑一两个因素很容易被引入误区。</p>
+<p>  ②<strong>关注数据采样的正确性</strong>。了解我们是否正在查看采样不良的数据或悖论的真实案例，这一点非常重要，更可能早的避免决策错误的发生。例如上面的例子中，明显在各个学院内部男女的申请数是严重不均衡的，可以通过欠采样或过采样解决。</p>
+<p>  ③<strong>找到数据中的潜伏变量</strong>。尽可能多地检查、重组合和重采样数据。如果从不同分类中可以得出多个不同的结论，我们需要知道我们寻找的重点，并用最佳的数据观点来公正地表达真相。</p>
+<p>  ④<strong>一定的洞察力和领域知识</strong>。在解决实际问题中，还是需要结合专业知识的，培养一定的业务sense能更好地避免被辛普森悖论影响。</p>
 
                 </div>
             </article>
@@ -304,8 +284,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://wangykonne.github.io/post/sql-xue-xi-bi-ji-wu/" class="post-title gt-a-link">
-                    SQL学习笔记（五）
+                <a href="https://wangykonne.github.io/post/meng-xin-bian-cheng-ti-shi-zhan-chi-xu-geng-xin/" class="post-title gt-a-link">
+                    萌新编程题实战（持续更新）
                 </a>
             </div>
         
